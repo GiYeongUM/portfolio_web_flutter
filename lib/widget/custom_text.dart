@@ -15,8 +15,6 @@ class CustomTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Text(text.textMap[text.isKr.value ? "kr" : "en"]!
-        .text.substring(0, text.textMap[text.isKr.value ? "kr" : "en"]!.currentLength.value),
-        style: style));
+    return Obx(() => Text(text.textMap[text.isKr.value ? "kr" : "en"]!.text.substring(0, text.textMap[text.isKr.value ? "kr" : "en"]!.currentLength.value), style: style));
   }
 }

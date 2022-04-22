@@ -17,11 +17,11 @@ class TranslateController extends GetxController {
       return;
     }
     testText.value.canTranslate.value = false;
-    Timer.periodic(const Duration(milliseconds: 20), (timer) {
+    Timer.periodic(const Duration(milliseconds: 15), (timer) {
       if(textData.textMap[textData.isKr.value ? "kr" : "en"]!.currentLength.value == 0){
         timer.cancel();
         textData.isKr.value = !textData.isKr.value;
-        Timer.periodic(const Duration(milliseconds: 20), (timerEnd) {
+        Timer.periodic(const Duration(milliseconds: 15), (timerEnd) {
           if (textData.textMap[textData.isKr.value ? "kr" : "en"]!.currentLength.value == textData.textMap[textData.isKr.value ? "kr" : "en"]!.text.length) {
             textData.canTranslate.value = true;
             timerEnd.cancel();
