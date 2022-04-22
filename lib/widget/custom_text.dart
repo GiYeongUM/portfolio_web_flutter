@@ -2,16 +2,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../model/text_class.dart';
+import '../translate.dart';
+
 class CustomTextWidget extends StatelessWidget {
-  const CustomTextWidget({Key? key, required this.text, required this.style, required this.textLength}) : super(key: key);
+  CustomTextWidget({Key? key, required this.text, required this.style}) : super(key: key);
 
-  final String text;
+  final TextClass text;
   final TextStyle style;
-  final int textLength;
 
+  var translateController = Get.find<TranslateController>();
 
   @override
   Widget build(BuildContext context) {
-    return Text(text.substring(0, textLength), style: style);
+    return Obx(() => Text(text.textMap[text.isKr.value ? "kr" : "en"]!
+        .text.substring(0, text.textMap[text.isKr.value ? "kr" : "en"]!.currentLength.value),
+        style: style));
   }
 }

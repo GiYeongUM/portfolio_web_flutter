@@ -24,16 +24,13 @@ class SplashPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Obx(() => CustomTextWidget(text: testText[translateController.language.value]!, style: medium10TextStyle, textLength: translateController.textLength.value,),),
+            CustomTextWidget(text: translateController.testText.value, style: medium10TextStyle),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          if(translateController.translateEnd.value) {
-            translateController.translateEnd.value = false;
-            translateController.translateStart();
-          }
+          translateController.translateStart(translateController.testText.value);
         },
         child: const Icon(Icons.g_translate),
 
