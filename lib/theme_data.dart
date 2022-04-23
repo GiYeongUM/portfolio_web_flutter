@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 
 // (Theme.of(context).brightness == Brightness.dark? gray_3a3a3aColor: white_efefefColor),
@@ -37,6 +38,9 @@ const secondColor = Color(0xffb6ff90);
 
 Color backGroundColorTheme(context){
   return Theme.of(context).brightness == Brightness.light ? white_efefefColor : gray_3a3a3aColor;
+}
+Color primaryColorTheme(context){
+  return Theme.of(context).brightness == Brightness.light ? primaryColor : white_efefefColor;
 }
 
 const kakaoColor = Color(0xffFFE812);
@@ -135,6 +139,9 @@ class Themes {
         buttonColor: primaryColor,
         disabledColor: Colors.grey,
       ));
+
+
+
 }
 
 

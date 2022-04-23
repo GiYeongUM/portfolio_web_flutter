@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:giyeong_um_porfolio_page/page/main_page.dart';
 import 'package:giyeong_um_porfolio_page/page/splash_page.dart';
 import 'package:giyeong_um_porfolio_page/translate.dart';
 
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       builder: (context) => GetMaterialApp(
+        initialRoute: "/",
         title: "엄기영 | 포트폴리오",
         builder: EasyLoading.init(builder: (context, widget) {
           return MediaQuery(
@@ -33,6 +35,7 @@ class MyApp extends StatelessWidget {
         darkTheme: Themes.darkTheme,
         themeMode: ThemeMode.system,
         debugShowCheckedModeBanner: false,
+
         home: SplashPage(),
       ),
     );
