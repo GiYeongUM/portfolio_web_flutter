@@ -13,7 +13,7 @@ class SplashController extends GetxController {
     Future.delayed(Duration(seconds: 1), () {
       marginRight.value = 0.0;
       opacity.value = 1.0;
-      Future.delayed(Duration(milliseconds: 2500), (){
+      Future.delayed(Duration(milliseconds: 1500), (){
         splashEnd.value = true;
       });
     });

@@ -40,12 +40,25 @@ class MainPage extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-
-
-                  // CustomTextWidget(text: translateController.testText.value, style: medium10TextStyle),
+                  Row(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            CustomTextWidget(text: translateController.introText_1.value, style: tileBoldTextStyle, textAlign: TextAlign.right,),
+                            CustomTextWidget(text: translateController.introText_2.value, style: tileBoldTextStyle, textAlign: TextAlign.right),
+                            CustomTextWidget(text: translateController.introText_3.value, style: tileBoldTextStyle, textAlign: TextAlign.right),
+                          ],
+                        ),
+                      ),
+                      Flexible(child: Container(),
+                        
+                      )
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -53,7 +66,6 @@ class MainPage extends StatelessWidget {
         ),
       ),
       bottomSheet: Container(
-
         padding: EdgeInsets.all(8),
         width: double.infinity,
 
@@ -72,7 +84,9 @@ class MainPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          translateController.translateStart(translateController.scrollText.value);
+          translateController.translateStart(translateController.introText_1.value);
+          translateController.translateStart(translateController.introText_2.value);
+          translateController.translateStart(translateController.introText_3.value);
         },
         child: const Icon(Icons.g_translate),
 

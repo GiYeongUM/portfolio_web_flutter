@@ -24,6 +24,8 @@ class MainController extends GetxController with GetSingleTickerProviderStateMix
       if (direction == ScrollDirection.reverse) {
         bottomAnimationController.stop();
         bottomBlink.value = false;
+        Future.delayed(Duration(milliseconds: 1000), (){
+        });
       } else {
 
       }

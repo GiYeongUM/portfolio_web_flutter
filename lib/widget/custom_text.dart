@@ -6,15 +6,20 @@ import '../model/text_class.dart';
 import '../translate.dart';
 
 class CustomTextWidget extends StatelessWidget {
-  CustomTextWidget({Key? key, required this.text, required this.style}) : super(key: key);
+  CustomTextWidget({Key? key, required this.text, required this.style, required this.textAlign}) : super(key: key);
 
   final TextClass text;
   final TextStyle style;
+  final TextAlign textAlign;
 
   var translateController = Get.find<TranslateController>();
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Text(text.textMap[text.isKr.value ? "kr" : "en"]!.text.substring(0, text.textMap[text.isKr.value ? "kr" : "en"]!.currentLength.value), style: style));
+    return Obx(() =>
+        Text(text.textMap[text.isKr.value ? "kr" : "en"]!.text.substring(0, text.textMap[text.isKr.value ? "kr" : "en"]!.currentLength.value),
+            style: style,
+          textAlign: textAlign,
+        ));
   }
 }

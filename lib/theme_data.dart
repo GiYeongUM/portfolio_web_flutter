@@ -63,9 +63,6 @@ TextStyle tileBoldTextStyle = _defaultTextStyle.copyWith(fontSize: _mediumFontSi
 TextStyle tileBoldTextStyleLarge = _defaultTextStyle.copyWith(fontSize: _mediumFontSize3x, fontWeight: FontWeight.bold);
 TextStyle tileRegularTextStyle = _defaultTextStyle.copyWith(fontSize: _mediumFontSize);
 TextStyle tilePrimaryRegularTextStyle = _defaultTextStyle.copyWith(fontSize: _mediumFontSize, fontWeight: FontWeight.bold, color: primaryColor);
-TextStyle clothesBoldTextStyle = _defaultTextStyle.copyWith(fontSize: _mediumFontSize2x, fontWeight: FontWeight.bold);
-TextStyle clothesRegularTextStyle = _defaultTextStyle.copyWith(fontSize: _mediumFontSize);
-TextStyle clothesPrimaryTextStyle = _defaultTextStyle.copyWith(fontSize: _mediumFontSize2x, fontWeight: FontWeight.bold, color: primaryColor);
 
 
 
