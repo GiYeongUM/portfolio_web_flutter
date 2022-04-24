@@ -6,15 +6,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 
 // (Theme.of(context).brightness == Brightness.dark? gray_3a3a3aColor: white_efefefColor),
-double _mediumFontSize2x = 15.sp;
-double _mediumFontSize3x = 18.sp;
-double _mediumFontSize4x = 23.sp;
-double _mediumFontSize = 14.sp;
-double _smallFontSize2X = 12.sp;
-double _smallFontSize = 10.sp;
+double _mediumFontSize = 10.sp;
+double _smallFontSize2X = 7.sp;
+double _smallFontSize = 5.sp;
+double _mediumFontSize2x = 12.sp;
+double _mediumFontSize3x = 14.sp;
+double _mediumFontSize4x = 16.sp;
+double _largeFontSize2x = 25.sp;
+double _largeFontSize = 32.sp;
 double _buttonDefaultSize = 16.sp;
-double _largeFontSize2x = 32.sp;
-double _largeFontSize = 25.sp;
 
 
 const TextStyle _defaultTextStyle = TextStyle(fontFamily: 'NotoSans');

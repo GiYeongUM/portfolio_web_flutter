@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:giyeong_um_porfolio_page/controller/main_controller.dart';
@@ -16,8 +17,8 @@ class MainPage extends StatelessWidget {
   var mainController = Get.put(MainController());
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
     return Scaffold(
-
       body: SingleChildScrollView(
         controller: mainController.scrollController.value,
         child: Column(
@@ -30,19 +31,7 @@ class MainPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Spacer(),
-                  Container(
-                    margin: EdgeInsets.only(top: 15),
-                      child: SvgPicture.asset("assets/images/logo_gyu.svg", color: primaryColorTheme(context),
-                      ),
-                  ),
-                  Spacer(),
-                  CustomTextWidget(text: translateController.testText.value, style: medium10TextStyle),
-                  Transform.rotate(
-                    alignment: Alignment.bottomCenter,
-                    angle: math.pi / 2,
-                    child: Icon(Icons.double_arrow, color: Colors.white, size: 25,),
-                  ),
+                  SvgPicture.asset("assets/images/logo_gyu.svg", color: primaryColorTheme(context),),
                 ],
               ),
             ),
@@ -63,9 +52,17 @@ class MainPage extends StatelessWidget {
           ],
         ),
       ),
+      bottomSheet: Container(
+        padding: EdgeInsets.all(8),
+        width: double.infinity,
+        child: Transform.rotate(
+          angle: math.pi / 2,
+          child: Icon(Icons.double_arrow, color: Colors.white),
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          translateController.translateStart(translateController.testText.value);
+          translateController.translateStart(translateController.scrollText.value);
         },
         child: const Icon(Icons.g_translate),
 
