@@ -9,6 +9,10 @@ class TranslateController extends GetxController {
     "kr": TextStatus(text: "테스트 텍스트입니다.", currentLength: 11.obs),
     "en": TextStatus(text: "This is test text.", currentLength: 0.obs)},
       canTranslate: true.obs, isKr: true.obs).obs;
+  var scrollText = TextClass(textMap: {
+    "kr": TextStatus(text: "스크롤로 내용보기", currentLength: "스크롤로 내용보기".length.obs),
+    "en": TextStatus(text: "This is test text.", currentLength: 0.obs)},
+      canTranslate: true.obs, isKr: true.obs).obs;
 
 
 
