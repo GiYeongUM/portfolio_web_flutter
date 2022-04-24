@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:giyeong_um_porfolio_page/controller/main_controller.dart';
+import 'package:giyeong_um_porfolio_page/widget/Intro_widget.dart';
 
 import '../theme_data.dart';
 import '../translate.dart';
@@ -35,32 +36,21 @@ class MainPage extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(16),
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width / 2,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            CustomTextWidget(text: translateController.introText_1.value, style: tileBoldTextStyle, textAlign: TextAlign.right,),
-                            CustomTextWidget(text: translateController.introText_2.value, style: tileBoldTextStyle, textAlign: TextAlign.right),
-                            CustomTextWidget(text: translateController.introText_3.value, style: tileBoldTextStyle, textAlign: TextAlign.right),
-                          ],
-                        ),
-                      ),
-                      Flexible(child: Container(),
-                        
-                      )
-                    ],
-                  ),
-                ],
-              ),
+            IntroWidget(
+                textList: [
+                  translateController.introText_1.value,
+                  translateController.introText_2.value,
+                  translateController.introText_3.value
+                ], direction: Direction.left,
+              sideText: translateController.sideText_1.value,
+            ),
+            IntroWidget(
+                textList: [
+                  translateController.introText_4.value,
+                  translateController.introText_5.value,
+                  translateController.introText_6.value
+                ], direction: Direction.right,
+              sideText: translateController.sideText_2.value,
             ),
           ],
         ),
@@ -68,7 +58,6 @@ class MainPage extends StatelessWidget {
       bottomSheet: Container(
         padding: EdgeInsets.all(8),
         width: double.infinity,
-
         child: Obx(() => AnimatedOpacity(
           opacity: mainController.bottomBlink.value ? 1.0 : 0.0,
           duration: Duration(milliseconds: 500),
@@ -84,9 +73,9 @@ class MainPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          translateController.translateStart(translateController.introText_1.value);
-          translateController.translateStart(translateController.introText_2.value);
-          translateController.translateStart(translateController.introText_3.value);
+          for(var text in translateController.textClassList){
+            translateController.translateStart(text);
+          }
         },
         child: const Icon(Icons.g_translate),
 

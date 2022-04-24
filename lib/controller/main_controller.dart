@@ -16,16 +16,15 @@ class MainController extends GetxController with GetSingleTickerProviderStateMix
 
     scrollController.value.addListener(() {
       if (scrollController.value.position.pixels == scrollController.value.position.maxScrollExtent) {
-        print("maxmax");
+
       }
 
       final direction = scrollController.value.position.userScrollDirection;
-      print(direction);
+
       if (direction == ScrollDirection.reverse) {
         bottomAnimationController.stop();
         bottomBlink.value = false;
-        Future.delayed(Duration(milliseconds: 1000), (){
-        });
+
       } else {
 
       }

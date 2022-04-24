@@ -19,9 +19,8 @@ class CustomTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() =>
         AutoSizeText(text.textMap[text.isKr.value ? "kr" : "en"]!.text.substring(0, text.textMap[text.isKr.value ? "kr" : "en"]!.currentLength.value),
-            style: style,
-          maxLines: 1,
-          textAlign: textAlign,
-        ));
+            style: style, maxLines: 1, textAlign: textAlign
+        )
+    );
   }
 }

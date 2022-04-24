@@ -16,7 +16,7 @@ class TranslateController extends GetxController {
 
   var introText_2 = TextClass(textMap: {
     "kr": TextStatus(text: "크로스 플랫폼 모바일 개발자", currentLength: "크로스 플랫폼 모바일 개발자".length.obs),
-    "en": TextStatus(text: "I'm a cross-platform mobile developer", currentLength: 0.obs)},
+    "en": TextStatus(text: "a cross-platform mobile developer", currentLength: 0.obs)},
       canTranslate: true.obs, isKr: true.obs).obs;
 
   var introText_3 = TextClass(textMap: {
@@ -24,7 +24,48 @@ class TranslateController extends GetxController {
     "en": TextStatus(text: "GiYeongUM", currentLength: 0.obs)},
       canTranslate: true.obs, isKr: true.obs).obs;
 
+  var sideText_1 = TextClass(textMap: {
+    "kr": TextStatus(text: "I'm", currentLength: "I'm".length.obs),
+    "en": TextStatus(text: "저는", currentLength: 0.obs)},
+      canTranslate: true.obs, isKr: true.obs).obs;
 
+  var introText_4 = TextClass(textMap: {
+    "kr": TextStatus(text: "창의적, 효율적으로", currentLength: "창의적, 효율적으로".length.obs),
+    "en": TextStatus(text: "Creatively and efficiently", currentLength: 0.obs)},
+      canTranslate: true.obs, isKr: true.obs).obs;
+
+  var introText_5 = TextClass(textMap: {
+    "kr": TextStatus(text: "AOS, iOS 모두", currentLength: "AOS, iOS 모두".length.obs),
+    "en": TextStatus(text: "both AOS and iOS", currentLength: 0.obs)},
+      canTranslate: true.obs, isKr: true.obs).obs;
+
+  var introText_6 = TextClass(textMap: {
+    "kr": TextStatus(text: "심지어 Flutter 까지!", currentLength: "심지어 Flutter 까지!".length.obs),
+    "en": TextStatus(text: "even Flutter!", currentLength: 0.obs)},
+      canTranslate: true.obs, isKr: true.obs).obs;
+
+
+  var sideText_2 = TextClass(textMap: {
+    "kr": TextStatus(text: "Developer", currentLength: "Developer".length.obs),
+    "en": TextStatus(text: "개발자입니다.", currentLength: 0.obs)},
+      canTranslate: true.obs, isKr: true.obs).obs;
+
+  var textClassList = <TextClass>[];
+
+  @override
+  void onInit() {
+    textClassList = [
+      introText_1.value,
+      introText_2.value,
+      introText_3.value,
+      introText_4.value,
+      introText_5.value,
+      introText_6.value,
+      sideText_1.value,
+      sideText_2.value
+    ];
+    super.onInit();
+  }
 
   void translateStart(TextClass textData){
     if(!textData.canTranslate.value){
