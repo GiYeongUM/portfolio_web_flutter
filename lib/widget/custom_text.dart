@@ -1,4 +1,5 @@
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,8 +18,9 @@ class CustomTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() =>
-        Text(text.textMap[text.isKr.value ? "kr" : "en"]!.text.substring(0, text.textMap[text.isKr.value ? "kr" : "en"]!.currentLength.value),
+        AutoSizeText(text.textMap[text.isKr.value ? "kr" : "en"]!.text.substring(0, text.textMap[text.isKr.value ? "kr" : "en"]!.currentLength.value),
             style: style,
+          maxLines: 1,
           textAlign: textAlign,
         ));
   }
