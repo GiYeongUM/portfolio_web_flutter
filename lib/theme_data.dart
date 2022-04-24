@@ -88,6 +88,8 @@ class Themes {
         backgroundColor: Colors.white,
         foregroundColor: primaryColor,
       ),
+
+      iconTheme: IconThemeData(color: Colors.white),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: gray_3a3a3aColor,
         selectedIconTheme: IconThemeData(color: Colors.white, opacity: 1),
@@ -113,11 +115,15 @@ class Themes {
       ));
   static final lightTheme = ThemeData(
       brightness: Brightness.light,
+      iconTheme: IconThemeData(color: primaryColor),
       primaryColor: primaryColor,
       scaffoldBackgroundColor: white_efefefColor,
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: primaryColor,
         foregroundColor: Colors.white,
+      ),
+      bottomSheetTheme: BottomSheetThemeData(
+          backgroundColor: Colors.white
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: Colors.white,

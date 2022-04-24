@@ -53,12 +53,22 @@ class MainPage extends StatelessWidget {
         ),
       ),
       bottomSheet: Container(
+
         padding: EdgeInsets.all(8),
         width: double.infinity,
-        child: Transform.rotate(
-          angle: math.pi / 2,
-          child: Icon(Icons.double_arrow, color: Colors.white),
+
+        child: Obx(() => AnimatedOpacity(
+          opacity: mainController.bottomBlink.value ? 1.0 : 0.0,
+          duration: Duration(milliseconds: 500),
+          child: FadeTransition(
+            opacity: mainController.bottomAnimationController,
+            child: Transform.rotate(
+            angle: math.pi / 2,
+            child: Icon(Icons.double_arrow),
+            ),
+          ),
         ),
+      ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
