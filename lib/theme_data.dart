@@ -7,8 +7,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 // (Theme.of(context).brightness == Brightness.dark? gray_3a3a3aColor: white_efefefColor),
 double _mediumFontSize = 10.sp;
-double _smallFontSize2X = 7.sp;
-double _smallFontSize1X = 6.sp;
+double _smallFontSize2X = 6.sp;
+double _smallFontSize1X = 5.sp;
 double _smallFontSize = 5.sp;
 double _mediumFontSize2x = 12.sp;
 double _mediumFontSize3x = 14.sp;

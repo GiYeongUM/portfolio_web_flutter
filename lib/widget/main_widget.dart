@@ -132,7 +132,7 @@ Widget projectWidget(TextClass text1, TextClass text2, TextClass text3, String i
             text: text1,
             style: medium12TextStyle,
             textAlign: TextAlign.left,
-            maxLines: 1,
+            maxLines: 2,
           ),
         ],
       ),
