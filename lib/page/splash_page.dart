@@ -26,12 +26,12 @@ class SplashPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             AnimatedContainer(
-              duration: Duration(milliseconds: 700),
+              duration: const Duration(milliseconds: 700),
               curve: Curves.easeOut,
               margin: EdgeInsets.only(right: splashController.marginRight.value),
               child: AnimatedOpacity(
                 curve: Curves.easeOut,
-                duration: Duration(milliseconds: 500),
+                duration: const Duration(milliseconds: 500),
                 opacity: splashController.opacity.value,
                 child: SvgPicture.asset("assets/images/logo_gyu.svg", color: primaryColorTheme(context)),
               ),

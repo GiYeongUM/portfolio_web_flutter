@@ -28,7 +28,7 @@ class IntroWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width / 2,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
@@ -74,7 +74,7 @@ class IntroWidget extends StatelessWidget {
                         ),
                       ),
                     ), // image?
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width / 2,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

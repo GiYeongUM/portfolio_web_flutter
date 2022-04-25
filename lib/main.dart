@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:giyeong_um_porfolio_page/page/main_page.dart';
 import 'package:giyeong_um_porfolio_page/page/splash_page.dart';
 import 'package:giyeong_um_porfolio_page/translate.dart';
-import 'package:giyeong_um_porfolio_page/widget/main_widget.dart';
+import 'package:giyeong_um_porfolio_page/widget/career_widget.dart';
 
 import 'theme_data.dart';
 

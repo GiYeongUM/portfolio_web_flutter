@@ -10,6 +10,7 @@ double _mediumFontSize = 10.sp;
 double _smallFontSize2X = 6.sp;
 double _smallFontSize1X = 5.sp;
 double _smallFontSize = 5.sp;
+double _smallestFontSize = 4.sp;
 double _mediumFontSize2x = 12.sp;
 double _mediumFontSize3x = 14.sp;
 double _mediumFontSize4x = 16.sp;
@@ -53,6 +54,7 @@ TextStyle medium10TextStyle = _defaultTextStyle.copyWith(fontSize: _smallFontSiz
 TextStyle regular14TextStyle = _defaultTextStyle.copyWith(fontSize: _mediumFontSize, fontWeight: FontWeight.w400);
 TextStyle regular12TextStyle = _defaultTextStyle.copyWith(fontSize: _smallFontSize1X, fontWeight: FontWeight.bold);
 TextStyle regular10TextStyle = _defaultTextStyle.copyWith(fontSize: _smallFontSize, fontWeight: FontWeight.w400);
+TextStyle regular8TextStyle = _defaultTextStyle.copyWith(fontSize: _smallestFontSize, fontWeight: FontWeight.w400);
 
 TextStyle nickNameBoldTextStyle = _defaultTextStyle.copyWith(fontSize: _mediumFontSize4x, fontWeight: FontWeight.bold);
 TextStyle tileBoldTextStyle = _defaultTextStyle.copyWith(fontSize: _mediumFontSize2x, fontWeight: FontWeight.bold);
@@ -81,11 +83,11 @@ class Themes {
         backgroundColor: Colors.white,
         foregroundColor: primaryColor,
       ),
-      scrollbarTheme: ScrollbarThemeData().copyWith(
+      scrollbarTheme: const ScrollbarThemeData().copyWith(
           thumbColor: MaterialStateProperty.all(Color(0xff2a2a2a)),
           thickness: MaterialStateProperty.all(0),
       ),
-      iconTheme: IconThemeData(color: Colors.white),
+      iconTheme: const IconThemeData(color: Colors.white),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: gray_3a3a3aColor,
         selectedIconTheme: IconThemeData(color: Colors.white, opacity: 1),
@@ -111,18 +113,18 @@ class Themes {
       ));
   static final lightTheme = ThemeData(
       brightness: Brightness.light,
-      iconTheme: IconThemeData(color: primaryColor),
+      iconTheme: const IconThemeData(color: primaryColor),
       primaryColor: primaryColor,
       scaffoldBackgroundColor: white_efefefColor,
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: primaryColor,
         foregroundColor: Colors.white,
       ),
-      scrollbarTheme: ScrollbarThemeData().copyWith(
+      scrollbarTheme: const ScrollbarThemeData().copyWith(
           thumbColor: MaterialStateProperty.all(Colors.white),
           thickness: MaterialStateProperty.all(0),
       ),
-      bottomSheetTheme: BottomSheetThemeData(
+      bottomSheetTheme: const BottomSheetThemeData(
           backgroundColor: Colors.white
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(

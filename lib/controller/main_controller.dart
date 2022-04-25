@@ -28,9 +28,6 @@ class MainController extends GetxController with GetSingleTickerProviderStateMix
       if (scrollController.value.position.pixels == scrollController.value.position.maxScrollExtent) {
 
       }
-
-      final direction = scrollController.value.position.userScrollDirection;
-
       if (scrollController.value.position.pixels == scrollController.value.position.maxScrollExtent) {
         bottomAnimationController.stop();
         bottomBlink.value = false;

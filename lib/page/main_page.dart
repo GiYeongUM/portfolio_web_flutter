@@ -9,7 +9,9 @@ import '../theme_data.dart';
 import '../translate.dart';
 import 'dart:math' as math;
 
-import '../widget/main_widget.dart';
+import '../widget/career_widget.dart';
+import '../widget/etc_widget.dart';
+import '../widget/trouble_widget.dart';
 
 
 class MainPage extends StatelessWidget {
@@ -34,16 +36,16 @@ class MainPage extends StatelessWidget {
       ),
       ),
       bottomSheet: Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         width: double.infinity,
         child: Obx(() => AnimatedOpacity(
           opacity: mainController.bottomBlink.value ? 1.0 : 0.0,
-          duration: Duration(milliseconds: 500),
+          duration: const Duration(milliseconds: 500),
           child: FadeTransition(
             opacity: mainController.bottomAnimationController,
             child: Transform.rotate(
             angle: math.pi / 2,
-            child: Icon(Icons.double_arrow),
+            child: const Icon(Icons.double_arrow),
             ),
           ),
         ),
@@ -81,10 +83,10 @@ Widget mainNonScrollWidget(BuildContext context, MainController mainController, 
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             AnimatedContainer(
-              duration: Duration(seconds: 1),
+              duration: const Duration(milliseconds: 500),
               margin: EdgeInsets.only(top: mainController.mainViewAnimation[0] ? 100 : 0),
               child: AnimatedOpacity(
-                duration: Duration(seconds: 1),
+                duration: const Duration(milliseconds: 500),
                 opacity: mainController.mainViewAnimation[0] ? 0.0 : 1.0,
                 child: SvgPicture.asset(
                   "assets/images/logo_gyu.svg",
@@ -99,10 +101,10 @@ Widget mainNonScrollWidget(BuildContext context, MainController mainController, 
       return AnimatedContainer(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        duration: Duration(seconds: 1),
+        duration: const Duration(milliseconds: 500),
         padding: EdgeInsets.only(bottom: mainController.mainViewAnimation[1] ? 100 : 0),
         child: AnimatedOpacity(
-          duration: Duration(seconds: 1),
+          duration: const Duration(milliseconds: 500),
           opacity: mainController.mainViewAnimation[1] ? 1.0 : 0.0,
           child: IntroWidget(
             textList: [
@@ -118,10 +120,10 @@ Widget mainNonScrollWidget(BuildContext context, MainController mainController, 
       return AnimatedContainer(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        duration: Duration(seconds: 1),
+        duration: const Duration(milliseconds: 500),
         padding: EdgeInsets.only(bottom: mainController.mainViewAnimation[2] ? 100 : 0),
         child: AnimatedOpacity(
-          duration: Duration(seconds: 1),
+          duration: const Duration(milliseconds: 500),
           opacity: mainController.mainViewAnimation[2] ? 1.0 : 0.0,
           child: IntroWidget(
             textList: [
@@ -136,13 +138,21 @@ Widget mainNonScrollWidget(BuildContext context, MainController mainController, 
 
     case mainViewType.mainView:
       return AnimatedOpacity(
-        duration: Duration(seconds: 1),
+        duration: const Duration(milliseconds: 500),
         opacity: mainController.mainViewAnimation[3] ? 1.0 : 0.0,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            MainWidget(),
-            Container(),
+            CareerWidget(),
+            const SizedBox(height: 50),
+            Container(height: 0.5, width: MediaQuery.of(context).size.width * 0.8, color: Theme.of(context).brightness == Brightness.light ? gray_3a3a3aColor : Colors.white,),
+            const SizedBox(height: 50),
+            TroubleWidget(),
+            const SizedBox(height: 50),
+            Container(height: 0.5, width: MediaQuery.of(context).size.width * 0.8, color: Theme.of(context).brightness == Brightness.light ? gray_3a3a3aColor : Colors.white,),
+            const SizedBox(height: 50),
+            ETCWidget(),
+
           ],
         ),
       );
