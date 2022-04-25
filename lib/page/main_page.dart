@@ -9,7 +9,6 @@ import '../theme_data.dart';
 import '../translate.dart';
 import 'dart:math' as math;
 
-import '../widget/custom_text.dart';
 
 class MainPage extends StatelessWidget {
   MainPage({Key? key}) : super(key: key);
@@ -22,36 +21,11 @@ class MainPage extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         controller: mainController.scrollController.value,
+        physics: mainController.mainViewCanChange.value ? const ScrollPhysics() : const NeverScrollableScrollPhysics() ,
         child: Column(
           children: [
-            Container(
-              padding: const EdgeInsets.all(16),
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SvgPicture.asset("assets/images/logo_gyu.svg", color: primaryColorTheme(context),),
-                ],
-              ),
-            ),
-            IntroWidget(
-                textList: [
-                  translateController.introText_1.value,
-                  translateController.introText_2.value,
-                  translateController.introText_3.value
-                ], direction: Direction.left,
-              sideText: translateController.sideText_1.value,
-            ),
-            IntroWidget(
-                textList: [
-                  translateController.introText_4.value,
-                  translateController.introText_5.value,
-                  translateController.introText_6.value
-                ], direction: Direction.right,
-              sideText: translateController.sideText_2.value,
-            ),
+            Obx(() => mainNonScrollWidget(context, mainController, translateController)),
+            const SizedBox(height: 0.01,)
           ],
         ),
       ),
@@ -73,13 +47,88 @@ class MainPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          for(var text in translateController.textClassList){
-            translateController.translateStart(text);
+          if(!translateController.translateSleep.value){
+            translateController.translateSleep.value = true;
+            for(var text in translateController.textClassList){
+              translateController.translateStart(text);
+            }
+            Future.delayed(const Duration(milliseconds: 1500), (){
+              translateController.translateSleep.value = false;
+            });
           }
+
         },
         child: const Icon(Icons.g_translate),
 
       ),
     );
+  }
+}
+
+Widget mainNonScrollWidget(BuildContext context, MainController mainController, TranslateController translateController) {
+  switch(mainController.mainViewEnum.value) {
+    case mainViewType.icon:
+      return Container(
+        padding: const EdgeInsets.all(16),
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            AnimatedContainer(
+              duration: Duration(seconds: 1),
+              margin: EdgeInsets.only(top: mainController.mainViewAnimation[0] ? 100 : 0),
+              child: AnimatedOpacity(
+                duration: Duration(seconds: 1),
+                opacity: mainController.mainViewAnimation[0] ? 0.0 : 1.0,
+                child: SvgPicture.asset(
+                  "assets/images/logo_gyu.svg",
+                  color: primaryColorTheme(context),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    case mainViewType.intro1:
+      return AnimatedContainer(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        duration: Duration(seconds: 1),
+        padding: EdgeInsets.only(bottom: mainController.mainViewAnimation[1] ? 100 : 0),
+        child: AnimatedOpacity(
+          duration: Duration(seconds: 1),
+          opacity: mainController.mainViewAnimation[1] ? 1.0 : 0.0,
+          child: IntroWidget(
+            textList: [
+              translateController.introText_1.value,
+              translateController.introText_2.value,
+              translateController.introText_3.value
+            ], direction: Direction.left,
+            sideText: translateController.sideText_1.value,
+          ),
+        ),
+      );
+    case mainViewType.intro2:
+      return AnimatedContainer(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        duration: Duration(seconds: 1),
+        padding: EdgeInsets.only(bottom: mainController.mainViewAnimation[2] ? 100 : 0),
+        child: AnimatedOpacity(
+          duration: Duration(seconds: 1),
+          opacity: mainController.mainViewAnimation[2] ? 1.0 : 0.0,
+          child: IntroWidget(
+            textList: [
+              translateController.introText_4.value,
+              translateController.introText_5.value,
+              translateController.introText_6.value
+            ], direction: Direction.right,
+            sideText: translateController.sideText_2.value,
+          ),
+        ),
+      );
+
   }
 }

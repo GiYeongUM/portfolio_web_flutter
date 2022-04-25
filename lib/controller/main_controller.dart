@@ -2,11 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 
+enum mainViewType {
+  icon,
+  intro1,
+  intro2
+}
+
+
 class MainController extends GetxController with GetSingleTickerProviderStateMixin {
   var scrollController = ScrollController().obs;
   late AnimationController bottomAnimationController;
   var bottomBlink = true.obs;
-
+  var mainViewEnum = (mainViewType.icon).obs;
+  var mainViewCanChange = true.obs;
+  var mainViewAnimation = [false, false, false].obs;
 
   @override
   void onInit() {
@@ -24,6 +33,44 @@ class MainController extends GetxController with GetSingleTickerProviderStateMix
       if (direction == ScrollDirection.reverse) {
         bottomAnimationController.stop();
         bottomBlink.value = false;
+        if(mainViewCanChange.value){
+          mainViewCanChange.value = false;
+          switch(mainViewEnum.value){
+            case mainViewType.icon:
+              mainViewAnimation[0] = true;
+
+              Future.delayed(const Duration(seconds: 1), (){
+                mainViewEnum.value = mainViewType.intro1;
+                Future.delayed(const Duration(milliseconds: 100), (){
+                  mainViewAnimation[1] = true;
+                  scrollController.value.animateTo(
+                      scrollController.value.position.minScrollExtent,
+                      duration: const Duration(milliseconds: 1),
+                      curve: Curves.easeOut);
+                });
+              });
+              break;
+            case mainViewType.intro1:
+              mainViewAnimation[1] = false;
+              Future.delayed(const Duration(seconds: 1), (){
+                mainViewEnum.value = mainViewType.intro2;
+                Future.delayed(const Duration(milliseconds: 100), (){
+                  mainViewAnimation[2] = true;
+                  scrollController.value.animateTo(
+                      scrollController.value.position.minScrollExtent,
+                      duration: const Duration(milliseconds: 1),
+                      curve: Curves.easeOut);
+                });
+              });
+              break;
+            case mainViewType.intro2:
+              // mainViewEnum.value = mainViewType.intro1;
+              break;
+          }
+          Future.delayed(const Duration(seconds: 1), (){
+            mainViewCanChange.value = true;
+          });
+        }
 
       } else {
 

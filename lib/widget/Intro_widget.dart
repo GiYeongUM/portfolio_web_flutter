@@ -23,6 +23,8 @@ class IntroWidget extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Row(
                   children: [
@@ -43,7 +45,7 @@ class IntroWidget extends StatelessWidget {
                       child: Center(
                         child: CustomTextWidget(
                           text: sideText,
-                          style: tileBoldTextStyle,
+                          style: tilePrimaryRegularTextStyle,
                           textAlign: TextAlign.right,
                         ),
                       ),
@@ -58,6 +60,8 @@ class IntroWidget extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Row(
                   children: [
@@ -65,7 +69,7 @@ class IntroWidget extends StatelessWidget {
                       child: Center(
                         child: CustomTextWidget(
                           text: sideText,
-                          style: tileBoldTextStyle,
+                          style: tilePrimaryRegularTextStyle,
                           textAlign: TextAlign.right,
                         ),
                       ),
