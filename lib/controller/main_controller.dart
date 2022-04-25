@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 enum mainViewType {
   icon,
   intro1,
-  intro2
+  intro2,
+  mainView
 }
 
 
@@ -15,7 +16,7 @@ class MainController extends GetxController with GetSingleTickerProviderStateMix
   var bottomBlink = true.obs;
   var mainViewEnum = (mainViewType.icon).obs;
   var mainViewCanChange = true.obs;
-  var mainViewAnimation = [false, false, false].obs;
+  var mainViewAnimation = [false, false, false, false].obs;
 
   @override
   void onInit() {
@@ -30,10 +31,10 @@ class MainController extends GetxController with GetSingleTickerProviderStateMix
 
       final direction = scrollController.value.position.userScrollDirection;
 
-      if (direction == ScrollDirection.reverse) {
+      if (scrollController.value.position.pixels == scrollController.value.position.maxScrollExtent) {
         bottomAnimationController.stop();
         bottomBlink.value = false;
-        if(mainViewCanChange.value){
+        if(mainViewCanChange.value && mainViewEnum.value != mainViewType.mainView){
           mainViewCanChange.value = false;
           switch(mainViewEnum.value){
             case mainViewType.icon:
@@ -41,7 +42,7 @@ class MainController extends GetxController with GetSingleTickerProviderStateMix
 
               Future.delayed(const Duration(seconds: 1), (){
                 mainViewEnum.value = mainViewType.intro1;
-                Future.delayed(const Duration(milliseconds: 100), (){
+                Future.delayed(const Duration(milliseconds: 500), (){
                   mainViewAnimation[1] = true;
                   scrollController.value.animateTo(
                       scrollController.value.position.minScrollExtent,
@@ -54,7 +55,7 @@ class MainController extends GetxController with GetSingleTickerProviderStateMix
               mainViewAnimation[1] = false;
               Future.delayed(const Duration(seconds: 1), (){
                 mainViewEnum.value = mainViewType.intro2;
-                Future.delayed(const Duration(milliseconds: 100), (){
+                Future.delayed(const Duration(milliseconds: 500), (){
                   mainViewAnimation[2] = true;
                   scrollController.value.animateTo(
                       scrollController.value.position.minScrollExtent,
@@ -64,10 +65,23 @@ class MainController extends GetxController with GetSingleTickerProviderStateMix
               });
               break;
             case mainViewType.intro2:
-              // mainViewEnum.value = mainViewType.intro1;
+              mainViewAnimation[2] = false;
+              Future.delayed(const Duration(seconds: 1), (){
+                mainViewEnum.value = mainViewType.mainView;
+                Future.delayed(const Duration(milliseconds: 500), (){
+                  mainViewAnimation[3] = true;
+                  scrollController.value.animateTo(
+                      scrollController.value.position.minScrollExtent,
+                      duration: const Duration(milliseconds: 1),
+                      curve: Curves.easeOut);
+                });
+              });
+              break;
+            case mainViewType.mainView:
+              // TODO: Handle this case.
               break;
           }
-          Future.delayed(const Duration(seconds: 1), (){
+          Future.delayed(const Duration(milliseconds: 2700), (){
             mainViewCanChange.value = true;
           });
         }

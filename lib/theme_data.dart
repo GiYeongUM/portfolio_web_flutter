@@ -8,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 // (Theme.of(context).brightness == Brightness.dark? gray_3a3a3aColor: white_efefefColor),
 double _mediumFontSize = 10.sp;
 double _smallFontSize2X = 7.sp;
+double _smallFontSize1X = 6.sp;
 double _smallFontSize = 5.sp;
 double _mediumFontSize2x = 12.sp;
 double _mediumFontSize3x = 14.sp;
@@ -34,7 +35,6 @@ const textInput_border_disable_dark = Color(0xff828282);
 const textInput_border_enable = Color(0xff9762E6);
 
 const primaryColor = Color(0xff742ddd);
-const secondColor = Color(0xffb6ff90);
 
 Color backGroundColorTheme(context){
   return Theme.of(context).brightness == Brightness.light ? white_efefefColor : gray_3a3a3aColor;
@@ -43,19 +43,15 @@ Color primaryColorTheme(context){
   return Theme.of(context).brightness == Brightness.light ? primaryColor : white_efefefColor;
 }
 
-const kakaoColor = Color(0xffFFE812);
-const naverColor = Color(0xff3BAE37);
-const facebookColor = Color(0xff374C85);
-
 
 
 TextStyle medium24TextStyle = _defaultTextStyle.copyWith(fontSize: _largeFontSize2x, fontWeight: FontWeight.w500);
 TextStyle medium14TextStyle = _defaultTextStyle.copyWith(fontSize: _mediumFontSize, fontWeight: FontWeight.w500);
-TextStyle medium12TextStyle = _defaultTextStyle.copyWith(fontSize: _smallFontSize2X, fontWeight: FontWeight.w500);
+TextStyle medium12TextStyle = _defaultTextStyle.copyWith(fontSize: _smallFontSize2X, fontWeight: FontWeight.bold);
 TextStyle medium10TextStyle = _defaultTextStyle.copyWith(fontSize: _smallFontSize, fontWeight: FontWeight.w500);
 
 TextStyle regular14TextStyle = _defaultTextStyle.copyWith(fontSize: _mediumFontSize, fontWeight: FontWeight.w400);
-TextStyle regular12TextStyle = _defaultTextStyle.copyWith(fontSize: _smallFontSize2X, fontWeight: FontWeight.w400);
+TextStyle regular12TextStyle = _defaultTextStyle.copyWith(fontSize: _smallFontSize1X, fontWeight: FontWeight.bold);
 TextStyle regular10TextStyle = _defaultTextStyle.copyWith(fontSize: _smallFontSize, fontWeight: FontWeight.w400);
 
 TextStyle nickNameBoldTextStyle = _defaultTextStyle.copyWith(fontSize: _mediumFontSize4x, fontWeight: FontWeight.bold);
@@ -85,7 +81,10 @@ class Themes {
         backgroundColor: Colors.white,
         foregroundColor: primaryColor,
       ),
-
+      scrollbarTheme: ScrollbarThemeData().copyWith(
+          thumbColor: MaterialStateProperty.all(Color(0xff2a2a2a)),
+          thickness: MaterialStateProperty.all(0),
+      ),
       iconTheme: IconThemeData(color: Colors.white),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: gray_3a3a3aColor,
@@ -118,6 +117,10 @@ class Themes {
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: primaryColor,
         foregroundColor: Colors.white,
+      ),
+      scrollbarTheme: ScrollbarThemeData().copyWith(
+          thumbColor: MaterialStateProperty.all(Colors.white),
+          thickness: MaterialStateProperty.all(0),
       ),
       bottomSheetTheme: BottomSheetThemeData(
           backgroundColor: Colors.white

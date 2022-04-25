@@ -7,11 +7,12 @@ import '../model/text_class.dart';
 import '../translate.dart';
 
 class CustomTextWidget extends StatelessWidget {
-  CustomTextWidget({Key? key, required this.text, required this.style, required this.textAlign}) : super(key: key);
+  CustomTextWidget({Key? key, required this.text, required this.style, required this.textAlign, this.maxLines = 1}) : super(key: key);
 
   final TextClass text;
   final TextStyle style;
   final TextAlign textAlign;
+  final int? maxLines;
 
   var translateController = Get.find<TranslateController>();
 
@@ -19,7 +20,7 @@ class CustomTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() =>
         AutoSizeText(text.textMap[text.isKr.value ? "kr" : "en"]!.text.substring(0, text.textMap[text.isKr.value ? "kr" : "en"]!.currentLength.value),
-            style: style, maxLines: 1, textAlign: textAlign
+            style: style, maxLines: maxLines, textAlign: textAlign
         )
     );
   }

@@ -9,6 +9,8 @@ import '../theme_data.dart';
 import '../translate.dart';
 import 'dart:math' as math;
 
+import '../widget/main_widget.dart';
+
 
 class MainPage extends StatelessWidget {
   MainPage({Key? key}) : super(key: key);
@@ -19,15 +21,17 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Obx(() => SingleChildScrollView(
         controller: mainController.scrollController.value,
         physics: mainController.mainViewCanChange.value ? const ScrollPhysics() : const NeverScrollableScrollPhysics() ,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Obx(() => mainNonScrollWidget(context, mainController, translateController)),
+            mainNonScrollWidget(context, mainController, translateController),
             const SizedBox(height: 0.01,)
           ],
         ),
+      ),
       ),
       bottomSheet: Container(
         padding: EdgeInsets.all(8),
@@ -49,10 +53,10 @@ class MainPage extends StatelessWidget {
         onPressed: () {
           if(!translateController.translateSleep.value){
             translateController.translateSleep.value = true;
-            for(var text in translateController.textClassList){
+            for(var text in translateController.translateList){
               translateController.translateStart(text);
             }
-            Future.delayed(const Duration(milliseconds: 1500), (){
+            Future.delayed(const Duration(milliseconds: 4000), (){
               translateController.translateSleep.value = false;
             });
           }
@@ -130,5 +134,17 @@ Widget mainNonScrollWidget(BuildContext context, MainController mainController, 
         ),
       );
 
+    case mainViewType.mainView:
+      return AnimatedOpacity(
+        duration: Duration(seconds: 1),
+        opacity: mainController.mainViewAnimation[3] ? 1.0 : 0.0,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            MainWidget(),
+            Container(),
+          ],
+        ),
+      );
   }
 }
