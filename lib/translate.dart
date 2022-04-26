@@ -47,12 +47,12 @@ class TranslateController extends GetxController {
     "en": TextStatus(text: "Career", currentLength: 0.obs)},
       canTranslate: true.obs, isKr: true.obs).obs;
   var mainDesc = TextClass(textMap: {
-    "kr": TextStatus(text: "개요", currentLength: "개요".length.obs),
-    "en": TextStatus(text: "Outline", currentLength: 0.obs)},
+    "kr": TextStatus(text: "[개요]", currentLength: "[개요]".length.obs),
+    "en": TextStatus(text: "[Outline]", currentLength: 0.obs)},
       canTranslate: true.obs, isKr: true.obs).obs;
   var mainTech = TextClass(textMap: {
-    "kr": TextStatus(text: "기술스택", currentLength: "기술스택".length.obs),
-    "en": TextStatus(text: "TechStack", currentLength: 0.obs)},
+    "kr": TextStatus(text: "[기술스택]", currentLength: "[기술스택]".length.obs),
+    "en": TextStatus(text: "[TechStack]", currentLength: 0.obs)},
       canTranslate: true.obs, isKr: true.obs).obs;
 
 
@@ -352,6 +352,26 @@ class TranslateController extends GetxController {
     "en": TextStatus(text: "Opic IM", currentLength: 0.obs)},
       canTranslate: false.obs, isKr: true.obs).obs;
 
+  var profileSubTitle_4 = TextClass(textMap: {
+    "kr": TextStatus(text: "기술스택", currentLength: "기술스택".length.obs),
+    "en": TextStatus(text: "TechStack", currentLength: 0.obs)},
+      canTranslate: true.obs, isKr: true.obs).obs;
+
+  var profileContent_6 = TextClass(textMap: {
+    "kr": TextStatus(text: "[AOS] JAVA, Kotlin, AndroidX, Data Binding, View Binding, JetPack", currentLength: "[AOS] Kotlin, AndroidX, Data Binding, View Binding, JetPack".length.obs),
+    "en": TextStatus(text: "[AOS] Kotlin, AndroidX, Data Binding, View Binding, JetPack", currentLength: 0.obs)},
+      canTranslate: false.obs, isKr: true.obs).obs;
+
+  var profileContent_7 = TextClass(textMap: {
+    "kr": TextStatus(text: "[iOS] Swift 5, StoryBoard, SwiftUI, Instruments", currentLength: "[iOS] Swift, StoryBoard, SwiftUI, Instruments".length.obs),
+    "en": TextStatus(text: "[iOS] Swift 5, StoryBoard, SwiftUI, Instruments", currentLength: 0.obs)},
+      canTranslate: false.obs, isKr: true.obs).obs;
+
+  var profileContent_8 = TextClass(textMap: {
+    "kr": TextStatus(text: "[Cross Platform] Flutter, RxDart, BLOC, GetX, Provider", currentLength: "[Cross Platform] Flutter, RxDart, BLOC, GetX, Provider".length.obs),
+    "en": TextStatus(text: "[Cross Platform] Flutter, RxDart, BLOC, GetX, Provider", currentLength: 0.obs)},
+      canTranslate: false.obs, isKr: true.obs).obs;
+
   var etcTitle = TextClass(textMap: {
     "kr": TextStatus(text: "기타", currentLength: "기타".length.obs),
     "en": TextStatus(text: "ETC", currentLength: 0.obs)},
@@ -361,6 +381,12 @@ class TranslateController extends GetxController {
     "kr": TextStatus(text: "산업기능요원 보충역 전직", currentLength: "산업기능요원 보충역 전직".length.obs),
     "en": TextStatus(text: "산업기능요원 보충역 전직", currentLength: 0.obs)},
       canTranslate: false.obs, isKr: true.obs).obs;
+
+  var etcContent_2 =  TextClass(textMap: {
+    "kr": TextStatus(text: "E-mail : eomky2005@gmail.com", currentLength: "E-mail : eomky2005@gmail.com".length.obs),
+    "en": TextStatus(text: "E-mail : eomky2005@gmail.com", currentLength: 0.obs)},
+      canTranslate: false.obs, isKr: true.obs).obs;
+
 
 
   var translateList = <TextClass>[];
@@ -426,15 +452,18 @@ class TranslateController extends GetxController {
       profileSubTitle_1.value,
       profileSubTitle_2.value,
       profileSubTitle_3.value,
+      profileSubTitle_4.value,
       profileContent_1.value,
       profileContent_2.value,
       profileContent_3.value,
       profileContent_4.value,
       profileContent_5.value,
+      profileContent_6.value,
+      profileContent_7.value,
+      profileContent_8.value,
 
       etcTitle.value,
       etcContent_1.value,
-
     ];
     super.onInit();
   }

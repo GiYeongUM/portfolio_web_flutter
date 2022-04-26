@@ -11,6 +11,7 @@ import 'dart:math' as math;
 
 import '../widget/career_widget.dart';
 import '../widget/etc_widget.dart';
+import '../widget/profile_widget.dart';
 import '../widget/trouble_widget.dart';
 
 
@@ -148,6 +149,10 @@ Widget mainNonScrollWidget(BuildContext context, MainController mainController, 
             Container(height: 0.5, width: MediaQuery.of(context).size.width * 0.8, color: Theme.of(context).brightness == Brightness.light ? gray_3a3a3aColor : Colors.white,),
             const SizedBox(height: 50),
             TroubleWidget(),
+            const SizedBox(height: 50),
+            Container(height: 0.5, width: MediaQuery.of(context).size.width * 0.8, color: Theme.of(context).brightness == Brightness.light ? gray_3a3a3aColor : Colors.white,),
+            const SizedBox(height: 50),
+            ProfileWidget(),
             const SizedBox(height: 50),
             Container(height: 0.5, width: MediaQuery.of(context).size.width * 0.8, color: Theme.of(context).brightness == Brightness.light ? gray_3a3a3aColor : Colors.white,),
             const SizedBox(height: 50),

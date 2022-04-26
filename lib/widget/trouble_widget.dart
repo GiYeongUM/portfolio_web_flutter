@@ -24,7 +24,7 @@ class TroubleWidget extends StatelessWidget {
             child: Center(
               child: CustomTextWidget(
                 text: translateController.troubleTitle.value,
-                style: tileBoldTextStyle,
+                style: tileBoldTextStyleLarge,
                 textAlign: TextAlign.left,
               ),
             ),

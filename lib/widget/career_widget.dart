@@ -24,7 +24,7 @@ class CareerWidget extends StatelessWidget {
             child: Center(
               child: CustomTextWidget(
                 text: translateController.mainTitle.value,
-                style: tileBoldTextStyle,
+                style: tileBoldTextStyleLarge,
                 textAlign: TextAlign.left,
               ),
             ),
