@@ -55,14 +55,13 @@ class ProfileWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       profileWidget(translateController, translateController.profileContent_1.value),
-                      const SizedBox(height: 50,),
                     ],
                   ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 50,),
+          const SizedBox(height: 100,),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -90,14 +89,13 @@ class ProfileWidget extends StatelessWidget {
                       profileWidget(translateController, translateController.profileContent_2.value),
                       const SizedBox(height: 50,),
                       profileWidget(translateController, translateController.profileContent_3.value),
-                      const SizedBox(height: 50,),
                     ],
                   ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 50,),
+          const SizedBox(height: 100,),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -124,14 +122,13 @@ class ProfileWidget extends StatelessWidget {
                       profileWidget(translateController, translateController.profileContent_4.value),
                       const SizedBox(height: 50,),
                       profileWidget(translateController, translateController.profileContent_5.value),
-                      const SizedBox(height: 50,),
                     ],
                   ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 50,),
+          const SizedBox(height: 100,),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
