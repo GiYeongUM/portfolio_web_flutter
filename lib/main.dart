@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:giyeong_um_porfolio_page/page/main_page.dart';
 import 'package:giyeong_um_porfolio_page/page/splash_page.dart';
+import 'package:giyeong_um_porfolio_page/page/whole_page.dart';
 import 'package:giyeong_um_porfolio_page/translate.dart';
 import 'package:giyeong_um_porfolio_page/widget/career_widget.dart';
 
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.system,
         debugShowCheckedModeBanner: false,
 
-        home: SplashPage(),
+        home: WholePage(),
       ),
     );
   }
