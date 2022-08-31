@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:giyeong_um_porfolio_page/page/main_page.dart';
+import 'package:giyeong_um_porfolio_page/page/birth_color_page.dart';
 import 'package:giyeong_um_porfolio_page/page/splash_page.dart';
 import 'package:giyeong_um_porfolio_page/page/whole_page.dart';
 import 'package:giyeong_um_porfolio_page/translate.dart';
-import 'package:giyeong_um_porfolio_page/widget/career_widget.dart';
 
 import 'theme_data.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
@@ -26,7 +26,17 @@ class MyApp extends StatelessWidget {
       designSize: const Size(360, 690),
       builder: (context) => GetMaterialApp(
         initialRoute: "/",
-        title: "엄기영 | 포트폴리오",
+        title: "GiYeongUm",
+        onGenerateRoute: (settings) {
+          switch (settings.name) {
+            case '/':
+              return GetPageRoute(page: () => WholePage());
+            case '/showmycolor':
+              return GetPageRoute(page: () => const BirthColorPage());
+            default:
+              return GetPageRoute(page: () => WholePage());
+          }
+        },
         builder: EasyLoading.init(builder: (context, widget) {
           return MediaQuery(
             data: MediaQuery.of(context),
@@ -37,7 +47,6 @@ class MyApp extends StatelessWidget {
         darkTheme: Themes.darkTheme,
         themeMode: ThemeMode.system,
         debugShowCheckedModeBanner: false,
-
         home: WholePage(),
       ),
     );

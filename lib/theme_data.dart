@@ -45,7 +45,6 @@ Color primaryColorTheme(context){
 }
 
 
-
 TextStyle medium24TextStyle = _defaultTextStyle.copyWith(fontSize: _largeFontSize2x, fontWeight: FontWeight.w500);
 TextStyle medium14TextStyle = _defaultTextStyle.copyWith(fontSize: _mediumFontSize, fontWeight: FontWeight.w500);
 TextStyle medium12TextStyle = _defaultTextStyle.copyWith(fontSize: _smallFontSize2X, fontWeight: FontWeight.bold);
@@ -84,7 +83,7 @@ class Themes {
         foregroundColor: primaryColor,
       ),
       scrollbarTheme: const ScrollbarThemeData().copyWith(
-          thumbColor: MaterialStateProperty.all(Color(0xff2a2a2a)),
+          thumbColor: MaterialStateProperty.all(const Color(0xff2a2a2a)),
           thickness: MaterialStateProperty.all(0),
       ),
       iconTheme: const IconThemeData(color: Colors.white),
