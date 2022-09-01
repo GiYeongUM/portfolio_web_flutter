@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(360, 690),
-      builder: (context) => GetMaterialApp(
+      builder: (BuildContext context, child) => GetMaterialApp(
         initialRoute: "/",
         title: "GiYeongUm",
         onGenerateRoute: (settings) {
