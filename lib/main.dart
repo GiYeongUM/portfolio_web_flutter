@@ -1,12 +1,14 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:giyeong_um_porfolio_page/page/birth_color_page.dart';
-import 'package:giyeong_um_porfolio_page/page/splash_page.dart';
+import 'package:giyeong_um_porfolio_page/page/home_page.dart';
 import 'package:giyeong_um_porfolio_page/page/whole_page.dart';
 import 'package:giyeong_um_porfolio_page/translate.dart';
 
+import 'controller/responsive_controller.dart';
 import 'theme_data.dart';
 
 void main() {
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
 
   var translateController = Get.put(TranslateController());
-
+  final _responsiveController = Get.put(ResponsiveController());
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: (settings) {
           switch (settings.name) {
             case '/':
-              return GetPageRoute(page: () => WholePage());
+              return GetPageRoute(page: () => HomePage());
             case '/showmycolor':
               return GetPageRoute(page: () => const BirthColorPage());
             default:
@@ -47,7 +49,24 @@ class MyApp extends StatelessWidget {
         darkTheme: Themes.darkTheme,
         themeMode: ThemeMode.system,
         debugShowCheckedModeBanner: false,
-        home: WholePage(),
+        home: LayoutBuilder(
+            builder: (context, constraints) {
+              if(constraints.maxWidth < _responsiveController.mobileWidth && !kIsWeb){
+                _responsiveController.platform.value = Platform.mobile;
+                /// 스마트폰 앱
+              } else if (constraints.maxWidth < _responsiveController.mobileWidth && kIsWeb){
+                _responsiveController.platform.value = Platform.desktopMobile;
+                /// 스마트폰 웹
+              } else if (constraints.maxWidth < _responsiveController.desktopWidth && !kIsWeb){
+                _responsiveController.platform.value = Platform.tablet;
+                /// 태블릿 앱
+              } else {
+                _responsiveController.platform.value = Platform.desktop;
+                /// 웹, 태블릿 웹
+              }
+              return HomePage();
+            }
+        ),
       ),
     );
   }
