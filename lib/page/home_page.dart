@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:giyeong_um_porfolio_page/controller/home_page_controller.dart';
 import 'package:giyeong_um_porfolio_page/controller/responsive_controller.dart';
-import 'package:giyeong_um_porfolio_page/theme_data.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
