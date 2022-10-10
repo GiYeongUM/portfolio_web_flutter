@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:giyeong_um_porfolio_page/page/splash_page.dart';
+import 'package:giyeong_um_porfolio_page/before/before_main_controller.dart';
+import 'package:giyeong_um_porfolio_page/before/theme_data.dart';
+import 'package:giyeong_um_porfolio_page/before/translate.dart';
+import 'package:giyeong_um_porfolio_page/before/trouble_widget.dart';
 
-import '../controller/main_controller.dart';
-import '../theme_data.dart';
-import '../translate.dart';
-import '../widget/Intro_widget.dart';
-import '../widget/career_widget.dart';
-import '../widget/etc_widget.dart';
-import '../widget/profile_widget.dart';
-import '../widget/trouble_widget.dart';
+import 'career_widget.dart';
+import 'Intro_widget.dart';
+import 'etc_widget.dart';
+import 'profile_widget.dart';
 
 class WholePage extends StatelessWidget {
   WholePage({Key? key}) : super(key: key);
 
   var translateController = Get.find<TranslateController>();
-  var mainController = Get.put(MainController());
+  var mainController = Get.put(BeforeMainController());
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

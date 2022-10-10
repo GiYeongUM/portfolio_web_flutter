@@ -1,6 +1,6 @@
 
 import 'package:get/get.dart';
-import 'package:giyeong_um_porfolio_page/page/main_page.dart';
+import 'package:giyeong_um_porfolio_page/before/before_main_page.dart';
 
 class SplashController extends GetxController {
 

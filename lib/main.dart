@@ -3,15 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:giyeong_um_porfolio_page/page/birth_color_page.dart';
+import 'package:giyeong_um_porfolio_page/before/birth_color_page.dart';
+import 'package:giyeong_um_porfolio_page/before/career_widget.dart';
+import 'package:giyeong_um_porfolio_page/before/theme_data.dart';
+import 'package:giyeong_um_porfolio_page/before/translate.dart';
+import 'package:giyeong_um_porfolio_page/before/whole_page.dart';
+import 'package:giyeong_um_porfolio_page/controller/main_controller.dart';
+import 'package:giyeong_um_porfolio_page/page/career_page.dart';
 import 'package:giyeong_um_porfolio_page/page/home_page.dart';
-import 'package:giyeong_um_porfolio_page/page/whole_page.dart';
-import 'package:giyeong_um_porfolio_page/translate.dart';
+import 'package:giyeong_um_porfolio_page/page/main_page.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 import 'controller/responsive_controller.dart';
-import 'theme_data.dart';
 
 void main() {
+  setUrlStrategy(PathUrlStrategy());
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
@@ -19,8 +25,9 @@ void main() {
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
 
-  var translateController = Get.put(TranslateController());
+  final translateController = Get.put(TranslateController());
   final _responsiveController = Get.put(ResponsiveController());
+  final mainController = Get.put(MainController());
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -32,11 +39,16 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: (settings) {
           switch (settings.name) {
             case '/':
-              return GetPageRoute(page: () => HomePage());
+              return GetPageRoute(page: () => MainPage());
             case '/showmycolor':
               return GetPageRoute(page: () => const BirthColorPage());
+            case '/mainpage':
+              return GetPageRoute(page: () => MainPage(), transition: Transition.noTransition
+              );
+            case '/careerpage':
+              return GetPageRoute(page: () => CareerPage(), transition: Transition.noTransition);
             default:
-              return GetPageRoute(page: () => WholePage());
+              return GetPageRoute(page: () => MainPage());
           }
         },
         builder: EasyLoading.init(builder: (context, widget) {
@@ -64,7 +76,7 @@ class MyApp extends StatelessWidget {
                 _responsiveController.platform.value = Platform.desktop;
                 /// 웹, 태블릿 웹
               }
-              return HomePage();
+              return MainPage();
             }
         ),
       ),

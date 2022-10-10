@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 import 'dart:async';
 
-import 'model/text_class.dart';
+import 'package:giyeong_um_porfolio_page/model/text_class.dart';
+
 
 
 class TranslateController extends GetxController {
