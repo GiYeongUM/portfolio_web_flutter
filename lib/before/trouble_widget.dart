@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:giyeong_um_porfolio_page/before/theme_data.dart';
+import 'package:giyeong_um_porfolio_page/before/translate.dart';
 
 import '../model/text_class.dart';
-import '../theme_data.dart';
-import '../translate.dart';
 import 'custom_text.dart';
 
 class TroubleWidget extends StatelessWidget {

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:giyeong_um_porfolio_page/theme_data.dart';
+import 'package:giyeong_um_porfolio_page/before/theme_data.dart';
 
-import '../controller/splash_controller.dart';
-import '../translate.dart';
-import '../widget/custom_text.dart';
-import 'main_page.dart';
+import 'splash_controller.dart';
+import 'custom_text.dart';
+import 'before_main_page.dart';
 
 class SplashPage extends StatelessWidget {
   SplashPage({Key? key}) : super(key: key);
@@ -17,7 +16,7 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx(() => splashController.splashEnd.value ? MainPage() : Container(
+      body: Obx(() => splashController.splashEnd.value ? BeforeMainPage() : Container(
         padding: const EdgeInsets.all(16),
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,

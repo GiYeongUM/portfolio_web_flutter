@@ -2,9 +2,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:giyeong_um_porfolio_page/before/translate.dart';
 
 import '../model/text_class.dart';
-import '../translate.dart';
 
 class CustomTextWidget extends StatelessWidget {
   CustomTextWidget({Key? key, required this.text, required this.style, required this.textAlign, this.maxLines = 1}) : super(key: key);

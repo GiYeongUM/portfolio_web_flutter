@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controller/birth_color_controller.dart';
-import '../theme_data.dart';
+import 'birth_color_controller.dart';
+import 'theme_data.dart';
 
 class BirthColorPage extends StatelessWidget {
   const BirthColorPage({Key? key}) : super(key: key);

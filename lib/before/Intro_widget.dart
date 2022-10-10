@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:giyeong_um_porfolio_page/translate.dart';
+import 'package:giyeong_um_porfolio_page/before/theme_data.dart';
 
 import '../model/text_class.dart';
-import '../theme_data.dart';
 import 'custom_text.dart';
 
 enum Direction { left, right }
