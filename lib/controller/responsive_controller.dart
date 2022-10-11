@@ -8,7 +8,12 @@ enum Platform {
 }
 
 class ResponsiveController extends GetxController {
-  final mobileWidth = 600;
+  final mobileWidth = 700;
   final desktopWidth = 1440;
   var platform = Platform.mobile.obs;
+  var animation = false.obs;
+  
+  Future<void> changePlatform(Platform platform) async{
+    this.platform.value = platform;
+  }
 }
