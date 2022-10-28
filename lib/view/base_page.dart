@@ -16,7 +16,9 @@ class BasePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop:  () async {
-        return false;
+        _mainController.indexList.removeLast();
+        _mainController.selectedIndex.value = _mainController.indexList.last ?? 0;
+        return true;
       },
       child: LayoutBuilder(builder: (context, constraints) {
         if (constraints.maxWidth < _responsiveController.mobileWidth && !kIsWeb) {
@@ -42,20 +44,32 @@ class BasePage extends StatelessWidget {
                   MouseRegion(
                     onEnter: (event){
                       _responsiveController.animation.value = true;
+                      _responsiveController.expanded.value = true;
                     },
                     onExit: (event){
-                      _responsiveController.animation.value = false;
+                      if(!_responsiveController.paging.value) _responsiveController.animation.value = false;
+                      Future.delayed(const Duration(milliseconds: 500), (){
+                        _responsiveController.expanded.value = _responsiveController.animation.value;
+                      });
                     },
                     child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
+                      duration: const Duration(milliseconds: 500),
                       curve: Curves.easeInOut,
-                      width: _responsiveController.animation.value ? 200 : 70,
+                      width: _responsiveController.animation.value ? 200 : 72,
                       child: NavigationRail(
+                        extended: _responsiveController.expanded.value  ? true : false,
                         selectedIndex: _mainController.selectedIndex.value,
-                        onDestinationSelected: (int index) {
-                          _mainController.pageChanged(index);
+                        labelType: _responsiveController.expanded.value  ? NavigationRailLabelType.none : NavigationRailLabelType.none,
+                        onDestinationSelected: (int index) async {
+                          _responsiveController.paging.value = true;
+                          _responsiveController.animation.value = true;
+                          Future.delayed(const Duration(milliseconds: 50), (){
+                            _responsiveController.paging.value = false;
+                          });
+                          await _mainController.pageChanged(index);
+
+
                         },
-                        labelType: NavigationRailLabelType.selected,
                         destinations: _mainController.buildNavigationRailItems(),
                       ),
                     ),
