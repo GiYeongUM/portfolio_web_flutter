@@ -5,11 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:giyeong_um_porfolio_page/before/birth_color_page.dart';
 import 'package:giyeong_um_porfolio_page/controller/main_controller.dart';
-import 'package:giyeong_um_porfolio_page/page/career_page.dart';
-import 'package:giyeong_um_porfolio_page/page/dev_page.dart';
-import 'package:giyeong_um_porfolio_page/page/home_page.dart';
+import 'package:giyeong_um_porfolio_page/view/career_page.dart';
+import 'package:giyeong_um_porfolio_page/view/dev_page.dart';
+import 'package:giyeong_um_porfolio_page/view/home_page.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
-import 'package:giyeong_um_porfolio_page/page/project_page.dart';
+import 'package:giyeong_um_porfolio_page/view/project_page.dart';
 
 import 'before/theme_data.dart';
 import 'controller/responsive_controller.dart';

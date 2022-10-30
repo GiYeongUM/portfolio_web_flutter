@@ -1,37 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:giyeong_um_porfolio_page/controller/responsive_controller.dart';
-import 'package:giyeong_um_porfolio_page/page/career_page.dart';
-import 'package:giyeong_um_porfolio_page/page/dev_page.dart';
-import 'package:giyeong_um_porfolio_page/page/home_page.dart';
-import 'package:giyeong_um_porfolio_page/page/project_page.dart';
+import 'package:giyeong_um_porfolio_page/view/career_page.dart';
+import 'package:giyeong_um_porfolio_page/view/dev_page.dart';
+import 'package:giyeong_um_porfolio_page/view/home_page.dart';
+import 'package:giyeong_um_porfolio_page/view/project_page.dart';
 
 
 class MainController extends GetxController {
   var selectedIndex = 0.obs;
+  var indexList = [0].obs;
   var pageController = PageController();
   final _responsiveController = Get.find<ResponsiveController>();
 
-  pageChanged(int index) {
+  pageChanged(int index) async {
     selectedIndex.value = index;
-    _responsiveController.animation.value = false;
+    indexList.add(index);
+
     switch(index){
       case 0:
-        Get.to(() => HomePage(), transition: Transition.noTransition);
+        await Get.to(() => HomePage(), transition: Transition.fadeIn);
         break;
       case 1:
-        Get.to(() => CareerPage(), transition: Transition.noTransition);
+        await Get.to(() => CareerPage(), transition: Transition.fadeIn);
         break;
       case 2:
-        Get.to(() => ProjectPage(), transition: Transition.noTransition);
+        await Get.to(() => ProjectPage(), transition: Transition.fadeIn);
         break;
       case 3:
-        Get.to(() => DevPage(), transition: Transition.noTransition);
+        await Get.to(() => DevPage(), transition: Transition.fadeIn);
         break;
     }
-
   }
-
 
   List<BottomNavigationBarItem> buildBottomNavBarItems() {
     return [
@@ -63,26 +63,26 @@ class MainController extends GetxController {
   }
 
   List<NavigationRailDestination> buildNavigationRailItems() {
-    return const [
-      NavigationRailDestination(
+    return [
+      const NavigationRailDestination(
         icon: Icon(Icons.home_outlined),
         selectedIcon: Icon(Icons.home),
-        label: Text('Home'),
+        label: Text('Home', style: TextStyle(fontSize: 10),),
       ),
-      NavigationRailDestination(
+      const NavigationRailDestination(
         icon: Icon(Icons.business),
         selectedIcon: Icon(Icons.business_outlined),
-        label: Text('Career'),
+        label: Text('Career', style: TextStyle(fontSize: 10),),
       ),
-      NavigationRailDestination(
+      const NavigationRailDestination(
         icon: Icon(Icons.memory),
         selectedIcon: Icon(Icons.memory_outlined),
-        label: Text('Project'),
+        label: Text('Project', style: TextStyle(fontSize: 10),),
       ),
-      NavigationRailDestination(
+      const NavigationRailDestination(
         icon: Icon(Icons.computer),
         selectedIcon: Icon(Icons.computer),
-        label: Text('Dev'),
+        label: Text('Dev', style: TextStyle(fontSize: 10),),
       ),
     ];
   }
