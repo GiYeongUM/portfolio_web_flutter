@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:giyeong_um_porfolio_page/before/theme_data.dart';
 import 'package:giyeong_um_porfolio_page/controller/main_controller.dart';
@@ -44,37 +45,41 @@ class BasePage extends StatelessWidget {
                   MouseRegion(
                     onEnter: (event){
                       _responsiveController.animation.value = true;
-                      _responsiveController.expanded.value = true;
                     },
                     onExit: (event){
                       if(!_responsiveController.paging.value) _responsiveController.animation.value = false;
-                      Future.delayed(const Duration(milliseconds: 500), (){
-                        _responsiveController.expanded.value = _responsiveController.animation.value;
-                      });
                     },
                     child: AnimatedContainer(
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(color: Colors.black.withOpacity(0.25), offset: Offset(5, 4), blurRadius: 4)
+                        ]
+                      ),
                       duration: const Duration(milliseconds: 500),
                       curve: Curves.easeInOut,
                       width: _responsiveController.animation.value ? 200 : 72,
-                      child: NavigationRail(
-                        extended: _responsiveController.expanded.value  ? true : false,
-                        selectedIndex: _mainController.selectedIndex.value,
-                        labelType: _responsiveController.expanded.value  ? NavigationRailLabelType.none : NavigationRailLabelType.none,
-                        onDestinationSelected: (int index) async {
-                          _responsiveController.paging.value = true;
-                          _responsiveController.animation.value = true;
-                          Future.delayed(const Duration(milliseconds: 50), (){
-                            _responsiveController.paging.value = false;
-                          });
-                          await _mainController.pageChanged(index);
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        physics: const NeverScrollableScrollPhysics(),
+                        child: NavigationRail(
+                          extended: true,
+                          selectedIndex: _mainController.selectedIndex.value,
+                          onDestinationSelected: (int index) async {
+                            _responsiveController.paging.value = true;
+                            _responsiveController.animation.value = true;
+                            Future.delayed(const Duration(milliseconds: 50), (){
+                              _responsiveController.paging.value = false;
+                            });
+                            await _mainController.pageChanged(index);
 
 
-                        },
-                        destinations: _mainController.buildNavigationRailItems(),
+                          },
+                          backgroundColor: Color(0xff1D221F),
+                          destinations: _mainController.buildNavigationRailItems(),
+                        ),
                       ),
                     ),
                   ),
-                const VerticalDivider(thickness: 1, width: 1),
                 Expanded(
                   child: child,
                 ),

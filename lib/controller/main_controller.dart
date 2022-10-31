@@ -65,24 +65,24 @@ class MainController extends GetxController {
   List<NavigationRailDestination> buildNavigationRailItems() {
     return [
       const NavigationRailDestination(
-        icon: Icon(Icons.home_outlined),
-        selectedIcon: Icon(Icons.home),
-        label: Text('Home', style: TextStyle(fontSize: 10),),
+        icon: Icon(Icons.home_outlined, color: Colors.grey,),
+        selectedIcon: Icon(Icons.home, color: Colors.white),
+        label: Text('Home', style: TextStyle(fontSize: 10, color: Colors.white),),
       ),
       const NavigationRailDestination(
-        icon: Icon(Icons.business),
-        selectedIcon: Icon(Icons.business_outlined),
-        label: Text('Career', style: TextStyle(fontSize: 10),),
+        icon: Icon(Icons.business, color: Colors.grey,),
+        selectedIcon: Icon(Icons.business_outlined, color: Colors.white),
+        label: Text('Career', style: TextStyle(fontSize: 10, color: Colors.white),),
       ),
       const NavigationRailDestination(
-        icon: Icon(Icons.memory),
-        selectedIcon: Icon(Icons.memory_outlined),
-        label: Text('Project', style: TextStyle(fontSize: 10),),
+        icon: Icon(Icons.memory, color: Colors.grey,),
+        selectedIcon: Icon(Icons.memory_outlined, color: Colors.white),
+        label: Text('Project', style: TextStyle(fontSize: 10, color: Colors.white),),
       ),
       const NavigationRailDestination(
-        icon: Icon(Icons.computer),
-        selectedIcon: Icon(Icons.computer),
-        label: Text('Dev', style: TextStyle(fontSize: 10),),
+        icon: Icon(Icons.computer, color: Colors.grey,),
+        selectedIcon: Icon(Icons.computer, color: Colors.white),
+        label: Text('Dev', style: TextStyle(fontSize: 10, color: Colors.white),),
       ),
     ];
   }
