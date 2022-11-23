@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-
-import '../controller/home_controller.dart';
 import 'base_page.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
 
-  final homeController = Get.put(HomeController());
-
   @override
   Widget build(BuildContext context) {
     return BasePage(
       child: SingleChildScrollView(
-        controller: homeController.homeScrollController,
+        // controller: homeController.homeScrollController,
         child: Column(
           children: [
             Container(

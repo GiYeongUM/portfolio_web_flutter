@@ -31,7 +31,8 @@ dependencies:
     sdk: flutter
   flutter:
     sdk: flutter
-  get:
+  flutter_bloc: ^8.1.1
+  rxdart: ^0.27.7
   flutter_screenutil:
   flutter_easyloading:
   flutter_svg: ^1.0.3
