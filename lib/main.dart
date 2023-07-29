@@ -1,77 +1,146 @@
+import 'dart:async';
+
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:get/get.dart';
-// import 'package:giyeong_um_porfolio_page/before/birth_color_page.dart';
-// import 'package:giyeong_um_porfolio_page/controller/main_controller.dart';
-import 'package:giyeong_um_porfolio_page/view/career_page.dart';
-import 'package:giyeong_um_porfolio_page/view/dev_page.dart';
-import 'package:giyeong_um_porfolio_page/view/home_page.dart';
-import 'package:flutter_web_plugins/url_strategy.dart';
-import 'package:giyeong_um_porfolio_page/view/project_page.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:responsive_framework/responsive_wrapper.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_strategy/url_strategy.dart';
 
-// import 'before/theme_data.dart';
-// import 'controller/responsive_controller.dart';
+import 'common/binding.dart';
 
-void main() {
-  setUrlStrategy(PathUrlStrategy());
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp());
+main() {
+  AppConfig.init(
+    () {
+      if (kIsWeb && (defaultTargetPlatform == TargetPlatform.macOS || defaultTargetPlatform == TargetPlatform.windows)) {
+        runApp(DesktopWeb());
+      } else {
+        runApp(Web());
+      }
+    },
+  );
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+class Web extends StatelessWidget {
+  Web({super.key});
 
-  // final translateController = Get.put(TranslateController());
-  // final _responsiveController = Get.put(ResponsiveController());
-  // final mainController = Get.put(MainController());
+  final _router = AppRouter();
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(1920, 1080),
-      builder: (BuildContext context, child) => MaterialApp(
-        initialRoute: "/",
-        title: "GiYeongUm",
-        onGenerateRoute: (settings) {
-          print(settings.name);
-          switch (settings.name) {
-            case '/':
-              return _createRoute(HomePage());
-            case '/HomePage':
-              return _createRoute(HomePage());
-            case '/CareerPage':
-              return _createRoute(CareerPage());
-            case '/ProjectPage':
-              return _createRoute(ProjectPage());
-            case '/DevPage':
-              return _createRoute(DevPage());
-            default:
-              return _createRoute(HomePage());
-          }
+    return Material(
+      elevation: 10,
+      child: GestureDetector(
+        onTap: () {
+          FocusManager.instance.primaryFocus?.unfocus();
         },
-        builder: EasyLoading.init(builder: (context, widget) {
-          return MediaQuery(
-            data: MediaQuery.of(context),
-            child: widget!,
-          );
-        }),
-        // theme: Themes.lightTheme,
-        // darkTheme: Themes.darkTheme,
-        themeMode: ThemeMode.system,
-        debugShowCheckedModeBanner: false,
-        home: HomePage(),
+        child: MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            title: 'GiYeongUM',
+            darkTheme: darkTheme,
+            theme: lightTheme,
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('ko', 'KR'),
+            ],
+            locale: const Locale('ko', 'KR'),
+            routerConfig: _router.setRouter,
+            builder: (context, child) {
+              ErrorWidget.builder = (errorData) {
+                Widget error = Text('$errorData');
+                if (child is Scaffold || child is Navigator) {
+                  error = Scaffold(body: SafeArea(child: error));
+                }
+                return error;
+              };
+              return ResponsiveWrapper.builder(child,
+                  maxWidth: (defaultTargetPlatform == TargetPlatform.macOS || defaultTargetPlatform == TargetPlatform.windows) ? 720 : null,
+                  minWidth: 428,
+                  defaultScale: true,
+                  breakpoints: [
+                    const ResponsiveBreakpoint.resize(480, name: MOBILE),
+                    const ResponsiveBreakpoint.resize(800, name: TABLET),
+                  ],
+                  background: Container(color: const Color(0xFFF5F5F5)));
+            }),
       ),
     );
   }
 }
 
-Route _createRoute(Widget widget) {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => widget,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      return child;
-    },
-  );
+class DesktopWeb extends StatelessWidget {
+  DesktopWeb({super.key});
+
+  final _router = AppRouter();
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Material(
+        elevation: 10,
+        child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          title: 'GiYeongUM',
+          darkTheme: lightTheme,
+          theme: lightTheme,
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            Locale('ko', 'KR'),
+          ],
+          locale: const Locale('ko', 'KR'),
+          themeMode: ThemeMode.system,
+          routerConfig: _router.setDesktopRouter,
+          builder: (context, child) => ResponsiveWrapper.builder(child,
+              defaultScale: true,
+              minWidth: 0,
+              breakpoints: [
+                const ResponsiveBreakpoint.resize(1200, name: DESKTOP, scaleFactor: 1.0),
+                const ResponsiveBreakpoint.autoScale(600, name: TABLET, scaleFactor: 0.5),
+                const ResponsiveBreakpoint.autoScale(480, name: MOBILE, scaleFactor: 0.4),
+                const ResponsiveBreakpoint.autoScale(428, name: MOBILE, scaleFactor: 0.35),
+                const ResponsiveBreakpoint.autoScaleDown(240, name: MOBILE, scaleFactor: 0.2),
+                const ResponsiveBreakpoint.autoScaleDown(10, name: MOBILE, scaleFactor: 0.1),
+              ],
+              background: Container(color: const Color(0xFFF5F5F5))),
+        ),
+      ),
+    );
+  }
+}
+
+class AppConfig {
+  static AppConfig get to => AppConfig();
+
+  static const FlutterSecureStorage _storage = FlutterSecureStorage();
+  static final DeviceInfoPlugin _deviceInfoPlugin = DeviceInfoPlugin();
+  static late final SharedPreferences _shared;
+
+  FlutterSecureStorage get storage => _storage;
+
+  SharedPreferences get shared => _shared;
+
+  DeviceInfoPlugin get deviceInfoPlugin => _deviceInfoPlugin;
+
+  static Future init(VoidCallback callback) async {
+    WidgetsFlutterBinding.ensureInitialized();
+    setPathUrlStrategy();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    await _shared.setString('app_version', packageInfo.version);
+    callback();
+  }
 }
