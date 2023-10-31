@@ -40,6 +40,7 @@ dependencies:
   go_router: ^8.1.0
 
   #firebase
+  firebase_core: ^2.20.0
 
   flutter_localizations:
     sdk: flutter
