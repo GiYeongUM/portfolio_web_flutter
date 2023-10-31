@@ -4,8 +4,8 @@
 name: Deploy to Firebase Hosting Live channel on PR
 'on': pull_request
 jobs:
-  setup:
-    name: "Setup"
+  build:
+    name: "Build"
     runs-on: ubuntu-latest
     steps:
       - name: 📚 Git Checkout
@@ -15,23 +15,12 @@ jobs:
         with:
           flutter-version: '3.13.2'
           channel: 'stable'
-  build:
-    name: "Build"
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
       - name: 🛠️ pub get
         run: flutter pub get
-        with:
-          entrypoint: .
       - name: 🛠️ run build_runner
         run: flutter pub run build_runner build --delete-conflicting-outputs
-        with:
-          entrypoint: .
       - name: 🛠️ Build the application
         run: flutter build web --release
-        with:
-          entrypoint: .
 
   deploy:
     name: "Deploy"
