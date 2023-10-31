@@ -25,10 +25,16 @@ jobs:
     steps:
       - name: 🛠️ pub get
         run: flutter pub get
+        with:
+          entrypoint: .
       - name: 🛠️ run build_runner
         run: flutter pub run build_runner build --delete-conflicting-outputs
+        with:
+          entrypoint: .
       - name: 🛠️ Build the application
         run: flutter build web --release
+        with:
+          entrypoint: .
 
   preview:
     name: "Preview"
