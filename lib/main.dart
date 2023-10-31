@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -33,7 +34,7 @@ class App extends StatelessWidget {
       },
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        title: 'GiYeongUM',
+        title: '엄기영 | 포트폴리오',
         darkTheme: darkTheme,
         theme: lightTheme,
         localizationsDelegates: const [
@@ -79,6 +80,9 @@ class AppConfig {
 
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     await _shared.setString('app_version', packageInfo.version);
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     callback();
   }
 }

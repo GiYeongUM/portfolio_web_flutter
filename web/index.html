@@ -1,104 +1,255 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="/">
-
   <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="GiYeongUM Portfolio Page with Flutter">
+  <title>엄기영 | 포트폴리오</title>
+  <meta content="GiYeongUM Portfolio Page with Flutter" name="description">
+  <link href="web/manifest.json" rel="manifest">
+
 
   <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="엄기영 | 포트폴리오">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta content="black" name="apple-mobile-web-app-status-bar-style">
+  <meta content="needs_web" name="apple-mobile-web-app-title">
+  <link href="web/icons/Icon-192.png" rel="apple-touch-icon">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <meta content="website" property="og:type">
+  <meta content="엄기영 | 포트폴리오" property="og:title">
+  <meta content="GiYeongUM Portfolio Page with Flutter" property="og:description">
 
-  <title>GiYeongUm</title>
-  <link rel="manifest" href="manifest.json">
-</head>
-<body>
-  <!-- This script installs service_worker.js to provide PWA functionality to
-       application. For more information, see:
-       https://developers.google.com/web/fundamentals/primers/service-workers -->
+
+  <!-- Browser meta tags & icons -->
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta content="black" name="apple-mobile-web-app-status-bar-style">
+  <meta content="gallery" name="apple-mobile-web-app-title">
+  <link href="web/icons/Icon-192.png" rel="apple-touch-icon">
+  <link href="web/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400" media="all" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans:700" media="all" rel="stylesheet">
+
+  <!-- Renderer specifier -->
   <script>
+    let searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.has('renderer')) {
+      window.flutterWebRenderer = searchParams.get('renderer');
+      console.log(searchParams.get('renderer') + ' renderer requested in the URL');
+    }
+    // The value below is injected by flutter build, do not touch.
     var serviceWorkerVersion = null;
-    var scriptLoaded = false;
-    function loadMainDartJs() {
-      if (scriptLoaded) {
-        return;
-      }
-      scriptLoaded = true;
-      var scriptTag = document.createElement('script');
-      scriptTag.src = 'main.dart.js';
-      scriptTag.type = 'application/javascript';
-      document.body.append(scriptTag);
-    }
-
-    if ('serviceWorker' in navigator) {
-      // Service workers are supported. Use them.
-      window.addEventListener('load', function () {
-        // Wait for registration to finish before dropping the <script> tag.
-        // Otherwise, the browser will load the script multiple times,
-        // potentially different versions.
-        var serviceWorkerUrl = 'flutter_service_worker.js?v=' + serviceWorkerVersion;
-        navigator.serviceWorker.register(serviceWorkerUrl)
-          .then((reg) => {
-            function waitForActivation(serviceWorker) {
-              serviceWorker.addEventListener('statechange', () => {
-                if (serviceWorker.state == 'activated') {
-                  console.log('Installed new service worker.');
-                  loadMainDartJs();
-                }
-              });
-            }
-            if (!reg.active && (reg.installing || reg.waiting)) {
-              // No active web worker and we have installed or are installing
-              // one for the first time. Simply wait for it to activate.
-              waitForActivation(reg.installing || reg.waiting);
-            } else if (!reg.active.scriptURL.endsWith(serviceWorkerVersion)) {
-              // When the app updates the serviceWorkerVersion changes, so we
-              // need to ask the service worker to update.
-              console.log('New service worker available.');
-              reg.update();
-              waitForActivation(reg.installing);
-            } else {
-              // Existing service worker is still good.
-              console.log('Loading app from service worker.');
-              loadMainDartJs();
-            }
-          });
-
-        // If service worker doesn't succeed in a reasonable amount of time,
-        // fallback to plaint <script> tag.
-        setTimeout(() => {
-          if (!scriptLoaded) {
-            console.warn(
-              'Failed to load app from service worker. Falling back to plain <script> tag.',
-            );
-            loadMainDartJs();
-          }
-        }, 4000);
-      });
-    } else {
-      // Service workers not supported. Just drop the <script> tag.
-      loadMainDartJs();
-    }
   </script>
+
+  <script defer src="flutter.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V5HG5ZQTYX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-V5HG5ZQTYX');
+  </script>
+</head>
+
+<body style="overflow: hidden">
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+<style>
+  body {
+    background-color: #030303;
+  }
+</style>
+
+<!-- Cookie notice -->
+<div>
+  <style>
+    #cookie-notice {
+      background-color: #fff;
+      bottom: 0;
+      box-shadow: 0px 8px 24px rgba(0, 0, 0, .25);
+      -webkit-box-direction: normal;
+      -webkit-font-smoothing: antialiased;
+      display: none;
+      left: 0;
+      opacity: 0;
+      padding: 40px 0;
+      position: fixed;
+      width: 100%;
+      z-index: 11;
+    }
+
+    #cookie-notice.show {
+      animation-delay: .2s;
+      animation-duration: .5s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
+      animation-name: fadein;
+      animation-timing-function: cubic-bezier(.27, .89, .39, .95);
+      display: block;
+    }
+
+    @keyframes fadein {
+      0% {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    .container {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      top: 1px;
+      margin: 0 auto;
+      max-width: calc(1280px - 100px);
+      width: calc(100% - 24px * 2);
+    }
+
+    .container p {
+      max-width: 1200px;
+      margin: 0;
+      margin-right: 50px;
+      color: #4a4a4a;
+      font-size: 16px;
+      font-family: "Roboto", sans-serif;
+      line-height: 1.5;
+
+    }
+
+    p a {
+      color: #0468d7;
+      text-decoration: none;
+    }
+
+    button {
+      background-color: #0468d7;
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+      border: 0 solid;
+      border-radius: 24px;
+      cursor: pointer;
+      display: inline-flex;
+      font-family: "Google Sans", sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      height: 40px;
+      padding: 0 32px;
+      text-align: center;
+      line-height: 1.15;
+    }
+  </style>
+</div>
+
+<!-- Loading indicator -->
+<div id="loading">
+  <style>
+    body {
+      inset: 0;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      position: fixed;
+    }
+
+    #loading {
+      align-items: center;
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      width: 100%;
+    }
+
+    #loading img {
+      animation: 1s ease-in-out 0s infinite alternate breathe;
+      opacity: .66;
+      transition: opacity .4s;
+    }
+
+    #loading.main_done img {
+      opacity: 1;
+    }
+
+    #loading.init_done img {
+      animation: .33s ease-in-out 0s 1 forwards zooooom;
+      opacity: .05;
+    }
+
+    @keyframes breathe {
+      from {
+        transform: scale(1)
+      }
+
+      to {
+        transform: scale(0.95)
+      }
+    }
+
+    @keyframes zooooom {
+      from {
+        transform: scale(1)
+      }
+
+      to {
+        transform: scale(1)
+      }
+    }
+  </style>
+  <img alt="Loading indicator..." src="icons/Icon-192.png"/>
+</div>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("/firebase-messaging-sw.js");
+    });
+  }
+  const firebaseConfig = {
+    apiKey: 'AIzaSyCCuJ117ShY3UxXm3sn5QY0sraJ7J0JlmQ',
+    appId: '1:1060449311282:web:807af2c27e58ffcbf77a2b',
+    messagingSenderId: '1060449311282',
+    projectId: 'giyeong-um',
+    authDomain: 'giyeong-um.firebaseapp.com',
+    storageBucket: 'giyeong-um.appspot.com',
+    measurementId: 'G-DHFZHS0VJG',
+  };
+  firebase.initializeApp(firebaseConfig);
+  window.addEventListener('load', function () {
+    const loading = document.querySelector('#loading');
+    _flutter.loader.loadEntrypoint({
+      entrypointUrl: "/main.dart.js",
+      serviceWorker: {
+        serviceWorkerVersion: serviceWorkerVersion,
+      }
+    }).then(function (engineInitializer) {
+      loading.classList.add('main_done');
+      return engineInitializer.initializeEngine();
+    }).then(function (appRunner) {
+      loading.classList.add('init_done');
+      return appRunner.runApp();
+    }).then(function (app) {
+      window.setTimeout(function () {
+        loading.remove();
+      }, 200);
+    });
+  });
+</script>
+
+<!-- App -->
 </body>
+
 </html>
