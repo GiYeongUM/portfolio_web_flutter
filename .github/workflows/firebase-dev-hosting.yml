@@ -13,28 +13,23 @@ jobs:
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@v2
-      - name: 🐦 Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.13.2'
-          channel: 'stable'
+
   build:
     name: "Build"
     runs-on: ubuntu-latest
     needs: setup
     steps:
+      - name: 🐦 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.13.2'
+          channel: 'stable'
       - name: 🛠️ pub get
         run: flutter pub get
-        with:
-          entrypoint: .
       - name: 🛠️ run build_runner
         run: flutter pub run build_runner build --delete-conflicting-outputs
-        with:
-          entrypoint: .
       - name: 🛠️ Build the application
         run: flutter build web --release
-        with:
-          entrypoint: .
 
   preview:
     name: "Preview"
