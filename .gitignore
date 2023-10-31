@@ -8,6 +8,8 @@
 .buildlog/
 .history
 .svn/
+migrate_working_dir/
+.env
 
 # IntelliJ related
 *.iml
@@ -30,8 +32,8 @@
 .pub-cache/
 .pub/
 /build/
-
-# Web related
+.firebase/
+*.g.dart
 
 # Symbolication related
 app.*.symbols
@@ -43,4 +45,3 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-/GiYeongUM.github.io/
