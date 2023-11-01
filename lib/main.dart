@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:responsive_framework/responsive_wrapper.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/config/config.dart';
@@ -33,29 +33,59 @@ class App extends StatelessWidget {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        title: '엄기영 | 포트폴리오',
-        darkTheme: darkTheme,
-        theme: lightTheme,
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: const [
-          Locale('ko', 'KR'),
-        ],
-        locale: const Locale('ko', 'KR'),
-        routerConfig: router.setRouter,
-        builder: (context, child) => ResponsiveWrapper.builder(child,
-            minWidth: 428,
-            defaultScale: true,
-            breakpoints: [
-              const ResponsiveBreakpoint.resize(480, name: MOBILE),
-              const ResponsiveBreakpoint.resize(800, name: TABLET),
-              const ResponsiveBreakpoint.resize(1000, name: DESKTOP),
-            ],
-            background: Container(color: white2)),
-      ),
+          debugShowCheckedModeBanner: false,
+          title: '엄기영 | 포트폴리오',
+          darkTheme: darkTheme,
+          theme: lightTheme,
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            Locale('ko', 'KR'),
+          ],
+          locale: const Locale('ko', 'KR'),
+          routerConfig: router.setRouter,
+          builder: (context, child) => ResponsiveBreakpoints.builder(
+                child: Builder(
+                  builder: (context) {
+                    return Stack(
+                      children: [
+                        MaxWidthBox(
+                          maxWidth: 1200,
+                          background: Container(color: const Color(0xFFF5F5F5)),
+                          child: ResponsiveScaledBox(
+                            width: ResponsiveValue<double>(
+                              context,
+                              conditionalValues: [
+                                Condition.equals(name: MOBILE, value: 450),
+                                Condition.between(start: 800, end: 1200, value: 800),
+                                Condition.between(start: 1200, end: 1920, value: 1200),
+                              ],
+                            ).value,
+                            child: child!,
+                          ),
+                        ),
+                        Positioned(
+                          right: 32,
+                          bottom: 32,
+                          child: AnimatedOpacity(
+                            duration: const Duration(milliseconds: 500),
+                            opacity: ResponsiveBreakpoints.of(context).isDesktop ? 1 : 0,
+                            child: const Material(child: Text('Contents')),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+                breakpoints: [
+                  const Breakpoint(start: 0, end: 450, name: MOBILE),
+                  const Breakpoint(start: 451, end: 1200, name: TABLET),
+                  const Breakpoint(start: 1200, end: 1920, name: DESKTOP),
+                  const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
+                ],
+              )),
     );
   }
 }
@@ -75,6 +105,8 @@ class AppConfig {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
     ]);
     _shared = await SharedPreferences.getInstance();
 
