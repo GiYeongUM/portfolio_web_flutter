@@ -49,27 +49,40 @@ class App extends StatelessWidget {
           builder: (context, child) => ResponsiveBreakpoints.builder(
                 child: Builder(
                   builder: (context) {
-                    return MaxWidthBox(
-                      maxWidth: 1200,
-                      background: Container(color: const Color(0xFFF5F5F5)),
-                      child: ResponsiveScaledBox(
-                        width: ResponsiveValue<double>(
-                          context,
-                          conditionalValues: [
-                            Condition.equals(name: MOBILE, value: 450),
-                            Condition.between(start: 800, end: 1100, value: 800),
-                            Condition.between(start: 1000, end: 1200, value: 1000),
-                          ],
-                        ).value,
-                        child: child!,
-                      ),
+                    return Stack(
+                      children: [
+                        MaxWidthBox(
+                          maxWidth: 1200,
+                          background: Container(color: const Color(0xFFF5F5F5)),
+                          child: ResponsiveScaledBox(
+                            width: ResponsiveValue<double>(
+                              context,
+                              conditionalValues: [
+                                Condition.equals(name: MOBILE, value: 450),
+                                Condition.between(start: 800, end: 1200, value: 800),
+                                Condition.between(start: 1200, end: 1920, value: 1200),
+                              ],
+                            ).value,
+                            child: child!,
+                          ),
+                        ),
+                        Positioned(
+                          right: 32,
+                          bottom: 32,
+                          child: AnimatedOpacity(
+                            duration: const Duration(milliseconds: 500),
+                            opacity: ResponsiveBreakpoints.of(context).isDesktop ? 1 : 0,
+                            child: const Material(child: Text('Contents')),
+                          ),
+                        ),
+                      ],
                     );
                   },
                 ),
                 breakpoints: [
                   const Breakpoint(start: 0, end: 450, name: MOBILE),
-                  const Breakpoint(start: 451, end: 800, name: TABLET),
-                  const Breakpoint(start: 801, end: 1920, name: DESKTOP),
+                  const Breakpoint(start: 451, end: 1200, name: TABLET),
+                  const Breakpoint(start: 1200, end: 1920, name: DESKTOP),
                   const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
                 ],
               )),
