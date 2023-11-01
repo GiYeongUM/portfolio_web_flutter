@@ -13,11 +13,6 @@ jobs:
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@v2
-      - name: 🐦 Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.13.2'
-          channel: 'stable'
       - name: 🛠️ pub get
         run: flutter pub get
       - name: 🛠️ run build_runner
