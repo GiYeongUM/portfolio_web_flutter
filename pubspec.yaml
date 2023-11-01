@@ -27,7 +27,7 @@ dependencies:
   #view
   cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.2
-  responsive_framework: ^0.2.0
+  responsive_framework: ^1.1.1
   shimmer: ^3.0.0
   date_picker_timeline: ^1.2.5
 
