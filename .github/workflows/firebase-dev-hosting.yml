@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: "Build"
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@v2
@@ -27,7 +27,7 @@ jobs:
 
   preview:
     name: "Preview"
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build
     steps:
     - name: 🎯 Deploy to firebase
