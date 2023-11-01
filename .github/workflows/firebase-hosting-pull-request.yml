@@ -6,15 +6,10 @@ name: Deploy to Firebase Hosting Live channel on PR
 jobs:
   build:
     name: "Build"
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@v2
-      - name: 🐦 Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.13.2'
-          channel: 'stable'
       - name: 🛠️ pub get
         run: flutter pub get
       - name: 🛠️ run build_runner
@@ -24,7 +19,7 @@ jobs:
 
   deploy:
     name: "Deploy"
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build
     steps:
       - name: 🎯 Deploy to firebase
