@@ -26,7 +26,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         alignment: ResponsiveBreakpoints.of(context).isDesktop ? Alignment.center : Alignment.topLeft,
         curve: Curves.easeInOut,
         duration: const Duration(milliseconds: 500),
-        child: Text(title, style: context.textTheme.krSubtitle1),
+        child: Text(title, style: context.textTheme.krPoint1),
       ),
       actions: actions,
       backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
