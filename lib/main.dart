@@ -52,7 +52,7 @@ class App extends StatelessWidget {
                     return Stack(
                       children: [
                         MaxWidthBox(
-                          maxWidth: 1200,
+                          maxWidth: 1600,
                           background: Container(color: const Color(0xFFF5F5F5)),
                           child: ResponsiveScaledBox(
                             width: ResponsiveValue<double>(
@@ -82,8 +82,7 @@ class App extends StatelessWidget {
                 breakpoints: [
                   const Breakpoint(start: 0, end: 450, name: MOBILE),
                   const Breakpoint(start: 451, end: 1200, name: TABLET),
-                  const Breakpoint(start: 1200, end: 1920, name: DESKTOP),
-                  const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
+                  const Breakpoint(start: 1200, end: double.infinity, name: DESKTOP),
                 ],
               )),
     );
