@@ -59,9 +59,9 @@ class App extends StatelessWidget {
                               context,
                               conditionalValues: [
                                 Condition.equals(name: MOBILE, value: 450),
-                                Condition.between(start: 800, end: 1200, value: 800),
-                                Condition.between(start: 1200, end: 1600, value: 1200),
-                                Condition.between(start: 1600, end: 3840, value: 1200),
+                                Condition.equals(name: TABLET, value: 1200),
+                                // Condition.between(start: 1200, end: 1600, value: 1200),
+                                Condition.largerThan(name: DESKTOP, value: 1600),
                               ],
                             ).value,
                             child: child!,
@@ -83,8 +83,8 @@ class App extends StatelessWidget {
                 breakpoints: [
                   const Breakpoint(start: 0, end: 450, name: MOBILE),
                   const Breakpoint(start: 451, end: 1200, name: TABLET),
-                  const Breakpoint(start: 1200, end: 1920, name: DESKTOP),
-                  const Breakpoint(start: 1920, end: double.infinity, name: DESKTOP),
+                  const Breakpoint(start: 1200, end: 1600, name: DESKTOP),
+                  const Breakpoint(start: 1600, end: double.infinity, name: DESKTOP),
                 ],
               )),
     );
