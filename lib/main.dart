@@ -53,18 +53,42 @@ class App extends StatelessWidget {
                       children: [
                         MaxWidthBox(
                           maxWidth: 1600,
-                          background: Container(color: const Color(0xFFF5F5F5)),
-                          child: ResponsiveScaledBox(
-                            width: ResponsiveValue<double>(
-                              context,
-                              conditionalValues: [
-                                Condition.equals(name: MOBILE, value: 450),
-                                Condition.equals(name: TABLET, value: 1200),
-                                // Condition.between(start: 1200, end: 1600, value: 1200),
-                                Condition.largerThan(name: DESKTOP, value: 1600),
+                          background: Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                  Theme.of(context).brightness == Brightness.light
+                                      ? 'https://fastly.picsum.photos/id/430/5000/3333.jpg?hmac=IC4pC3JAgYu4spZL_e7jJ2XIOoPuBM1dIqetwsYKgAE'
+                                      : 'https://fastly.picsum.photos/id/681/5000/2951.jpg?hmac=01BxiMvFITUx4h3xM_x0IUp2w5KyQHzUd1AVxm8FKG0',
+                                ),
+                                fit: BoxFit.cover,
+                                opacity: 0.8,
+                              ),
+                            ),
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.5),
+                                  spreadRadius: 8,
+                                  blurRadius: 7,
+                                  offset: const Offset(0, 3),
+                                ),
                               ],
-                            ).value,
-                            child: child!,
+                            ),
+                            child: ResponsiveScaledBox(
+                              width: ResponsiveValue<double>(
+                                context,
+                                conditionalValues: [
+                                  Condition.equals(name: MOBILE, value: 450),
+                                  Condition.equals(name: TABLET, value: 1200),
+                                  // Condition.between(start: 1200, end: 1600, value: 1200),
+                                  Condition.largerThan(name: DESKTOP, value: 1600),
+                                ],
+                              ).value,
+                              child: child!,
+                            ),
                           ),
                         ),
                         Positioned(
