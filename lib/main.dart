@@ -4,10 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/config/config.dart';
 
@@ -34,7 +31,7 @@ class App extends StatelessWidget {
       },
       child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
-          title: '엄기영 | 포트폴리오',
+          title: '엄기영 | 프로필',
           darkTheme: darkTheme,
           theme: lightTheme,
           localizationsDelegates: const [
@@ -46,70 +43,73 @@ class App extends StatelessWidget {
           ],
           locale: const Locale('ko', 'KR'),
           routerConfig: router.setRouter,
-          builder: (context, child) => ResponsiveBreakpoints.builder(
-                child: Builder(
-                  builder: (context) {
-                    return Stack(
-                      children: [
-                        MaxWidthBox(
-                          maxWidth: 1600,
-                          background: Container(
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: NetworkImage(
-                                  Theme.of(context).brightness == Brightness.light
-                                      ? 'https://fastly.picsum.photos/id/430/5000/3333.jpg?hmac=IC4pC3JAgYu4spZL_e7jJ2XIOoPuBM1dIqetwsYKgAE'
-                                      : 'https://fastly.picsum.photos/id/681/5000/2951.jpg?hmac=01BxiMvFITUx4h3xM_x0IUp2w5KyQHzUd1AVxm8FKG0',
+          builder: (context, child) => Scrollbar(
+                thickness: 5,
+                trackVisibility: true,
+                child: ResponsiveBreakpoints.builder(
+                  child: Builder(
+                    builder: (context) {
+                      return Stack(
+                        children: [
+                          MaxWidthBox(
+                            maxWidth: 1600,
+                            background: Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                    Theme.of(context).brightness == Brightness.light
+                                        ? 'https://images.unsplash.com/photo-1502175353174-a7a70e73b362?auto=format&fit=crop&q=80&w=4219&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                                        : 'https://images.unsplash.com/photo-1438401171849-74ac270044ee?auto=format&fit=crop&q=80&w=5125&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                                  ),
+                                  fit: BoxFit.cover,
+                                  opacity: 0.8,
                                 ),
-                                fit: BoxFit.cover,
-                                opacity: 0.8,
+                              ),
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.5),
+                                    spreadRadius: 8,
+                                    blurRadius: 7,
+                                    offset: const Offset(0, 3),
+                                  ),
+                                ],
+                              ),
+                              child: ResponsiveScaledBox(
+                                width: ResponsiveValue<double>(
+                                  context,
+                                  conditionalValues: [
+                                    Condition.equals(name: MOBILE, value: 450),
+                                    Condition.equals(name: TABLET, value: 800),
+                                    Condition.largerThan(name: DESKTOP, value: 1600),
+                                  ],
+                                ).value,
+                                child: child!,
                               ),
                             ),
                           ),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.5),
-                                  spreadRadius: 8,
-                                  blurRadius: 7,
-                                  offset: const Offset(0, 3),
-                                ),
-                              ],
-                            ),
-                            child: ResponsiveScaledBox(
-                              width: ResponsiveValue<double>(
-                                context,
-                                conditionalValues: [
-                                  Condition.equals(name: MOBILE, value: 450),
-                                  Condition.equals(name: TABLET, value: 1200),
-                                  // Condition.between(start: 1200, end: 1600, value: 1200),
-                                  Condition.largerThan(name: DESKTOP, value: 1600),
-                                ],
-                              ).value,
-                              child: child!,
+                          Positioned(
+                            right: 32,
+                            bottom: 32,
+                            child: AnimatedOpacity(
+                              duration: const Duration(milliseconds: 500),
+                              opacity: ResponsiveBreakpoints.of(context).isDesktop ? 1 : 0,
+                              child: const Material(child: Text('Contents')),
                             ),
                           ),
-                        ),
-                        Positioned(
-                          right: 32,
-                          bottom: 32,
-                          child: AnimatedOpacity(
-                            duration: const Duration(milliseconds: 500),
-                            opacity: ResponsiveBreakpoints.of(context).isDesktop ? 1 : 0,
-                            child: const Material(child: Text('Contents')),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
+                        ],
+                      );
+                    },
+                  ),
+                  breakpoints: [
+                    const Breakpoint(start: 0, end: 450, name: MOBILE),
+                    const Breakpoint(start: 451, end: 1200, name: TABLET),
+                    const Breakpoint(start: 1200, end: 1600, name: DESKTOP),
+                    const Breakpoint(start: 1600, end: double.infinity, name: DESKTOP),
+                  ],
                 ),
-                breakpoints: [
-                  const Breakpoint(start: 0, end: 450, name: MOBILE),
-                  const Breakpoint(start: 451, end: 1200, name: TABLET),
-                  const Breakpoint(start: 1200, end: 1600, name: DESKTOP),
-                  const Breakpoint(start: 1600, end: double.infinity, name: DESKTOP),
-                ],
               )),
     );
   }
@@ -117,13 +117,6 @@ class App extends StatelessWidget {
 
 class AppConfig {
   static AppConfig get to => AppConfig();
-
-  static const FlutterSecureStorage _storage = FlutterSecureStorage();
-  static late final SharedPreferences _shared;
-
-  FlutterSecureStorage get storage => _storage;
-
-  SharedPreferences get shared => _shared;
 
   static Future init({required VoidCallback callback}) async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -133,10 +126,6 @@ class AppConfig {
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
-    _shared = await SharedPreferences.getInstance();
-
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    await _shared.setString('app_version', packageInfo.version);
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
