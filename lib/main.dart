@@ -82,7 +82,7 @@ class App extends StatelessWidget {
                                   context,
                                   conditionalValues: [
                                     Condition.equals(name: MOBILE, value: 450),
-                                    Condition.equals(name: TABLET, value: 1200),
+                                    Condition.equals(name: TABLET, value: 800),
                                     Condition.largerThan(name: DESKTOP, value: 1600),
                                   ],
                                 ).value,
