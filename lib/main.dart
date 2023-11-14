@@ -31,7 +31,7 @@ class App extends StatelessWidget {
       },
       child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
-          title: '엄기영 | 포트폴리오',
+          title: '엄기영 | 프로필',
           darkTheme: darkTheme,
           theme: lightTheme,
           localizationsDelegates: const [
