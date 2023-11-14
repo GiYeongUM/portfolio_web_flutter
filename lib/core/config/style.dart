@@ -5,11 +5,8 @@ part 'generated/style.g.dart';
 
 const krFontFamily = 'LINESeedKR';
 const lightBackground = Color(0xffFFFFFF);
-const foreground = Color(0xffF9F9F9);
+const foreground = Color(0xff1F2626);
 const darkBackground = Color(0xff171717);
-const darkForeground = Color(0xff262626);
-const borderColor = Color(0xffEFEFEF);
-const activeBorderColor = Color(0xffB3C5E5);
 const black = Colors.black;
 const black1 = Color(0xff2D2D35);
 const white = Colors.white;
@@ -20,8 +17,10 @@ const blue1 = Color(0xff086BFF);
 const blue2 = Color(0xff0A90FB);
 const blue3 = Color(0xff85BFDA);
 const purple1 = Color(0xff4243E7);
-const green1 = Color(0xff00FD0A);
+const green1 = Color(0xff00F5A0);
+const green2 = Color(0xffBDEBEA);
 const red1 = Color(0xffF76363);
+const violet = Color(0xff5222D0);
 
 extension BuildContextExtensions on BuildContext {
   ThemeData get theme => Theme.of(this);
@@ -35,48 +34,36 @@ extension BuildContextExtensions on BuildContext {
 @CopyWith()
 class ColorTheme extends ThemeExtension<ColorTheme> {
   const ColorTheme({
-    this.stepColor,
     this.buttonColor,
-    this.activeButtonColor,
-    this.disableButtonColor,
-    this.disableButtonTextColor,
     this.foregroundColor,
+    this.primaryColor,
   });
 
-  final Color? stepColor;
   final Color? buttonColor;
-  final Color? activeButtonColor;
-  final Color? disableButtonColor;
-  final Color? disableButtonTextColor;
   final Color? foregroundColor;
+  final Color? primaryColor;
 
   @override
   ThemeExtension<ColorTheme> lerp(ThemeExtension<ColorTheme>? other, double t) {
     if (other is! ColorTheme) {
       return this;
     }
-    return ColorTheme(activeButtonColor: Color.lerp(activeButtonColor, other.activeButtonColor, t) ?? activeButtonColor);
+    return ColorTheme(buttonColor: Color.lerp(buttonColor, other.buttonColor, t) ?? buttonColor);
   }
 
   @override
   ThemeExtension<ColorTheme> copyWith() => $ColorThemeCopyWith(this).copyWith();
 
   static ColorTheme light = const ColorTheme(
-    stepColor: purple1,
-    buttonColor: white,
-    activeButtonColor: blue1,
-    disableButtonColor: gray1,
-    disableButtonTextColor: gray2,
+    buttonColor: violet,
     foregroundColor: foreground,
+    primaryColor: violet,
   );
 
   static ColorTheme dark = const ColorTheme(
-    stepColor: white,
-    buttonColor: darkBackground,
-    activeButtonColor: darkForeground,
-    disableButtonColor: gray2,
-    disableButtonTextColor: gray1,
-    foregroundColor: darkForeground,
+    buttonColor: green1,
+    foregroundColor: green2,
+    primaryColor: green1,
   );
 }
 
@@ -124,9 +111,9 @@ class KRTextTheme extends ThemeExtension<KRTextTheme> {
 
   static const light = KRTextTheme(
     krPoint1: TextStyle(fontFamily: krFontFamily, fontSize: 24, fontWeight: FontWeight.w700, color: black1),
-    krButton1: TextStyle(fontFamily: krFontFamily, fontSize: 20, fontWeight: FontWeight.w700, color: black1),
+    krButton1: TextStyle(fontFamily: krFontFamily, fontSize: 16, fontWeight: FontWeight.w700, color: black1),
     krSubtitle1: TextStyle(fontFamily: krFontFamily, fontSize: 18, fontWeight: FontWeight.w700, color: black1),
-    krSubtitle2: TextStyle(fontFamily: krFontFamily, fontSize: 18, fontWeight: FontWeight.w400, color: black1),
+    krSubtitle2: TextStyle(fontFamily: krFontFamily, fontSize: 20, fontWeight: FontWeight.w700, color: black1),
     krBody1: TextStyle(fontFamily: krFontFamily, fontSize: 14, fontWeight: FontWeight.w400, color: black1),
     krBody2: TextStyle(fontFamily: krFontFamily, fontSize: 14, fontWeight: FontWeight.w700, color: black1),
     krBody3: TextStyle(fontFamily: krFontFamily, fontSize: 14, fontWeight: FontWeight.w300, color: black1),
@@ -139,9 +126,9 @@ class KRTextTheme extends ThemeExtension<KRTextTheme> {
 
   static const dark = KRTextTheme(
     krPoint1: TextStyle(fontFamily: krFontFamily, fontSize: 24, fontWeight: FontWeight.w700, color: white),
-    krButton1: TextStyle(fontFamily: krFontFamily, fontSize: 20, fontWeight: FontWeight.w700, color: white),
+    krButton1: TextStyle(fontFamily: krFontFamily, fontSize: 16, fontWeight: FontWeight.w700, color: white),
     krSubtitle1: TextStyle(fontFamily: krFontFamily, fontSize: 18, fontWeight: FontWeight.w700, color: white),
-    krSubtitle2: TextStyle(fontFamily: krFontFamily, fontSize: 18, fontWeight: FontWeight.w400, color: white),
+    krSubtitle2: TextStyle(fontFamily: krFontFamily, fontSize: 20, fontWeight: FontWeight.w400, color: white),
     krBody1: TextStyle(fontFamily: krFontFamily, fontSize: 14, fontWeight: FontWeight.w400, color: white),
     krBody2: TextStyle(fontFamily: krFontFamily, fontSize: 14, fontWeight: FontWeight.w700, color: white),
     krBody3: TextStyle(fontFamily: krFontFamily, fontSize: 14, fontWeight: FontWeight.w400, color: white),
