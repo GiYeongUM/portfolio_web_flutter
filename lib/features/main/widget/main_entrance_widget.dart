@@ -270,9 +270,9 @@ class WoodKnightBaseboardPainter extends CustomPainter {
 double calculateHeightFactor(BuildContext context) {
   double screenHeight = MediaQuery.of(context).size.height;
   double minFactor = 0.2;
-  double maxFactor = 0.8;
+  double maxFactor = 0.9;
 
-  if(ResponsiveBreakpoints.of(context).isMobile) return 0.9;
+  if (!ResponsiveBreakpoints.of(context).isDesktop) return 0.9;
   if (screenHeight > 2160) return maxFactor;
   if (screenHeight < 600) return minFactor;
 
