@@ -22,6 +22,7 @@ const green2 = Color(0xffBDEBEA);
 const red1 = Color(0xffF76363);
 const violet = Color(0xff5222D0);
 const wall = Color(0xff183DA1);
+const wood = Color(0xFF884326);
 
 extension BuildContextExtensions on BuildContext {
   ThemeData get theme => Theme.of(this);

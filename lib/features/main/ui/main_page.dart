@@ -15,7 +15,7 @@ class MainPage extends StatelessWidget {
     ];
     return BlocProvider(
       create: (context) => MainBloc()..add(const Initial()),
-      child: Scaffold(
+      child: const Scaffold(
         // appBar: const CustomAppBar(title: 'GiYeongUM'),
         body: MainEntranceWidget(),
         // body: ScrollConfiguration(
