@@ -10,23 +10,10 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> widgetList = [
-      MainEntranceWidget(),
-    ];
     return BlocProvider(
       create: (context) => MainBloc()..add(const Initial()),
       child: const Scaffold(
-        // appBar: const CustomAppBar(title: 'GiYeongUM'),
         body: MainEntranceWidget(),
-        // body: ScrollConfiguration(
-        //   behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-        //   child: ListView.builder(
-        //     itemCount: widgetList.length,
-        //     itemBuilder: (context, index) {
-        //       return widgetList[index];
-        //     },
-        //   ),
-        // ),
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:giyeong_um_porfolio_page/core/config/config.dart';
 import 'package:giyeong_um_porfolio_page/features/features.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class MainEntranceWidget extends StatefulWidget {
@@ -116,7 +117,7 @@ class _MainEntranceWidgetState extends State<MainEntranceWidget> with SingleTick
                           alignment: Alignment.centerRight,
                           child: _animation.value == 1
                               ? InkWell(
-                                  onTap: () {},
+                                  onTap: () => context.push('/intro'),
                                   child: FadingTextWidget(
                                     delay: const Duration(seconds: 1),
                                     child: Row(

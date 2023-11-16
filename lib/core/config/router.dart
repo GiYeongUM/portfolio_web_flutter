@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../features/error/ui/error_page.dart';
-import '../../features/main/ui/main_page.dart';
+import '../../features/features.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -20,6 +19,16 @@ class AppRouter {
         builder: (context, state) {
           return const MainPage();
         },
+        routes: <RouteBase>[
+          GoRoute(
+            path: 'intro',
+            pageBuilder: (context, state) {
+              return const NoTransitionPage(
+                child: IntroPage(),
+              );
+            },
+          ),
+        ],
       ),
     ],
   );
