@@ -8,7 +8,6 @@ class TitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    logger.d('rebuild');
     return LayoutBuilder(builder: (context, constraints) {
       return AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
