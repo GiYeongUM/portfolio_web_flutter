@@ -21,6 +21,8 @@ const green1 = Color(0xff00F5A0);
 const green2 = Color(0xffBDEBEA);
 const red1 = Color(0xffF76363);
 const violet = Color(0xff5222D0);
+const wall = Color(0xff183DA1);
+const wood = Color(0xFF884326);
 
 extension BuildContextExtensions on BuildContext {
   ThemeData get theme => Theme.of(this);
@@ -36,11 +38,15 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
   const ColorTheme({
     this.buttonColor,
     this.foregroundColor,
+    this.wallColor,
     this.primaryColor,
+    this.backgroundColor,
   });
 
   final Color? buttonColor;
   final Color? foregroundColor;
+  final Color? backgroundColor;
+  final Color? wallColor;
   final Color? primaryColor;
 
   @override
@@ -57,12 +63,16 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
   static ColorTheme light = const ColorTheme(
     buttonColor: violet,
     foregroundColor: foreground,
+    backgroundColor: lightBackground,
+    wallColor: wall,
     primaryColor: violet,
   );
 
   static ColorTheme dark = const ColorTheme(
     buttonColor: green1,
     foregroundColor: green2,
+    backgroundColor: darkBackground,
+    wallColor: wall,
     primaryColor: green1,
   );
 }
