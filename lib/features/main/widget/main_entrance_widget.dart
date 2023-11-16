@@ -4,6 +4,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:giyeong_um_porfolio_page/core/config/config.dart';
 import 'package:giyeong_um_porfolio_page/features/features.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class MainEntranceWidget extends StatefulWidget {
   const MainEntranceWidget({super.key});
@@ -271,6 +272,7 @@ double calculateHeightFactor(BuildContext context) {
   double minFactor = 0.2;
   double maxFactor = 0.8;
 
+  if(ResponsiveBreakpoints.of(context).isMobile) return 0.9;
   if (screenHeight > 2160) return maxFactor;
   if (screenHeight < 600) return minFactor;
 
