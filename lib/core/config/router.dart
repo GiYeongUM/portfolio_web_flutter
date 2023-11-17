@@ -23,7 +23,16 @@ class AppRouter {
           GoRoute(
             path: 'intro',
             pageBuilder: (context, state) {
-              return const NoTransitionPage(
+              return CustomTransitionPage(
+                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                  return SlideTransition(
+                    position: Tween<Offset>(
+                      begin: const Offset(1, 0),
+                      end: Offset.zero,
+                    ).animate(animation),
+                    child: child,
+                  );
+                },
                 child: IntroPage(),
               );
             },

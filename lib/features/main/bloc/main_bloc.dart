@@ -12,7 +12,12 @@ part 'main_state.dart';
 class MainBloc extends Bloc<CommonEvent, MainState> {
   MainBloc() : super(const MainState()) {
     on<Initial>(_onInitial);
+    on<PageChanged>(_onPageChanged);
   }
 
   _onInitial(Initial event, Emitter<MainState> emit) {}
+
+  _onPageChanged(event, Emitter<MainState> emit) {
+    emit(state.copyWith(page: event.page));
+  }
 }

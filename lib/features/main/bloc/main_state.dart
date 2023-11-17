@@ -6,7 +6,7 @@ class MainState extends CommonState {
     super.status,
     super.errorMessage,
     super.hasReachedMax,
-    super.page,
+    super.page = 0,
     super.query,
   });
 
