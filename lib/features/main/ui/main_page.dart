@@ -10,23 +10,33 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> widgetList = [
-      MainEntranceWidget(),
-    ];
+    final PageController pageController = PageController(initialPage: 0);
     return BlocProvider(
       create: (context) => MainBloc()..add(const Initial()),
-      child: const Scaffold(
-        // appBar: const CustomAppBar(title: 'GiYeongUM'),
-        body: MainEntranceWidget(),
-        // body: ScrollConfiguration(
-        //   behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-        //   child: ListView.builder(
-        //     itemCount: widgetList.length,
-        //     itemBuilder: (context, index) {
-        //       return widgetList[index];
-        //     },
-        //   ),
-        // ),
+      child: BlocConsumer<MainBloc, MainState>(
+        listenWhen: (previous, current) => previous.page != current.page,
+        listener: (context, state) {
+          pageController.animateToPage(
+            state.page,
+            duration: const Duration(seconds: 1),
+            curve: Curves.easeOutCubic,
+          );
+        },
+        builder: (context, state) {
+          return Scaffold(
+            body: PageView(
+              scrollDirection: Axis.horizontal,
+              physics: const NeverScrollableScrollPhysics(),
+              controller: pageController,
+              children: [
+                const IntroPage(),
+                EntrancePage(onNext: () {
+                  context.read<MainBloc>().add(const PageChanged(page: 1));
+                }),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

@@ -13,15 +13,16 @@ const white = Colors.white;
 const white2 = Color(0xffF5F5F5);
 const gray1 = Color(0xffDDDDDD);
 const gray2 = Color(0xff8c8c8c);
-const blue1 = Color(0xff086BFF);
+const blue1 = Color(0xff0058AB);
 const blue2 = Color(0xff0A90FB);
 const blue3 = Color(0xff85BFDA);
+const yellow1 = Colors.amber;
 const purple1 = Color(0xff4243E7);
 const green1 = Color(0xff00F5A0);
 const green2 = Color(0xffBDEBEA);
 const red1 = Color(0xffF76363);
 const violet = Color(0xff5222D0);
-const wall = Color(0xff183DA1);
+const floor = Color(0xffecd2b2);
 const wood = Color(0xFF884326);
 
 extension BuildContextExtensions on BuildContext {
@@ -64,7 +65,7 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
     buttonColor: violet,
     foregroundColor: foreground,
     backgroundColor: lightBackground,
-    wallColor: wall,
+    wallColor: blue1,
     primaryColor: violet,
   );
 
@@ -72,7 +73,7 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
     buttonColor: green1,
     foregroundColor: green2,
     backgroundColor: darkBackground,
-    wallColor: wall,
+    wallColor: blue1,
     primaryColor: green1,
   );
 }
