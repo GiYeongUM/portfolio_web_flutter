@@ -29,10 +29,10 @@ class MainPage extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               controller: pageController,
               children: [
-                const IntroPage(),
                 EntrancePage(onNext: () {
                   context.read<MainBloc>().add(const PageChanged(page: 1));
                 }),
+                const IntroPage(),
               ],
             ),
           );
