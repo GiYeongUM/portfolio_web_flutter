@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:giyeong_um_porfolio_page/core/core.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../features.dart';
+
 class TitleWidget extends StatelessWidget {
   const TitleWidget({Key? key}) : super(key: key);
 
@@ -15,8 +17,7 @@ class TitleWidget extends StatelessWidget {
               ? Container(
                   key: ValueKey<bool>(constraints.maxWidth > 1200),
                   padding: const EdgeInsets.symmetric(horizontal: 80),
-                  height: MediaQuery.of(context).size.height - kToolbarHeight,
-                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -44,45 +45,33 @@ class TitleWidget extends StatelessWidget {
                         ],
                       ),
                       const Spacer(),
-                      Lottie.asset(
-                        'assets/json/arrow_down.json',
-                        fit: BoxFit.fill,
-                      ),
+                      Lottie.asset('assets/json/scroll_down.json', fit: BoxFit.fill, height: 56),
+                      const SizedBox(height: 8),
                     ],
                   ),
                 )
               : Container(
-                  constraints: BoxConstraints(
-                    minHeight: MediaQuery.of(context).size.height - kToolbarHeight,
-                  ),
+                  height: MediaQuery.of(context).size.height - baseboardHeight(context),
                   key: ValueKey<bool>(constraints.maxWidth > 1200),
-                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
-                        children: [
-                          Lottie.asset(
-                            'assets/json/profile_lottie.json',
-                            fit: BoxFit.fill,
-                            delegates: LottieDelegates(
-                              values: [
-                                ValueDelegate.color(
-                                  const ['**', 'Fill 100', '**'],
-                                  value: context.colorTheme.primaryColor ?? violet,
-                                ),
-                              ],
-                            ),
-                          ),
-                          const TextTitle(),
-                        ],
-                      ),
                       Lottie.asset(
-                        'assets/json/arrow_down.json',
+                        'assets/json/profile_lottie.json',
                         fit: BoxFit.fill,
+                        height: MediaQuery.of(context).size.height * 0.4,
+                        delegates: LottieDelegates(
+                          values: [
+                            ValueDelegate.color(
+                              const ['**', 'Fill 100', '**'],
+                              value: context.colorTheme.primaryColor ?? violet,
+                            ),
+                          ],
+                        ),
                       ),
+                      const TextTitle(),
                     ],
                   ),
                 ));
