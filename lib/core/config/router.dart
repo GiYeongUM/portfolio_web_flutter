@@ -33,7 +33,7 @@ class AppRouter {
                     child: child,
                   );
                 },
-                child: IntroPage(),
+                child: const IntroPage(),
               );
             },
           ),

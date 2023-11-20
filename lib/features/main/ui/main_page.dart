@@ -10,7 +10,7 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final PageController pageController = PageController(initialPage: 0);
+    final PageController pageController = PageController(initialPage: 1);
     return BlocProvider(
       create: (context) => MainBloc()..add(const Initial()),
       child: BlocConsumer<MainBloc, MainState>(
@@ -29,10 +29,10 @@ class MainPage extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               controller: pageController,
               children: [
-                const IntroPage(),
                 EntrancePage(onNext: () {
                   context.read<MainBloc>().add(const PageChanged(page: 1));
                 }),
+                const IntroPage(),
               ],
             ),
           );

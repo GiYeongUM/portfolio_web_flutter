@@ -31,6 +31,10 @@ extension BuildContextExtensions on BuildContext {
   KRTextTheme get textTheme => (theme.extension<KRTextTheme>() ?? const KRTextTheme());
 
   ColorTheme get colorTheme => (theme.extension<ColorTheme>() ?? const ColorTheme());
+
+  TargetPlatform get targetPlatform => Theme.of(this).platform;
+
+  bool get isMobile => Theme.of(this).platform == TargetPlatform.android || Theme.of(this).platform == TargetPlatform.iOS;
 }
 
 @immutable
@@ -66,7 +70,7 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
     foregroundColor: foreground,
     backgroundColor: lightBackground,
     wallColor: blue1,
-    primaryColor: violet,
+    primaryColor: blue1,
   );
 
   static ColorTheme dark = const ColorTheme(
