@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../core/config/config.dart';
-import '../../../core/util/static_logic.dart';
 
 class IntroStepWidget extends StatefulWidget {
   const IntroStepWidget({Key? key, required this.onPrevious}) : super(key: key);
@@ -23,7 +22,6 @@ class _IntroStepWidgetState extends State<IntroStepWidget> with TickerProviderSt
   @override
   void initState() {
     _scrollController.addListener(() {
-      if (isMinimum(_scrollController, edge: true) && !context.isMobile) widget.onPrevious.call();
       final offset = getScrollOffset(context);
       final position = getScrollPosition(context, offset);
       if (stepOffset != offset) {
@@ -36,6 +34,7 @@ class _IntroStepWidgetState extends State<IntroStepWidget> with TickerProviderSt
           stepOffset = offset;
           stepPosition = position;
         });
+        if (stepPosition == 0) widget.onPrevious.call();
         return;
       }
 
@@ -52,6 +51,13 @@ class _IntroStepWidgetState extends State<IntroStepWidget> with TickerProviderSt
 
       _controller.animateTo(2 * position);
     });
+    Future.delayed(const Duration(milliseconds: 300), () {
+      _scrollController.animateTo(stepHeight / 2, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+      setState(() {
+        stepPosition = stepHeight / 2;
+      });
+    });
+
     super.initState();
   }
 
@@ -64,7 +70,7 @@ class _IntroStepWidgetState extends State<IntroStepWidget> with TickerProviderSt
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       controller: _scrollController,
       child: Container(
         constraints: BoxConstraints(minHeight: stepHeight * 4.5),

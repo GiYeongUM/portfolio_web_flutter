@@ -9,3 +9,7 @@ class PageChanged extends IntroEvent {
 
   final int page;
 }
+
+class Done extends IntroEvent {
+  const Done();
+}

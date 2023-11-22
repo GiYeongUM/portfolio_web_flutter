@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:giyeong_um_porfolio_page/core/core.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../features.dart';
-
 class TitleWidget extends StatelessWidget {
   const TitleWidget({Key? key}) : super(key: key);
 
@@ -17,7 +15,6 @@ class TitleWidget extends StatelessWidget {
               ? Container(
                   key: ValueKey<bool>(constraints.maxWidth > 1200),
                   padding: const EdgeInsets.symmetric(horizontal: 80),
-                  height: MediaQuery.of(context).size.height,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -51,9 +48,8 @@ class TitleWidget extends StatelessWidget {
                   ),
                 )
               : Container(
-                  height: MediaQuery.of(context).size.height - baseboardHeight(context),
                   key: ValueKey<bool>(constraints.maxWidth > 1200),
-                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,7 +57,7 @@ class TitleWidget extends StatelessWidget {
                       Lottie.asset(
                         'assets/json/profile_lottie.json',
                         fit: BoxFit.fill,
-                        height: MediaQuery.of(context).size.height * 0.4,
+                        height: MediaQuery.of(context).size.height * 0.3,
                         delegates: LottieDelegates(
                           values: [
                             ValueDelegate.color(
@@ -110,7 +106,7 @@ class TextTitle extends StatelessWidget {
           style: context.textTheme.krBody4,
           textAlign: TextAlign.left,
         ),
-        const SizedBox(height: 40),
+        SizedBox(height: context.isMobile ? 16 : 40),
         InkWell(
             onTap: () {},
             child: Container(
