@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../core/core.dart';
 import '../../features.dart';
@@ -27,6 +28,7 @@ class IntroTitleWidget extends StatelessWidget {
                 SizedBox(
                   height: baseboardHeight(context),
                   child: Stack(
+                    alignment: Alignment.topCenter,
                     children: [
                       Container(
                         width: MediaQuery.of(context).size.width,
@@ -53,6 +55,7 @@ class IntroTitleWidget extends StatelessWidget {
                           painter: WoodKnightBaseboardPainter(),
                         ),
                       ),
+                      Positioned(bottom: 8, child: Lottie.asset('assets/json/scroll_down.json', fit: BoxFit.fill, height: baseboardHeight(context) / 2)),
                     ],
                   ),
                 ),

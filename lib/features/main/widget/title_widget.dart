@@ -42,8 +42,6 @@ class TitleWidget extends StatelessWidget {
                         ],
                       ),
                       const Spacer(),
-                      Lottie.asset('assets/json/scroll_down.json', fit: BoxFit.fill, height: 56),
-                      const SizedBox(height: 8),
                     ],
                   ),
                 )
