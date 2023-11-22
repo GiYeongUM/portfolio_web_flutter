@@ -16,7 +16,7 @@ class IntroPage extends StatelessWidget {
       child: BlocConsumer<IntroBloc, IntroState>(
         listenWhen: (previous, current) => previous.page != current.page,
         listener: (context, state) {
-          pageController.animateToPage(state.page, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut).then((value) {
+          pageController.animateToPage(state.page, duration: const Duration(seconds: 1), curve: Curves.easeInOutCirc).then((value) {
             context.read<IntroBloc>().add(const Done());
           });
         },

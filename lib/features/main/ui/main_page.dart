@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,7 +11,7 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final PageController pageController = PageController(initialPage: 0);
+    final PageController pageController = PageController(initialPage: kDebugMode ? 1 : 0);
     return BlocProvider(
       create: (context) => MainBloc()..add(const Initial()),
       child: BlocConsumer<MainBloc, MainState>(

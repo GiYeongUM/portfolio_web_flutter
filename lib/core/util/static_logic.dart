@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../core.dart';
-
 void onScroll({required ScrollController controller, Function()? onDone, bool edge = false, bool minimum = false}) {
   if (minimum) {
-    logger.d('minimum: ${isMinimum(controller, edge: edge)}');
-    if (isMinimum(controller)) {
+    if (isMinimum(controller, edge: edge)) {
       onDone?.call();
     }
     return;
   }
-  if (isMaximum(controller)) {
+  if (isMaximum(controller, edge: edge)) {
     onDone?.call();
   }
 }
@@ -21,7 +18,7 @@ bool isMinimum(ScrollController controller, {bool edge = false}) {
   if (edge) controller.position.atEdge && controller.position.pixels == 0;
   final minScroll = controller.position.minScrollExtent;
   final currentScroll = controller.offset;
-  return currentScroll == minScroll;
+  return currentScroll <= minScroll;
 }
 
 bool isMaximum(ScrollController controller, {bool edge = false}) {
