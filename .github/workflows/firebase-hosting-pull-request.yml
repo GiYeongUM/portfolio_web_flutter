@@ -4,6 +4,7 @@
 name: Deploy to Firebase Hosting Live channel on PR
 on:
   pull_request:
+    types: [closed]
 jobs:
   build:
     if: github.event.pull_request.merged == true
