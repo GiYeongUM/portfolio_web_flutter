@@ -16,16 +16,17 @@ class IntroPage extends StatelessWidget {
       child: BlocConsumer<IntroBloc, IntroState>(
         listenWhen: (previous, current) => previous.page != current.page,
         listener: (context, state) {
-          pageController.animateToPage(state.page, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+          pageController.animateToPage(state.page, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut).then((value) {
+            context.read<IntroBloc>().add(const Done());
+          });
         },
         builder: (context, state) {
           return PageView(
             pageSnapping: context.isMobile,
             controller: pageController,
-            allowImplicitScrolling: context.isMobile,
-            physics: getScrollPhysics(context, state.page),
+            physics: getScrollPhysics(context, state.status),
             scrollDirection: Axis.vertical,
-            onPageChanged: (page) => context.isMobile ? context.read<IntroBloc>().add(PageChanged(page: page)) : null,
+            onPageChanged: (page) => context.read<IntroBloc>().add(PageChanged(page: page)),
             children: [
               IntroTitleWidget(
                 onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 1)),
@@ -40,8 +41,15 @@ class IntroPage extends StatelessWidget {
     );
   }
 
-  ScrollPhysics? getScrollPhysics(BuildContext context, int page) {
-    if (context.isMobile) return null;
-    return const NeverScrollableScrollPhysics();
+  ScrollPhysics? getScrollPhysics(BuildContext context, CommonStatus status) {
+    switch (status) {
+      case CommonStatus.initial:
+      case CommonStatus.ready:
+      case CommonStatus.success:
+      case CommonStatus.failure:
+        return const ClampingScrollPhysics();
+      case CommonStatus.loading:
+        return const NeverScrollableScrollPhysics();
+    }
   }
 }

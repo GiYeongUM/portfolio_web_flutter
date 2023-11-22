@@ -12,17 +12,18 @@ class IntroTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final ScrollController scrollController = ScrollController();
     return SingleChildScrollView(
+      physics: const ClampingScrollPhysics(),
       controller: scrollController..addListener(() => onScroll(controller: scrollController, edge: true, onDone: () => onNext.call())),
       child: Column(
         children: [
           Container(
-            constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height),
+            height: MediaQuery.of(context).size.height,
             decoration: const BoxDecoration(
               color: yellow1,
             ),
-            child: Stack(
-              alignment: Alignment.bottomCenter,
+            child: Column(
               children: [
+                const Expanded(child: TitleWidget()),
                 SizedBox(
                   height: baseboardHeight(context),
                   child: Stack(
@@ -55,7 +56,6 @@ class IntroTitleWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                const TitleWidget(),
               ],
             ),
           ),
