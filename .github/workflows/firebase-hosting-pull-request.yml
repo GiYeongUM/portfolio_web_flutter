@@ -2,9 +2,11 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting Live channel on PR
-'on': pull_request
+on:
+  pull_request:
 jobs:
   build:
+    if: github.event.pull_request.merged == true
     name: "Build"
     runs-on: self-hosted
     steps:
