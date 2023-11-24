@@ -4,7 +4,9 @@ import 'package:giyeong_um_porfolio_page/core/core.dart';
 import 'package:lottie/lottie.dart';
 
 class TitleWidget extends StatelessWidget {
-  const TitleWidget({Key? key}) : super(key: key);
+  const TitleWidget({Key? key, required this.onContact}) : super(key: key);
+
+  final Function() onContact;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class TitleWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Expanded(flex: 1, child: TextTitle()),
+                          Expanded(flex: 1, child: TextTitle(onContact: onContact)),
                           Expanded(
                             flex: 1,
                             child: Lottie.asset(
@@ -65,7 +67,7 @@ class TitleWidget extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const TextTitle(),
+                      TextTitle(onContact: onContact),
                     ],
                   ),
                 ));
@@ -74,7 +76,9 @@ class TitleWidget extends StatelessWidget {
 }
 
 class TextTitle extends StatelessWidget {
-  const TextTitle({Key? key}) : super(key: key);
+  const TextTitle({Key? key, required this.onContact}) : super(key: key);
+
+  final Function() onContact;
 
   @override
   Widget build(BuildContext context) {
@@ -90,14 +94,13 @@ class TextTitle extends StatelessWidget {
           TextSpan(
             style: context.textTheme.krBody4,
             children: <TextSpan>[
-              const TextSpan(text: 'As a '),
+              TextSpan(text: '${context.localization.as_a} '),
               TextSpan(
                 text: 'Flutter',
                 style: context.textTheme.krSubtitle1,
               ),
-              const TextSpan(
-                text: ' developer specializing in multi-platform app development and an expert in implementing stable and efficient backends using NestJS. '
-                    'I focus on creating modern and performance-optimized apps through user-centric UI/UX design and robust server functionalities.',
+              TextSpan(
+                text: ' ${context.localization.intro}',
               ),
             ],
           ),
@@ -106,7 +109,7 @@ class TextTitle extends StatelessWidget {
         ),
         SizedBox(height: context.isMobile ? 16 : 40),
         InkWell(
-            onTap: () {},
+            onTap: () => onContact.call(),
             child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                 decoration: BoxDecoration(color: context.colorTheme.primaryColor, borderRadius: BorderRadius.circular(8), boxShadow: [

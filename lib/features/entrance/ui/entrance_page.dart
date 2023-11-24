@@ -28,8 +28,8 @@ class _EntrancePageState extends State<EntrancePage> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: yellow1,
+      decoration: BoxDecoration(
+        color: context.colorTheme.backgroundColor,
       ),
       child: Stack(
         alignment: Alignment.center,

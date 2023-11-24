@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/core.dart';
 import '../../features.dart';
+import '../../global/bloc/global_bloc.dart';
 import '../bloc/intro_bloc.dart';
 
 class IntroPage extends StatelessWidget {
@@ -30,6 +31,7 @@ class IntroPage extends StatelessWidget {
             children: [
               IntroTitleWidget(
                 onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 1)),
+                onContact: () => BlocProvider.of<GlobalBloc>(context).add(const SetLocale(locale: Locale('ko'))),
               ),
               IntroStepWidget(
                 onPrevious: () => context.read<IntroBloc>().add(const PageChanged(page: 0)),

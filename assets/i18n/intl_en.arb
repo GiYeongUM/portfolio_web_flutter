@@ -1,0 +1,12 @@
+{
+  "@@locale": "en",
+  "@@last_modified": "2023-11-23T18:56:00.179848",
+  "strength_1": "Hej! I'm a Flutter developer with a knack for applying sophisticated UI/UX. With in-depth expertise in the Flutter framework, I seamlessly integrate the latest tech trends and innovative development techniques. My continuous learning, coupled with a commitment to ongoing code improvement and optimization, allows me to consistently deliver efficient and high-quality software.",
+  "@strength_1": {
+    "description": "Strength 1"
+  },
+  "as_a": "As a",
+  "intro": "developer specializing in multi-platform app development and an expert in implementing stable and efficient backends using NestJS. I focus on creating modern and performance-optimized apps through user-centric UI/UX design and robust server functionalities.",
+  "strength_2": " I'm a Flutter developer with a knack for applying sophisticated UI/UX. With in-depth expertise in the Flutter framework, I seamlessly integrate the latest tech trends and innovative development techniques. My continuous learning, coupled with a commitment to ongoing code improvement and optimization, allows me to consistently deliver efficient and high-quality software.",
+  "strength_3": " I have an in-depth and extensive understanding of the Flutter framework. With Widget's expertise in lifecycle and health management, you can respond to complex UI/UX challenges. We focus on design that takes into account the scalability and maintenance of the project while effectively leveraging the diverse capabilities of Flutter to enhance user experience and contribute to performance optimization."
+}
