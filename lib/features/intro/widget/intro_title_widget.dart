@@ -5,9 +5,10 @@ import '../../../core/core.dart';
 import '../../features.dart';
 
 class IntroTitleWidget extends StatelessWidget {
-  const IntroTitleWidget({Key? key, required this.onNext}) : super(key: key);
+  const IntroTitleWidget({Key? key, required this.onNext, required this.onContact}) : super(key: key);
 
   final Function() onNext;
+  final Function() onContact;
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +20,12 @@ class IntroTitleWidget extends StatelessWidget {
         children: [
           Container(
             height: MediaQuery.of(context).size.height,
-            decoration: const BoxDecoration(
-              color: yellow1,
+            decoration: BoxDecoration(
+              color: context.colorTheme.backgroundColor,
             ),
             child: Column(
               children: [
-                const Expanded(child: TitleWidget()),
+                Expanded(child: TitleWidget(onContact: onContact)),
                 SizedBox(
                   height: baseboardHeight(context),
                   child: Stack(
@@ -33,9 +34,9 @@ class IntroTitleWidget extends StatelessWidget {
                       Container(
                         width: MediaQuery.of(context).size.width,
                         height: baseboardHeight(context),
-                        decoration: const BoxDecoration(
-                          color: floor,
-                          border: Border(
+                        decoration: BoxDecoration(
+                          color: context.colorTheme.floorColor,
+                          border: const Border(
                             top: BorderSide(color: wood, width: 40),
                           ),
                         ),
@@ -62,7 +63,7 @@ class IntroTitleWidget extends StatelessWidget {
               ],
             ),
           ),
-          Container(color: floor, height: 24),
+          Container(color: context.colorTheme.floorColor, height: 24),
         ],
       ),
     );

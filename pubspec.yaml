@@ -7,7 +7,6 @@ version: 1.1.0+1
 environment:
   sdk: '>=3.0.6 <4.0.0'
 
-
 dependencies:
   flutter:
     sdk: flutter
@@ -22,7 +21,7 @@ dependencies:
   #logic
   copy_with_extension: ^5.0.3
   json_annotation: ^4.7.0
-  intl: ^0.18.0
+  intl: ^0.18.1
 
   #view
   cupertino_icons: ^1.0.2
@@ -45,6 +44,7 @@ dependencies:
 
   flutter_localizations:
     sdk: flutter
+  intl_translation: ^0.18.2
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +58,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
 
   assets:
     - assets/icons/

@@ -20,9 +20,9 @@ class EntranceFloorWidget extends StatelessWidget {
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: floorHeight(context),
-                  decoration: const BoxDecoration(
-                    color: floor,
-                    border: Border(
+                  decoration: BoxDecoration(
+                    color: context.colorTheme.floorColor,
+                    border: const Border(
                       top: BorderSide(color: wood, width: 40),
                     ),
                   ),

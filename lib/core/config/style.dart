@@ -1,11 +1,12 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 part 'generated/style.g.dart';
 
 const krFontFamily = 'LINESeedKR';
-const lightBackground = Color(0xffFFFFFF);
-const foreground = Color(0xff1F2626);
+const lightBackground = Colors.amber;
+const foreground = Color(0xffF5F2FD);
 const darkBackground = Color(0xff171717);
 const black = Colors.black;
 const black1 = Color(0xff2D2D35);
@@ -16,7 +17,6 @@ const gray2 = Color(0xff8c8c8c);
 const blue1 = Color(0xff0058AB);
 const blue2 = Color(0xff0A90FB);
 const blue3 = Color(0xff85BFDA);
-const yellow1 = Colors.amber;
 const purple1 = Color(0xff4243E7);
 const green1 = Color(0xff00F5A0);
 const green2 = Color(0xffBDEBEA);
@@ -35,6 +35,8 @@ extension BuildContextExtensions on BuildContext {
   TargetPlatform get targetPlatform => Theme.of(this).platform;
 
   bool get isMobile => Theme.of(this).platform == TargetPlatform.android || Theme.of(this).platform == TargetPlatform.iOS;
+
+  AppLocalizations get localization => AppLocalizations.of(this)!;
 }
 
 @immutable
@@ -46,6 +48,8 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
     this.wallColor,
     this.primaryColor,
     this.backgroundColor,
+    this.floorColor,
+    this.foregroundTextColor,
   });
 
   final Color? buttonColor;
@@ -53,6 +57,8 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
   final Color? backgroundColor;
   final Color? wallColor;
   final Color? primaryColor;
+  final Color? floorColor;
+  final Color? foregroundTextColor;
 
   @override
   ThemeExtension<ColorTheme> lerp(ThemeExtension<ColorTheme>? other, double t) {
@@ -71,6 +77,8 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
     backgroundColor: lightBackground,
     wallColor: blue1,
     primaryColor: blue1,
+    floorColor: floor,
+    foregroundTextColor: blue1,
   );
 
   static ColorTheme dark = const ColorTheme(
@@ -79,6 +87,8 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
     backgroundColor: darkBackground,
     wallColor: blue1,
     primaryColor: green1,
+    floorColor: black1,
+    foregroundTextColor: white,
   );
 }
 

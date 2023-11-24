@@ -47,7 +47,7 @@ class EntranceTextWidget extends StatelessWidget {
                                   const SizedBox(width: 4),
                                   Text(
                                     'Language',
-                                    style: context.textTheme.krSubtext2.copyWith(color: context.colorTheme.wallColor),
+                                    style: context.textTheme.krSubtext2.copyWith(color: context.colorTheme.foregroundTextColor),
                                   ),
                                 ],
                               ),
@@ -61,7 +61,8 @@ class EntranceTextWidget extends StatelessWidget {
                   const Spacer(),
                   Text(
                     'Hej!',
-                    style: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.wallColor, fontSize: (context.textTheme.krSubtitle1.fontSize ?? 16) * (1 + 1.3 * animation.value)),
+                    style:
+                        context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: (context.textTheme.krSubtitle1.fontSize ?? 16) * (1 + 1.3 * animation.value)),
                   ),
                   const SizedBox(height: 16),
                   animation.value == 1
@@ -74,7 +75,7 @@ class EntranceTextWidget extends StatelessWidget {
                                 animatedTexts: [
                                   TypewriterAnimatedText(
                                     "Get new perspectives",
-                                    textStyle: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.wallColor),
+                                    textStyle: context.textTheme.krSubtitle1.copyWith(color: white),
                                     speed: const Duration(milliseconds: 50),
                                     cursor: '',
                                   ),
@@ -88,7 +89,7 @@ class EntranceTextWidget extends StatelessWidget {
                         )
                       : Text(
                           '',
-                          style: context.textTheme.krSubtitle1.copyWith(color: Colors.red),
+                          style: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor),
                         ),
                   const Spacer(),
                   Container(
@@ -105,12 +106,12 @@ class EntranceTextWidget extends StatelessWidget {
                                 children: [
                                   Text(
                                     'Explore',
-                                    style: context.textTheme.krSubtitle1.copyWith(color: Colors.red),
+                                    style: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor),
                                   ),
                                   const SizedBox(width: 4),
-                                  const Icon(
+                                  Icon(
                                     Icons.arrow_circle_right_rounded,
-                                    color: Colors.red,
+                                    color: context.colorTheme.foregroundTextColor,
                                     size: 16,
                                   ),
                                 ],
@@ -119,7 +120,7 @@ class EntranceTextWidget extends StatelessWidget {
                           )
                         : Text(
                             '',
-                            style: context.textTheme.krSubtitle1.copyWith(color: Colors.red),
+                            style: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor),
                           ),
                   ),
                   SizedBox(height: floorHeight(context)),

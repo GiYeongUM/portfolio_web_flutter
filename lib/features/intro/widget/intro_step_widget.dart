@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../core/core.dart';
+import '../../features.dart';
 
 class IntroStepWidget extends StatefulWidget {
   const IntroStepWidget({Key? key, required this.onPrevious}) : super(key: key);
@@ -23,9 +24,9 @@ class _IntroStepWidgetState extends State<IntroStepWidget> with TickerProviderSt
   void initState() {
     setScrollListener(_scrollController);
     Future.delayed(const Duration(milliseconds: 300), () {
-      _scrollController.animateTo(stepHeight / 2, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+      _scrollController.animateTo(stepHeight / 4, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
       _controller.forward();
-      stepPosition = stepHeight / 2;
+      stepPosition = stepHeight / 4;
     });
 
     super.initState();
@@ -39,66 +40,46 @@ class _IntroStepWidgetState extends State<IntroStepWidget> with TickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const ClampingScrollPhysics(),
+    return RawScrollbar(
+      thumbColor: context.colorTheme.wallColor,
+      radius: const Radius.circular(20),
       controller: _scrollController,
-      child: Container(
-        constraints: BoxConstraints(minHeight: stepHeight * 4.5),
-        decoration: const BoxDecoration(
-          color: floor,
-        ),
-        child: LayoutBuilder(builder: (context, constraints) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(height: scrollPixels),
-              AnimatedSwitcher(
-                duration: const Duration(milliseconds: 500),
-                child: constraints.maxWidth > 1200
-                    ? SizedBox(
-                        height: stepHeight,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: SizedBox(
-                                child: Lottie.asset(
-                                  'assets/json/chair_lottie_${stepOffset + 1}.json',
-                                  animate: false,
-                                  controller: _controller,
-                                  onLoaded: (composition) {
-                                    setState(() {
-                                      _controller.duration = composition.duration;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ),
-                            const Expanded(flex: 1, child: Text('data')),
-                          ],
-                        ),
-                      )
-                    : Column(
-                        children: [
-                          SizedBox(
-                            child: Lottie.asset(
-                              'assets/json/chair_lottie_${stepOffset + 1}.json',
-                              animate: false,
-                              controller: _controller,
-                              onLoaded: (composition) {
-                                setState(() {
-                                  _controller.duration = composition.duration;
-                                });
-                              },
-                            ),
-                          ),
-                          const Text('data'),
-                        ],
-                      ),
+      thickness: 10,
+      child: Stack(
+        children: [
+          SingleChildScrollView(
+            physics: const ClampingScrollPhysics(),
+            controller: _scrollController,
+            child: Container(
+              constraints: BoxConstraints(minHeight: stepHeight * 4.5),
+              decoration: BoxDecoration(
+                color: context.colorTheme.floorColor,
               ),
-            ],
-          );
-        }),
+              child: Column(
+                children: [
+                  SizedBox(height: stepHeight / 4),
+                  const IntroStrengthWidget(),
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            width: 160,
+            height: 160,
+            child: Lottie.asset(
+              'assets/json/chair_lottie_${stepOffset + 1}.json',
+              animate: false,
+              controller: _controller,
+              onLoaded: (composition) {
+                setState(() {
+                  _controller.duration = composition.duration;
+                });
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
