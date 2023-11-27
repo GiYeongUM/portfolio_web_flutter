@@ -1,15 +1,17 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 part 'generated/style.g.dart';
 
 const krFontFamily = 'LINESeedKR';
 const lightBackground = Colors.amber;
 const foreground = Color(0xffF5F2FD);
-const darkBackground = Color(0xff171717);
+const darkBackground = Color(0xff282828);
 const black = Colors.black;
 const black1 = Color(0xff2D2D35);
+const black2 = Color(0xff3d3d41);
 const white = Colors.white;
 const white2 = Color(0xffF5F5F5);
 const gray1 = Color(0xffDDDDDD);
@@ -36,6 +38,8 @@ extension BuildContextExtensions on BuildContext {
 
   bool get isMobile => Theme.of(this).platform == TargetPlatform.android || Theme.of(this).platform == TargetPlatform.iOS;
 
+  bool get isDesktop => ResponsiveBreakpoints.of(this).isDesktop;
+
   AppLocalizations get localization => AppLocalizations.of(this)!;
 }
 
@@ -43,7 +47,6 @@ extension BuildContextExtensions on BuildContext {
 @CopyWith()
 class ColorTheme extends ThemeExtension<ColorTheme> {
   const ColorTheme({
-    this.buttonColor,
     this.foregroundColor,
     this.wallColor,
     this.primaryColor,
@@ -52,7 +55,6 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
     this.foregroundTextColor,
   });
 
-  final Color? buttonColor;
   final Color? foregroundColor;
   final Color? backgroundColor;
   final Color? wallColor;
@@ -65,14 +67,13 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
     if (other is! ColorTheme) {
       return this;
     }
-    return ColorTheme(buttonColor: Color.lerp(buttonColor, other.buttonColor, t) ?? buttonColor);
+    return ColorTheme(primaryColor: Color.lerp(primaryColor, other.primaryColor, t) ?? primaryColor);
   }
 
   @override
   ThemeExtension<ColorTheme> copyWith() => $ColorThemeCopyWith(this).copyWith();
 
   static ColorTheme light = const ColorTheme(
-    buttonColor: violet,
     foregroundColor: foreground,
     backgroundColor: lightBackground,
     wallColor: blue1,
@@ -82,8 +83,7 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
   );
 
   static ColorTheme dark = const ColorTheme(
-    buttonColor: green1,
-    foregroundColor: green2,
+    foregroundColor: black2,
     backgroundColor: darkBackground,
     wallColor: blue1,
     primaryColor: green1,

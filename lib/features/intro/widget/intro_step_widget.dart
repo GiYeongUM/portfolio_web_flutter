@@ -48,7 +48,6 @@ class _IntroStepWidgetState extends State<IntroStepWidget> with TickerProviderSt
       child: Stack(
         children: [
           SingleChildScrollView(
-            physics: const ClampingScrollPhysics(),
             controller: _scrollController,
             child: Container(
               constraints: BoxConstraints(minHeight: stepHeight * 4.5),
@@ -66,8 +65,8 @@ class _IntroStepWidgetState extends State<IntroStepWidget> with TickerProviderSt
           Positioned(
             bottom: 0,
             right: 0,
-            width: 160,
-            height: 160,
+            width: context.isDesktop ? 160 : 120,
+            height: context.isDesktop ? 160 : 120,
             child: Lottie.asset(
               'assets/json/chair_lottie_${stepOffset + 1}.json',
               animate: false,

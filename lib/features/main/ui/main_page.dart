@@ -11,7 +11,7 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final PageController pageController = PageController(initialPage: kDebugMode ? 1 : 0);
+    final PageController pageController = PageController(initialPage: kDebugMode ? 0 : 0);
     return BlocProvider(
       create: (context) => MainBloc()..add(const Initial()),
       child: BlocConsumer<MainBloc, MainState>(
