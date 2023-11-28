@@ -86,18 +86,15 @@ class _HoverChangeWidgetState extends State<HoverChangeWidget> with TickerProvid
             AnimatedBuilder(
                 animation: _controller,
                 builder: (context, child) {
-                  return Container(
-                    // padding: EdgeInsets.only(left: _animation.value * 24),
-                    child: Row(
-                      children: [
-                        if (_animation.value != 0)
-                          Transform.translate(
-                              offset: Offset(-24 + _animation.value * 24, 0),
-                              child: SizedBox(width: _animation.value * 24, child: Opacity(opacity: _animation.value, child: const Icon(Icons.arrow_forward)))),
-                        const SizedBox(width: 8),
-                        widget.secondChild,
-                      ],
-                    ),
+                  return Row(
+                    children: [
+                      if (_animation.value != 0)
+                        Transform.translate(
+                            offset: Offset(-24 + _animation.value * 24, 0),
+                            child: SizedBox(width: _animation.value * 24, child: Opacity(opacity: _animation.value, child: const Icon(Icons.arrow_forward)))),
+                      const SizedBox(width: 8),
+                      widget.secondChild,
+                    ],
                   );
                 }),
           ],

@@ -31,15 +31,12 @@ class _IntroStrengthWidgetState extends State<IntroStrengthWidget> with TickerPr
 
   @override
   Widget build(BuildContext context) {
-    return RawScrollbar(
-      thumbColor: context.colorTheme.wallColor,
-      radius: const Radius.circular(20),
-      controller: _scrollController,
-      thickness: 10,
-      child: Container(
-        decoration: BoxDecoration(
-          color: context.colorTheme.backgroundColor,
-        ),
+    return Container(
+      decoration: BoxDecoration(
+        color: context.colorTheme.backgroundColor,
+      ),
+      child: ScrollConfiguration(
+        behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
         child: SingleChildScrollView(
           controller: _scrollController,
           child: Container(
