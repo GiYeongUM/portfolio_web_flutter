@@ -92,6 +92,7 @@ class IntroStrengthDataWidget extends StatelessWidget {
           ],
         ),
         delay: 1.seconds,
+        route: '/',
       ),
       HoverChangeWidget(
         firstChild: Container(

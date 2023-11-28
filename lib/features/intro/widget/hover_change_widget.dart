@@ -22,25 +22,29 @@ class _HoverChangeWidgetState extends State<HoverChangeWidget> with TickerProvid
 
   @override
   void initState() {
-    Future.delayed(widget.delay + 500.ms, () {
+    _hoverAnimation(firstDelay: widget.delay + 300.ms);
+    super.initState();
+  }
+
+  _hoverAnimation({Duration firstDelay = const Duration(milliseconds: 500), Duration secondDelay = const Duration(seconds: 1), bool route = false}) {
+    Future.delayed(firstDelay, () async {
       if (!isHover) {
         setState(() {
           isHover = true;
         });
-        _controller.forward();
-      }
-    }).then((value) async {
-      Future.delayed(const Duration(seconds: 1), () {
-        if (isHover) {
-          setState(() {
-            isHover = false;
+        await _controller.forward().then((value) async {
+          if (route) context.go(widget.route);
+          Future.delayed(secondDelay, () {
+            if (isHover && _controller.status != AnimationStatus.dismissed) {
+              setState(() {
+                isHover = false;
+              });
+              _controller.reverse();
+            }
           });
-          _controller.reverse();
-        }
-      });
+        });
+      }
     });
-
-    super.initState();
   }
 
   @override
@@ -69,15 +73,9 @@ class _HoverChangeWidgetState extends State<HoverChangeWidget> with TickerProvid
         onTap: () {
           if (isHover) {
             context.go(widget.route);
+          } else {
+            _hoverAnimation(firstDelay: 0.ms, route: true);
           }
-          setState(() {
-            isHover = !isHover;
-            if (isHover) {
-              _controller.forward();
-            } else {
-              _controller.reverse();
-            }
-          });
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
