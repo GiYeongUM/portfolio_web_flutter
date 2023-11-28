@@ -72,7 +72,7 @@ class EntranceTextWidget extends StatelessWidget {
                                 animatedTexts: [
                                   TypewriterAnimatedText(
                                     "Get new perspectives",
-                                    textStyle: context.textTheme.krSubtitle1.copyWith(color: white),
+                                    textStyle: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor),
                                     speed: const Duration(milliseconds: 50),
                                     cursor: '',
                                   ),

@@ -19,6 +19,7 @@ class IntroPage extends StatelessWidget {
         onPop?.call();
       },
       child: Scaffold(
+        backgroundColor: context.colorTheme.backgroundColor,
         body: BlocProvider(
           create: (context) => IntroBloc(),
           child: BlocConsumer<IntroBloc, IntroState>(

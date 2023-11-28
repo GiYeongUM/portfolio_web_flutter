@@ -18,11 +18,8 @@ class IntroTitleWidget extends StatelessWidget {
       controller: scrollController..addListener(() => onScroll(controller: scrollController, edge: true, onDone: () => onNext.call())),
       child: Column(
         children: [
-          Container(
+          SizedBox(
             height: MediaQuery.of(context).size.height,
-            decoration: BoxDecoration(
-              color: context.colorTheme.backgroundColor,
-            ),
             child: Column(
               children: [
                 Expanded(child: TitleWidget(onContact: onContact)),
@@ -34,9 +31,8 @@ class IntroTitleWidget extends StatelessWidget {
                       Container(
                         width: MediaQuery.of(context).size.width,
                         height: baseboardHeight(context),
-                        decoration: BoxDecoration(
-                          color: context.colorTheme.floorColor,
-                          border: const Border(
+                        decoration: const BoxDecoration(
+                          border: Border(
                             top: BorderSide(color: wood, width: 40),
                           ),
                         ),
@@ -56,14 +52,22 @@ class IntroTitleWidget extends StatelessWidget {
                           painter: WoodKnightBaseboardPainter(),
                         ),
                       ),
-                      Positioned(bottom: 8, child: Lottie.asset('assets/json/scroll_down.json', fit: BoxFit.fill, height: baseboardHeight(context) / 2)),
+                      Positioned(
+                          bottom: 8,
+                          child: ColorFiltered(
+                            colorFilter: ColorFilter.mode(
+                              context.colorTheme.reverseColor ?? Colors.white,
+                              BlendMode.srcIn,
+                            ),
+                            child: Lottie.asset('assets/json/scroll_down.json', fit: BoxFit.contain, height: baseboardHeight(context) / 2),
+                          )),
                     ],
                   ),
                 ),
               ],
             ),
           ),
-          Container(color: context.colorTheme.floorColor, height: 24),
+          Container(color: context.colorTheme.backgroundColor, height: 24),
         ],
       ),
     );

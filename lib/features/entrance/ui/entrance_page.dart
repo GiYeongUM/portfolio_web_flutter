@@ -29,7 +29,12 @@ class _EntrancePageState extends State<EntrancePage> with SingleTickerProviderSt
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          color: context.colorTheme.backgroundColor,
+          color: context.colorTheme.pointBackgroundColor,
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: context.colorTheme.pointBackgroundGradient ?? [],
+          ),
         ),
         child: Stack(
           alignment: Alignment.center,
