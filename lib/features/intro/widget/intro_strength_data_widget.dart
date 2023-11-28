@@ -5,8 +5,8 @@ import 'package:giyeong_um_porfolio_page/core/core.dart';
 
 import '../../features.dart';
 
-class IntroStrengthWidget extends StatelessWidget {
-  const IntroStrengthWidget({Key? key}) : super(key: key);
+class IntroStrengthDataWidget extends StatelessWidget {
+  const IntroStrengthDataWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,24 +46,19 @@ class IntroStrengthWidget extends StatelessWidget {
               ],
             ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 500.ms),
           ),
-          context.isDesktop
-              ? SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: 800,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 3,
-                    itemBuilder: (context, index) {
-                      return strengthWidgets(context)[index];
-                    },
-                  ),
+          context.isMobile
+              ? ListView.builder(
+                  itemCount: 3,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return strengthWidgets(context)[index];
+                  },
                 )
-              : Wrap(
-                  spacing: 32,
-                  runSpacing: 32,
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: strengthWidgets(context),
-                ),
+                )
         ],
       ),
     );
@@ -72,35 +67,37 @@ class IntroStrengthWidget extends StatelessWidget {
   List<Widget> strengthWidgets(BuildContext context) {
     return [
       HoverChangeWidget(
-          firstChild: Container(
-            key: const ValueKey<bool>(false),
-            padding: EdgeInsets.symmetric(horizontal: context.isDesktop ? 24.0 : 8, vertical: 24),
-            width: context.isDesktop ? MediaQuery.of(context).size.width / 3 - 44 : double.infinity,
-            child: AspectRatio(
-              aspectRatio: 0.85,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  image: const DecorationImage(
-                    image: AssetImage("assets/images/ui_ux.png"),
-                    fit: BoxFit.cover,
-                  ),
+        firstChild: Container(
+          key: const ValueKey<bool>(false),
+          padding: EdgeInsets.symmetric(horizontal: context.isMobile ? 8 : 0, vertical: 24),
+          width: context.isMobile ? double.infinity : MediaQuery.of(context).size.width / 3 - 32,
+          child: AspectRatio(
+            aspectRatio: 0.85,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                image: const DecorationImage(
+                  image: AssetImage("assets/images/ui_ux.png"),
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
           ),
-          secondChild: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("UI/UX", style: context.textTheme.krSubtitle2),
-              Text('Intuitive and Efficient.', style: context.textTheme.krBody1),
-            ],
-          )).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 1.seconds).moveY(duration: 500.ms, curve: Curves.easeInOut, begin: 100, end: 0, delay: 1.seconds),
+        ),
+        secondChild: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("UI/UX", style: context.textTheme.krSubtitle2),
+            Text('Intuitive and Efficient.', style: context.textTheme.krBody1),
+          ],
+        ),
+        delay: 1.seconds,
+      ),
       HoverChangeWidget(
         firstChild: Container(
           key: const ValueKey<bool>(false),
-          padding: EdgeInsets.symmetric(horizontal: context.isDesktop ? 24.0 : 8, vertical: 24),
-          width: context.isDesktop ? MediaQuery.of(context).size.width / 3 - 44 : double.infinity,
+          padding: EdgeInsets.symmetric(horizontal: context.isMobile ? 8 : 0, vertical: 24),
+          width: context.isMobile ? double.infinity : MediaQuery.of(context).size.width / 3 - 32,
           child: AspectRatio(
             aspectRatio: 0.85,
             child: Container(
@@ -121,11 +118,12 @@ class IntroStrengthWidget extends StatelessWidget {
             Text('Thoroughly and Extensively.', style: context.textTheme.krBody1),
           ],
         ),
-      ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 1200.ms).moveY(duration: 500.ms, curve: Curves.easeInOut, begin: 100, end: 0, delay: 1200.ms),
+        delay: 1200.ms,
+      ),
       HoverChangeWidget(
         firstChild: Container(
-          padding: EdgeInsets.symmetric(horizontal: context.isDesktop ? 24.0 : 8, vertical: 24),
-          width: context.isDesktop ? MediaQuery.of(context).size.width / 3 - 44 : double.infinity,
+          padding: EdgeInsets.symmetric(horizontal: context.isMobile ? 8 : 0, vertical: 24),
+          width: context.isMobile ? double.infinity : MediaQuery.of(context).size.width / 3 - 32,
           child: AspectRatio(
             aspectRatio: 0.85,
             child: Container(
@@ -146,7 +144,8 @@ class IntroStrengthWidget extends StatelessWidget {
             Text('Reliability and Performance.', style: context.textTheme.krBody1),
           ],
         ),
-      ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 1400.ms).moveY(duration: 500.ms, curve: Curves.easeInOut, begin: 100, end: 0, delay: 1400.ms),
+        delay: 1400.ms,
+      )
     ];
   }
 }

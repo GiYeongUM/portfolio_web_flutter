@@ -81,7 +81,7 @@ class TitleWidget extends StatelessWidget {
                               ],
                             ),
                           ),
-                        ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 2000.ms),
+                        ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 700.ms),
                         TextTitle(onContact: onContact),
                       ],
                     ),
@@ -118,7 +118,7 @@ class TextTitle extends StatelessWidget {
         AutoSizeText('GiYeong UM', style: context.textTheme.krPoint1.copyWith(color: context.colorTheme.primaryColor, fontSize: 72), maxFontSize: 72, maxLines: 1)
             .animate()
             .fade(duration: 500.ms, delay: 700.ms, curve: Curves.easeInOut)
-            .moveY(delay: 500.ms, duration: 500.ms, curve: Curves.easeInOut, begin: -10, end: 0),
+            .moveY(delay: 700.ms, duration: 500.ms, curve: Curves.easeInOut, begin: -10, end: 0),
         const SizedBox(height: 16),
         Text.rich(
           TextSpan(
