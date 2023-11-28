@@ -6,12 +6,18 @@ import 'package:responsive_framework/responsive_breakpoints.dart';
 part 'generated/style.g.dart';
 
 const krFontFamily = 'LINESeedKR';
-const lightBackground = Colors.amber;
+const lightBackground = Color(0xffFFFEFB);
+const pointLightBackground = Colors.amber;
+const pointLightBackground2 = Color(0xFFFFCA28);
+const pointLightBackground3 = Color(0xFFFFD54F);
 const foreground = Color(0xffF5F2FD);
-const darkBackground = Color(0xff282828);
+const darkBackground = Color(0xff1D1B20);
+const pointDarkBackground = Color(0xff141218);
 const black = Colors.black;
-const black1 = Color(0xff2D2D35);
-const black2 = Color(0xff3d3d41);
+const black1 = Color(0xff1D1B20);
+const black2 = Color(0xff211F26);
+const black3 = Color(0xff2D2D35);
+const black4 = Color(0xff3d3d41);
 const white = Colors.white;
 const white2 = Color(0xffF5F5F5);
 const gray1 = Color(0xffDDDDDD);
@@ -48,19 +54,25 @@ extension BuildContextExtensions on BuildContext {
 class ColorTheme extends ThemeExtension<ColorTheme> {
   const ColorTheme({
     this.foregroundColor,
+    this.backgroundColor,
     this.wallColor,
     this.primaryColor,
-    this.backgroundColor,
+    this.pointBackgroundColor,
+    this.pointBackgroundGradient = const [],
     this.floorColor,
     this.foregroundTextColor,
+    this.reverseColor,
   });
 
   final Color? foregroundColor;
   final Color? backgroundColor;
+  final Color? pointBackgroundColor;
+  final List<Color>? pointBackgroundGradient;
   final Color? wallColor;
   final Color? primaryColor;
   final Color? floorColor;
   final Color? foregroundTextColor;
+  final Color? reverseColor;
 
   @override
   ThemeExtension<ColorTheme> lerp(ThemeExtension<ColorTheme>? other, double t) {
@@ -76,19 +88,33 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
   static ColorTheme light = const ColorTheme(
     foregroundColor: foreground,
     backgroundColor: lightBackground,
+    pointBackgroundColor: pointLightBackground,
+    pointBackgroundGradient: [
+      pointLightBackground3,
+      pointLightBackground2,
+      pointLightBackground,
+    ],
     wallColor: blue1,
     primaryColor: blue1,
     floorColor: floor,
     foregroundTextColor: blue1,
+    reverseColor: black1,
   );
 
   static ColorTheme dark = const ColorTheme(
-    foregroundColor: black2,
+    foregroundColor: black4,
     backgroundColor: darkBackground,
+    pointBackgroundColor: pointDarkBackground,
+    pointBackgroundGradient: [
+      black2,
+      black1,
+      pointDarkBackground,
+    ],
     wallColor: blue1,
     primaryColor: green1,
-    floorColor: black1,
+    floorColor: black3,
     foregroundTextColor: white,
+    reverseColor: white,
   );
 }
 
@@ -135,18 +161,18 @@ class KRTextTheme extends ThemeExtension<KRTextTheme> {
   }
 
   static const light = KRTextTheme(
-    krPoint1: TextStyle(fontFamily: krFontFamily, fontSize: 24, fontWeight: FontWeight.w700, color: black1),
-    krButton1: TextStyle(fontFamily: krFontFamily, fontSize: 16, fontWeight: FontWeight.w700, color: black1),
-    krSubtitle1: TextStyle(fontFamily: krFontFamily, fontSize: 18, fontWeight: FontWeight.w700, color: black1),
-    krSubtitle2: TextStyle(fontFamily: krFontFamily, fontSize: 20, fontWeight: FontWeight.w700, color: black1),
-    krBody1: TextStyle(fontFamily: krFontFamily, fontSize: 14, fontWeight: FontWeight.w400, color: black1),
-    krBody2: TextStyle(fontFamily: krFontFamily, fontSize: 14, fontWeight: FontWeight.w700, color: black1),
-    krBody3: TextStyle(fontFamily: krFontFamily, fontSize: 14, fontWeight: FontWeight.w300, color: black1),
-    krBody4: TextStyle(fontFamily: krFontFamily, fontSize: 16, fontWeight: FontWeight.w400, color: black1),
-    krBody5: TextStyle(fontFamily: krFontFamily, fontSize: 16, fontWeight: FontWeight.w700, color: black1),
-    krSubtext1: TextStyle(fontFamily: krFontFamily, fontSize: 10, fontWeight: FontWeight.w400, color: black1),
-    krSubtext2: TextStyle(fontFamily: krFontFamily, fontSize: 13, fontWeight: FontWeight.w700, color: black1),
-    krBottom: TextStyle(fontFamily: krFontFamily, fontSize: 12, fontWeight: FontWeight.w400, color: black1),
+    krPoint1: TextStyle(fontFamily: krFontFamily, fontSize: 24, fontWeight: FontWeight.w700, color: black3),
+    krButton1: TextStyle(fontFamily: krFontFamily, fontSize: 16, fontWeight: FontWeight.w700, color: black3),
+    krSubtitle1: TextStyle(fontFamily: krFontFamily, fontSize: 18, fontWeight: FontWeight.w700, color: black3),
+    krSubtitle2: TextStyle(fontFamily: krFontFamily, fontSize: 20, fontWeight: FontWeight.w700, color: black3),
+    krBody1: TextStyle(fontFamily: krFontFamily, fontSize: 14, fontWeight: FontWeight.w400, color: black3),
+    krBody2: TextStyle(fontFamily: krFontFamily, fontSize: 14, fontWeight: FontWeight.w700, color: black3),
+    krBody3: TextStyle(fontFamily: krFontFamily, fontSize: 14, fontWeight: FontWeight.w300, color: black3),
+    krBody4: TextStyle(fontFamily: krFontFamily, fontSize: 16, fontWeight: FontWeight.w400, color: black3),
+    krBody5: TextStyle(fontFamily: krFontFamily, fontSize: 16, fontWeight: FontWeight.w700, color: black3),
+    krSubtext1: TextStyle(fontFamily: krFontFamily, fontSize: 10, fontWeight: FontWeight.w400, color: black3),
+    krSubtext2: TextStyle(fontFamily: krFontFamily, fontSize: 13, fontWeight: FontWeight.w700, color: black3),
+    krBottom: TextStyle(fontFamily: krFontFamily, fontSize: 12, fontWeight: FontWeight.w400, color: black3),
   );
 
   static const dark = KRTextTheme(

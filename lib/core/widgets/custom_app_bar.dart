@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:giyeong_um_porfolio_page/core/config/config.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
@@ -23,7 +22,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       leadingWidth: 64,
       title: AnimatedAlign(
-        alignment: ResponsiveBreakpoints.of(context).isDesktop ? Alignment.center : Alignment.topLeft,
+        alignment: context.isDesktop ? Alignment.center : Alignment.topLeft,
         curve: Curves.easeInOut,
         duration: const Duration(milliseconds: 500),
         child: Text(title, style: context.textTheme.krPoint1),

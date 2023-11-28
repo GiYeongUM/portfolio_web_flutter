@@ -1,8 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../../core/core.dart';
-import '../../features.dart';
 
 class EntranceTextWidget extends StatelessWidget {
   const EntranceTextWidget({Key? key, required this.animation, required this.onNext}) : super(key: key);
@@ -28,31 +28,28 @@ class EntranceTextWidget extends StatelessWidget {
                         ? InkWell(
                             onTap: () {},
                             onHover: (value) {},
-                            child: FadingTextWidget(
-                              delay: const Duration(seconds: 1),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: context.colorTheme.wallColor,
-                                    ),
-                                    padding: const EdgeInsets.all(4),
-                                    child: const Icon(
-                                      Icons.g_translate_outlined,
-                                      color: Colors.white,
-                                      size: 12,
-                                    ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: context.colorTheme.wallColor,
                                   ),
-                                  const SizedBox(width: 4),
-                                  Text(
-                                    'Language',
-                                    style: context.textTheme.krSubtext2.copyWith(color: context.colorTheme.foregroundTextColor),
+                                  padding: const EdgeInsets.all(4),
+                                  child: const Icon(
+                                    Icons.g_translate_outlined,
+                                    color: Colors.white,
+                                    size: 12,
                                   ),
-                                ],
-                              ),
+                                ),
+                                const SizedBox(width: 4),
+                                Text(
+                                  'Language',
+                                  style: context.textTheme.krSubtext2.copyWith(color: context.colorTheme.foregroundTextColor),
+                                ),
+                              ],
                             ),
-                          )
+                          ).animate().fadeIn(duration: 1.seconds, curve: const Interval(0.0, 0.5, curve: Curves.easeInOut), delay: 1.seconds)
                         : Text(
                             '',
                             style: context.textTheme.krSubtext2.copyWith(color: Colors.red),
@@ -75,7 +72,7 @@ class EntranceTextWidget extends StatelessWidget {
                                 animatedTexts: [
                                   TypewriterAnimatedText(
                                     "Get new perspectives",
-                                    textStyle: context.textTheme.krSubtitle1.copyWith(color: white),
+                                    textStyle: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor),
                                     speed: const Duration(milliseconds: 50),
                                     cursor: '',
                                   ),
@@ -98,26 +95,23 @@ class EntranceTextWidget extends StatelessWidget {
                     child: animation.value == 1
                         ? InkWell(
                             onTap: () => onNext.call(),
-                            child: FadingTextWidget(
-                              delay: const Duration(seconds: 1),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    'Explore',
-                                    style: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor),
-                                  ),
-                                  const SizedBox(width: 4),
-                                  Icon(
-                                    Icons.arrow_circle_right_rounded,
-                                    color: context.colorTheme.foregroundTextColor,
-                                    size: 16,
-                                  ),
-                                ],
-                              ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  'Explore',
+                                  style: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor),
+                                ),
+                                const SizedBox(width: 4),
+                                Icon(
+                                  Icons.arrow_circle_right_rounded,
+                                  color: context.colorTheme.foregroundTextColor,
+                                  size: 16,
+                                ),
+                              ],
                             ),
-                          )
+                          ).animate().fadeIn(duration: 1.seconds, curve: const Interval(0.0, 0.5, curve: Curves.easeInOut), delay: 1.seconds)
                         : Text(
                             '',
                             style: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor),

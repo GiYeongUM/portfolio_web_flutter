@@ -12,72 +12,82 @@ class TitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      return AnimatedSwitcher(
-          duration: const Duration(milliseconds: 500),
-          child: constraints.maxWidth > 1200
-              ? Container(
-                  key: ValueKey<bool>(constraints.maxWidth > 1200),
-                  padding: const EdgeInsets.symmetric(horizontal: 80),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Spacer(),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(flex: 1, child: TextTitle(onContact: onContact)),
-                          Expanded(
-                            flex: 1,
-                            child: Center(
-                              child: Lottie.asset(
-                                'assets/json/profile_lottie.json',
-                                fit: BoxFit.fill,
-                                delegates: LottieDelegates(
-                                  values: [
-                                    ValueDelegate.color(
-                                      const ['**', 'Fill 100', '**'],
-                                      value: context.colorTheme.primaryColor ?? violet,
-                                    ),
-                                  ],
+    return Container(
+      decoration: BoxDecoration(
+        color: context.colorTheme.pointBackgroundColor,
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: context.colorTheme.pointBackgroundGradient ?? [],
+        ),
+      ),
+      child: LayoutBuilder(builder: (context, constraints) {
+        return AnimatedSwitcher(
+            duration: const Duration(milliseconds: 500),
+            child: constraints.maxWidth > 1200
+                ? Container(
+                    key: ValueKey<bool>(constraints.maxWidth > 1200),
+                    padding: const EdgeInsets.symmetric(horizontal: 80),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Spacer(),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(flex: 1, child: TextTitle(onContact: onContact)),
+                            Expanded(
+                              flex: 1,
+                              child: Center(
+                                child: Lottie.asset(
+                                  'assets/json/profile_lottie.json',
+                                  fit: BoxFit.fill,
+                                  delegates: LottieDelegates(
+                                    values: [
+                                      ValueDelegate.color(
+                                        const ['**', 'Fill 100', '**'],
+                                        value: context.colorTheme.primaryColor ?? violet,
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 2000.ms),
-                          )
-                        ],
-                      ),
-                      const Spacer(),
-                    ],
-                  ),
-                )
-              : Container(
-                  key: ValueKey<bool>(constraints.maxWidth > 1200),
-                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Center(
-                        child: Lottie.asset(
-                          'assets/json/profile_lottie.json',
-                          fit: BoxFit.fill,
-                          height: MediaQuery.of(context).size.height * 0.3,
-                          delegates: LottieDelegates(
-                            values: [
-                              ValueDelegate.color(
-                                const ['**', 'Fill 100', '**'],
-                                value: context.colorTheme.primaryColor ?? violet,
-                              ),
-                            ],
-                          ),
+                              ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 2000.ms),
+                            )
+                          ],
                         ),
-                      ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 2000.ms),
-                      TextTitle(onContact: onContact),
-                    ],
-                  ),
-                ));
-    });
+                        const Spacer(),
+                      ],
+                    ),
+                  )
+                : Container(
+                    key: ValueKey<bool>(constraints.maxWidth > 1200),
+                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                    width: double.infinity,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Center(
+                          child: Lottie.asset(
+                            'assets/json/profile_lottie.json',
+                            fit: BoxFit.fill,
+                            height: MediaQuery.of(context).size.height * 0.3,
+                            delegates: LottieDelegates(
+                              values: [
+                                ValueDelegate.color(
+                                  const ['**', 'Fill 100', '**'],
+                                  value: context.colorTheme.primaryColor ?? violet,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 700.ms),
+                        TextTitle(onContact: onContact),
+                      ],
+                    ),
+                  ));
+      }),
+    );
   }
 }
 
@@ -108,7 +118,7 @@ class TextTitle extends StatelessWidget {
         AutoSizeText('GiYeong UM', style: context.textTheme.krPoint1.copyWith(color: context.colorTheme.primaryColor, fontSize: 72), maxFontSize: 72, maxLines: 1)
             .animate()
             .fade(duration: 500.ms, delay: 700.ms, curve: Curves.easeInOut)
-            .moveY(delay: 500.ms, duration: 500.ms, curve: Curves.easeInOut, begin: -10, end: 0),
+            .moveY(delay: 700.ms, duration: 500.ms, curve: Curves.easeInOut, begin: -10, end: 0),
         const SizedBox(height: 16),
         Text.rich(
           TextSpan(
@@ -140,7 +150,19 @@ class TextTitle extends StatelessWidget {
                         offset: const Offset(2, 4),
                       ),
                     ]),
-                    child: Text('Contact Me', style: context.textTheme.krButton1.copyWith(color: white))))
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text('Contact anytime', style: context.textTheme.krButton1.copyWith(color: white)),
+                        const SizedBox(width: 8),
+                        const Icon(
+                          Icons.arrow_circle_right_rounded,
+                          color: white,
+                          size: 16,
+                        ),
+                      ],
+                    )))
             .animate()
             .fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 1200.ms)
             .animate(onPlay: (controller) => controller.repeat())

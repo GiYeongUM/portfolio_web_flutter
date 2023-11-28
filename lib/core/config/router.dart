@@ -16,8 +16,19 @@ class AppRouter {
     routes: <RouteBase>[
       GoRoute(
         path: '/',
-        builder: (context, state) {
-          return const MainPage();
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity: Tween<double>(
+                  begin: 0,
+                  end: 1,
+                ).animate(animation),
+                child: child,
+              );
+            },
+            child: const EntrancePage(),
+          );
         },
         routes: <RouteBase>[
           GoRoute(
@@ -25,10 +36,10 @@ class AppRouter {
             pageBuilder: (context, state) {
               return CustomTransitionPage(
                 transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                  return SlideTransition(
-                    position: Tween<Offset>(
-                      begin: const Offset(1, 0),
-                      end: Offset.zero,
+                  return FadeTransition(
+                    opacity: Tween<double>(
+                      begin: 0,
+                      end: 1,
                     ).animate(animation),
                     child: child,
                   );
