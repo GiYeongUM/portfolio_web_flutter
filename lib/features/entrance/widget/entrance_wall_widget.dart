@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:giyeong_um_porfolio_page/core/config/config.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class EntranceWallWidget extends StatelessWidget {
   const EntranceWallWidget({super.key, required this.animation});
@@ -79,7 +78,7 @@ class EntranceWallWidget extends StatelessWidget {
   }
 
   double calculateWallHeight(BuildContext context) {
-    if (!ResponsiveBreakpoints.of(context).isDesktop) return MediaQuery.of(context).size.width / 4.5;
+    if (!context.isDesktop) return MediaQuery.of(context).size.width / 4.5;
     if (MediaQuery.of(context).size.width / 4 < MediaQuery.of(context).size.height / 3) {
       return MediaQuery.of(context).size.height / 4;
     } else {
@@ -91,7 +90,7 @@ class EntranceWallWidget extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
     double minFactor = 0.2;
     double maxFactor = 1.0;
-    if (!ResponsiveBreakpoints.of(context).isDesktop) return 0.9;
+    if (!context.isDesktop) return 0.9;
     if (screenHeight > 2160) return maxFactor;
     if (screenHeight < 600) return minFactor;
 

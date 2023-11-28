@@ -40,6 +40,7 @@ dependencies:
   logger: ^1.1.0
   intl: ^0.18.1
   intl_translation: ^0.18.2
+  url_strategy: ^0.2.0
 
   #firebase
   firebase_core: ^2.20.0

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/config/config.dart';
 import '../../features.dart';
 
 class EntrancePage extends StatefulWidget {
-  const EntrancePage({Key? key, required this.onNext}) : super(key: key);
-
-  final Function() onNext;
+  const EntrancePage({Key? key}) : super(key: key);
 
   @override
   State<EntrancePage> createState() => _EntrancePageState();
@@ -27,27 +26,33 @@ class _EntrancePageState extends State<EntrancePage> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: context.colorTheme.backgroundColor,
-      ),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          if (_animation.value != 1)
-            AnimatedBuilder(
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          color: context.colorTheme.backgroundColor,
+        ),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            if (_animation.value != 1)
+              AnimatedBuilder(
+                  animation: _animation,
+                  builder: (context, child) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.1 * (1 - _animation.value)),
+                      ),
+                    );
+                  }),
+            EntranceTextWidget(
                 animation: _animation,
-                builder: (context, child) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.1 * (1 - _animation.value)),
-                    ),
-                  );
+                onNext: () {
+                  context.go('/intro');
                 }),
-          EntranceTextWidget(animation: _animation, onNext: widget.onNext),
-          EntranceFloorWidget(animation: _animation),
-          EntranceWallWidget(animation: _animation),
-        ],
+            EntranceFloorWidget(animation: _animation),
+            EntranceWallWidget(animation: _animation),
+          ],
+        ),
       ),
     );
   }
