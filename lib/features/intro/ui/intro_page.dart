@@ -38,7 +38,6 @@ class IntroPage extends StatelessWidget {
                     controller: pageController,
                     physics: getScrollPhysics(context, state.status),
                     scrollDirection: Axis.vertical,
-                    onPageChanged: (page) => context.read<IntroBloc>().add(PageChanged(page: page)),
                     children: [
                       IntroTitleWidget(
                         onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 1)),
@@ -51,9 +50,13 @@ class IntroPage extends StatelessWidget {
                         onPrevious: () => context.read<IntroBloc>().add(const PageChanged(page: 0)),
                         onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 2)),
                       ),
+                      IntroProjectWidget(
+                        onPrevious: () => context.read<IntroBloc>().add(const PageChanged(page: 1)),
+                        onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 3)),
+                      ),
                     ],
                   ),
-                  ChairWidget(page: state.page),
+                  ChairWidget(page: state.page, status: state.status),
                 ],
               );
             },
@@ -75,10 +78,3 @@ class IntroPage extends StatelessWidget {
     }
   }
 }
-
-/*
-
-cloud
-
-
- */

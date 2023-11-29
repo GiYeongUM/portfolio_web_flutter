@@ -10,6 +10,7 @@ export 'entrance/widget/wood_baseboard_painter.dart';
 export 'error/ui/error_page.dart';
 export 'intro/ui/intro_page.dart';
 export 'intro/widget/hover_change_widget.dart';
+export 'intro/widget/intro_project_widget.dart';
 export 'intro/widget/intro_steregth_widget.dart';
 export 'intro/widget/intro_strength_data_widget.dart';
 export 'intro/widget/intro_title_widget.dart';

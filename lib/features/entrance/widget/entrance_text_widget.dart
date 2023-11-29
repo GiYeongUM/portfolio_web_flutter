@@ -51,7 +51,11 @@ class EntranceTextWidget extends StatelessWidget {
                               Text(
                                 "Get new perspectives",
                                 style: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor),
-                              ).animate(controller: afterController, autoPlay: false).fadeIn(duration: 500.ms, curve: Curves.easeInOut).animate().shimmer(duration: 1000.ms, delay: 3500.ms),
+                              )
+                                  .animate(controller: afterController, autoPlay: false)
+                                  .fadeIn(duration: 500.ms, curve: Curves.easeInOut)
+                                  .animate()
+                                  .shimmer(duration: 1000.ms, delay: 3500.ms, color: context.colorTheme.wallColor),
                               const SizedBox(height: 4),
                               Text(
                                 "via GiYeong UM",
@@ -60,7 +64,7 @@ class EntranceTextWidget extends StatelessWidget {
                                   .animate(controller: afterController, autoPlay: false)
                                   .fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 300.ms)
                                   .animate()
-                                  .shimmer(duration: 1000.ms, delay: 3500.ms),
+                                  .shimmer(duration: 1000.ms, delay: 3500.ms, color: context.colorTheme.wallColor),
                             ],
                           ),
                           InkWell(
@@ -83,7 +87,7 @@ class EntranceTextWidget extends StatelessWidget {
                                 .moveX(begin: -32, end: 0, duration: 500.ms, delay: 1.seconds, curve: Curves.easeInOut)
                                 .fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 1.seconds)
                                 .animate(onPlay: (controller) => controller.repeat())
-                                .shimmer(duration: 1000.ms, delay: 2000.ms),
+                                .shimmer(duration: 1000.ms, delay: 2000.ms, color: context.colorTheme.wallColor),
                           ),
                         ],
                       ),

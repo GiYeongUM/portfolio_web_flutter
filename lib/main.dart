@@ -108,6 +108,7 @@ class AppConfig {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
+
     callback();
   }
 }
