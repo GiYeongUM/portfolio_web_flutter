@@ -54,3 +54,14 @@ extension TimeOfDayConverter on TimeOfDay {
     return "$hour:$minute";
   }
 }
+
+String localeToLanguageCode(Locale locale) {
+  switch (locale.languageCode) {
+    case 'ko':
+      return 'Korean';
+    case 'en':
+      return 'English';
+    default:
+      return 'Korean';
+  }
+}

@@ -92,6 +92,9 @@ class App extends StatelessWidget {
 
 class AppConfig {
   static AppConfig get to => AppConfig();
+  static final List<Locale> _locales = [const Locale('ko'), const Locale('en')];
+
+  List<Locale> get locales => _locales;
 
   static Future init({required VoidCallback callback}) async {
     setPathUrlStrategy();

@@ -80,38 +80,5 @@ class IntroPage extends StatelessWidget {
 
 cloud
 
-Blur(
-              blur: 4,
-              blurColor: context.colorTheme.backgroundColor ?? Colors.white,
-              child: Container(
-                width: 400,
-                height: 400,
-                margin: const EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                  border: Border.all(color: context.colorTheme.wallColor ?? Colors.white, width: 20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.5),
-                      blurRadius: 10,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Gif(
-                  image: const AssetImage("assets/images/cloud-4058_512.gif"),
-                  autostart: Autostart.no,
-                  placeholder: (context) => Container(
-                    width: 400,
-                    height: 400,
-                    color: context.colorTheme.wallColor?.withOpacity(0.8),
-                  ),
-                ),
-              ),
-            )
-                .animate()
-                .fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 500.ms)
-                .animate(controller: _gifController)
-                .moveY(end: -(MediaQuery.of(context).size.height), duration: 1000.ms, curve: Curves.easeInOut)
-                .fadeOut(duration: 500.ms, curve: Curves.easeInOut),
+
  */
