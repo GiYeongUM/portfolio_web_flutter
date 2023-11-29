@@ -15,12 +15,14 @@ class EntrancePage extends StatefulWidget {
 
 class _EntrancePageState extends State<EntrancePage> with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(vsync: this, duration: const Duration(seconds: 2));
+  late final AnimationController _gifAnimationController = AnimationController(vsync: this);
+  late final AnimationController _afterController = AnimationController(vsync: this);
   late final Animation<double> _animation = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 1), () {
-      _controller.forward();
+    Future.delayed(const Duration(seconds: 1), () async {
+      await _controller.forward().then((value) => _afterController.forward());
     });
 
     super.initState();
@@ -55,6 +57,7 @@ class _EntrancePageState extends State<EntrancePage> with TickerProviderStateMix
                       }),
                 EntranceTextWidget(
                   animation: _animation,
+                  afterController: _afterController,
                   onNext: () {
                     context.go('/intro');
                   },
@@ -62,6 +65,7 @@ class _EntrancePageState extends State<EntrancePage> with TickerProviderStateMix
                   onLocaleChanged: (locale) {
                     context.read<GlobalBloc>().add(SetLocale(locale: locale));
                   },
+                  gifController: _gifAnimationController,
                 ),
                 EntranceFloorWidget(animation: _animation),
                 EntranceWallWidget(animation: _animation),
