@@ -15,8 +15,8 @@ class EntrancePage extends StatefulWidget {
 
 class _EntrancePageState extends State<EntrancePage> with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(vsync: this, duration: const Duration(seconds: 2));
-  late final AnimationController _gifAnimationController = AnimationController(vsync: this);
-  late final AnimationController _afterController = AnimationController(vsync: this);
+  late final AnimationController _gifAnimationController = AnimationController(vsync: this, duration: const Duration(seconds: 1));
+  late final AnimationController _afterController = AnimationController(vsync: this, duration: const Duration(seconds: 1));
   late final Animation<double> _animation = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
   @override
@@ -30,6 +30,7 @@ class _EntrancePageState extends State<EntrancePage> with TickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
+    logger.d('builkd');
     return Scaffold(
       body: BlocBuilder<GlobalBloc, GlobalState>(
         builder: (context, state) {
@@ -80,9 +81,17 @@ class _EntrancePageState extends State<EntrancePage> with TickerProviderStateMix
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    precacheImage(const AssetImage('assets/images/cloud_animation.gif'), context);
-    precacheImage(const AssetImage('assets/images/ui_ux.png'), context);
-    precacheImage(const AssetImage('assets/images/knowledge.png'), context);
-    precacheImage(const AssetImage('assets/images/ability.png'), context);
+    precacheImage(const AssetImage('assets/images/cloud_animation.gif'), context, onError: (exception, stackTrace) {
+      logger.e('Error while precaching image: $exception');
+    });
+    precacheImage(const AssetImage('assets/images/ui_ux.png'), context, onError: (exception, stackTrace) {
+      logger.e('Error while precaching image: $exception');
+    });
+    precacheImage(const AssetImage('assets/images/knowledge.png'), context, onError: (exception, stackTrace) {
+      logger.e('Error while precaching image: $exception');
+    });
+    precacheImage(const AssetImage('assets/images/ability.png'), context, onError: (exception, stackTrace) {
+      logger.e('Error while precaching image: $exception');
+    });
   }
 }

@@ -1,9 +1,8 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:gif/gif.dart';
+import 'package:giyeong_um_porfolio_page/core/core.dart';
 
-import '../../../core/core.dart';
 import '../../../main.dart';
 
 class EntranceTextWidget extends StatelessWidget {
@@ -51,11 +50,7 @@ class EntranceTextWidget extends StatelessWidget {
                               Text(
                                 "Get new perspectives",
                                 style: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor),
-                              )
-                                  .animate(controller: afterController, autoPlay: false)
-                                  .fadeIn(duration: 500.ms, curve: Curves.easeInOut)
-                                  .animate()
-                                  .shimmer(duration: 1000.ms, delay: 3500.ms, color: context.colorTheme.wallColor),
+                              ).animate(controller: afterController, autoPlay: false).fadeIn(duration: 500.ms, curve: Curves.easeInOut).animate().shimmer(duration: 1000.ms, delay: 3500.ms),
                               const SizedBox(height: 4),
                               Text(
                                 "via GiYeong UM",
@@ -64,7 +59,7 @@ class EntranceTextWidget extends StatelessWidget {
                                   .animate(controller: afterController, autoPlay: false)
                                   .fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 300.ms)
                                   .animate()
-                                  .shimmer(duration: 1000.ms, delay: 3500.ms, color: context.colorTheme.wallColor),
+                                  .shimmer(duration: 1000.ms, delay: 3500.ms),
                             ],
                           ),
                           InkWell(
@@ -149,6 +144,7 @@ class EntranceTextWidget extends StatelessWidget {
                     margin: const EdgeInsets.all(24),
                     decoration: BoxDecoration(
                       color: context.colorTheme.wallColor,
+                      image: DecorationImage(image: const AssetImage("assets/images/cloud_animation.gif")),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.5),
@@ -157,18 +153,6 @@ class EntranceTextWidget extends StatelessWidget {
                         ),
                       ],
                       borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Gif(
-                        image: const AssetImage("assets/images/cloud_animation.gif"),
-                        autostart: Autostart.loop,
-                        placeholder: (context) => Container(
-                          width: 80,
-                          height: 80,
-                          color: context.colorTheme.wallColor?.withOpacity(0.8),
-                        ),
-                      ),
                     ),
                   ).animate(autoPlay: false, controller: afterController).fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 1000.ms),
                 ),

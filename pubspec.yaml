@@ -35,7 +35,6 @@ dependencies:
   animated_text_kit: ^4.2.2
   smooth_scroll_multiplatform: ^1.0.8
   flutter_animate: ^4.3.0
-  gif: ^2.3.0
   blur: ^3.1.0
   cached_network_image: ^3.3.0
   dropdown_button2: ^2.3.9
