@@ -53,8 +53,8 @@ class EntranceTextWidget extends StatelessWidget {
                               )
                                   .animate(controller: afterController, autoPlay: false)
                                   .fadeIn(duration: 500.ms, curve: Curves.easeInOut)
-                                  .animate(onPlay: (controller) => controller.repeat())
-                                  .shimmer(duration: 1000.ms, delay: 2000.ms, color: context.colorTheme.wallColor),
+                                  .animate()
+                                  .shimmer(duration: 1000.ms, delay: 3500.ms, color: context.colorTheme.wallColor),
                               const SizedBox(height: 4),
                               Text(
                                 "via GiYeong UM",
@@ -62,8 +62,8 @@ class EntranceTextWidget extends StatelessWidget {
                               )
                                   .animate(controller: afterController, autoPlay: false)
                                   .fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 300.ms)
-                                  .animate(onPlay: (controller) => controller.repeat())
-                                  .shimmer(duration: 1000.ms, delay: 2000.ms, color: context.colorTheme.wallColor),
+                                  .animate()
+                                  .shimmer(duration: 1000.ms, delay: 3500.ms, color: context.colorTheme.wallColor),
                             ],
                           ),
                           InkWell(
