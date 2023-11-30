@@ -46,13 +46,20 @@ class IntroPage extends StatelessWidget {
                           path: 'eomky2005@gmail.com',
                         )),
                       ),
-                      IntroStrengthWidget(
+                      IntroStepWidget(
                         onPrevious: () => context.read<IntroBloc>().add(const PageChanged(page: 0)),
                         onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 2)),
+                        child: const IntroStrengthWidget(),
                       ),
-                      IntroProjectWidget(
+                      IntroStepWidget(
                         onPrevious: () => context.read<IntroBloc>().add(const PageChanged(page: 1)),
                         onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 3)),
+                        child: const IntroSkillsWidget(),
+                      ),
+                      IntroStepWidget(
+                        onPrevious: () => context.read<IntroBloc>().add(const PageChanged(page: 2)),
+                        onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 4)),
+                        child: const IntroStrengthWidget(),
                       ),
                     ],
                   ),

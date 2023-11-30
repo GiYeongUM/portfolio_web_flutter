@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:giyeong_um_porfolio_page/core/core.dart';
+import '../../../core/core.dart';
 import 'package:lottie/lottie.dart';
 
 class ChairWidget extends StatefulWidget {

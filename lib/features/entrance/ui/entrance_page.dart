@@ -39,7 +39,12 @@ class _EntrancePageState extends State<EntrancePage> with TickerProviderStateMix
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: context.colorTheme.pointBackgroundGradient ?? [],
+                colors: context.colorTheme.pointBackgroundGradient ??
+                    [
+                      pointLightBackground3,
+                      pointLightBackground2,
+                      pointLightBackground,
+                    ],
               ),
             ),
             child: Stack(

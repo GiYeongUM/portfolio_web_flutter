@@ -1,16 +1,17 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:giyeong_um_porfolio_page/core/core.dart';
 
+import '../../../core/core.dart';
 import '../../features.dart';
 
-class IntroStrengthDataWidget extends StatelessWidget {
-  const IntroStrengthDataWidget({Key? key}) : super(key: key);
+class IntroStrengthWidget extends StatelessWidget {
+  const IntroStrengthWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height),
       margin: EdgeInsets.symmetric(horizontal: context.isDesktop ? 40 : 16, vertical: context.isDesktop ? 40 : 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -67,7 +68,8 @@ class IntroStrengthDataWidget extends StatelessWidget {
   List<Widget> strengthWidgets(BuildContext context) {
     return [
       HoverChangeWidget(
-        firstChild: Container(
+        type: HoverType.arrow,
+        header: Container(
           key: const ValueKey<bool>(false),
           padding: EdgeInsets.symmetric(horizontal: context.isMobile ? 8 : 0, vertical: 24),
           width: context.isMobile ? double.infinity : MediaQuery.of(context).size.width / 3 - 32,
@@ -84,7 +86,7 @@ class IntroStrengthDataWidget extends StatelessWidget {
             ),
           ),
         ),
-        secondChild: Column(
+        animatedChild: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("UI/UX", style: context.textTheme.krSubtitle2),
@@ -95,7 +97,8 @@ class IntroStrengthDataWidget extends StatelessWidget {
         route: '/',
       ),
       HoverChangeWidget(
-        firstChild: Container(
+        type: HoverType.arrow,
+        header: Container(
           key: const ValueKey<bool>(false),
           padding: EdgeInsets.symmetric(horizontal: context.isMobile ? 8 : 0, vertical: 24),
           width: context.isMobile ? double.infinity : MediaQuery.of(context).size.width / 3 - 32,
@@ -112,7 +115,7 @@ class IntroStrengthDataWidget extends StatelessWidget {
             ),
           ),
         ),
-        secondChild: Column(
+        animatedChild: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("Knowledge", style: context.textTheme.krSubtitle2),
@@ -122,7 +125,8 @@ class IntroStrengthDataWidget extends StatelessWidget {
         delay: 1200.ms,
       ),
       HoverChangeWidget(
-        firstChild: Container(
+        type: HoverType.arrow,
+        header: Container(
           padding: EdgeInsets.symmetric(horizontal: context.isMobile ? 8 : 0, vertical: 24),
           width: context.isMobile ? double.infinity : MediaQuery.of(context).size.width / 3 - 32,
           child: AspectRatio(
@@ -138,7 +142,7 @@ class IntroStrengthDataWidget extends StatelessWidget {
             ),
           ),
         ),
-        secondChild: Column(
+        animatedChild: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("Ability", style: context.textTheme.krSubtitle2),
@@ -150,55 +154,3 @@ class IntroStrengthDataWidget extends StatelessWidget {
     ];
   }
 }
-
-/*
-
-first
-Container(
-            key: const ValueKey<bool>(true),
-            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24),
-            width: context.isDesktop ? MediaQuery.of(context).size.width / 3 - 80 : double.infinity,
-            child: Column(
-              children: [
-                Lottie.asset('assets/json/uiux_lottie.json', fit: BoxFit.contain, height: 160),
-                const SizedBox(height: 16),
-                Align(alignment: Alignment.centerLeft, child: Text("UI/UX", style: context.textTheme.krSubtitle2)),
-                const SizedBox(height: 24),
-                Text(context.localization.strength_2, style: context.textTheme.krBody1),
-              ],
-            ),
-          )
-
-second
-Container(
-            key: const ValueKey<bool>(true),
-            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24),
-            width: context.isDesktop ? MediaQuery.of(context).size.width / 3 - 80 : double.infinity,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Lottie.asset('assets/json/cross_platform_lottie.json', fit: BoxFit.contain, height: 160),
-                const SizedBox(height: 16),
-                Align(alignment: Alignment.centerLeft, child: Text("Knowledge", style: context.textTheme.krSubtitle2)),
-                const SizedBox(height: 24),
-                Text(context.localization.strength_3, style: context.textTheme.krBody1),
-              ],
-            ),
-          )
-
-third
-Container(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24),
-            width: context.isDesktop ? MediaQuery.of(context).size.width / 3 - 80 : double.infinity,
-            child: Column(
-              children: [
-                Lottie.asset('assets/json/update_lottie.json', fit: BoxFit.contain, height: 160),
-                const SizedBox(height: 16),
-                Align(alignment: Alignment.centerLeft, child: Text("Ability", style: context.textTheme.krSubtitle2)),
-                const SizedBox(height: 24),
-                Text(context.localization.strength_4, style: context.textTheme.krBody1, maxLines: 7),
-              ],
-            ),
-          )
-
- */

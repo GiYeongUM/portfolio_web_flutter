@@ -1,7 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:giyeong_um_porfolio_page/core/core.dart';
+import '../../../core/core.dart';
 
 import '../../../main.dart';
 
@@ -54,7 +54,7 @@ class EntranceTextWidget extends StatelessWidget {
                                   .animate(controller: afterController, autoPlay: false)
                                   .fadeIn(duration: 500.ms, curve: Curves.easeInOut)
                                   .animate()
-                                  .shimmer(duration: 1000.ms, delay: 3500.ms, color: context.colorTheme.wallColor),
+                                  .shimmer(duration: 1000.ms, delay: 3500.ms, color: context.colorTheme.reversePrimaryColor),
                               const SizedBox(height: 4),
                               Text(
                                 "via GiYeong UM",
@@ -63,7 +63,7 @@ class EntranceTextWidget extends StatelessWidget {
                                   .animate(controller: afterController, autoPlay: false)
                                   .fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 300.ms)
                                   .animate()
-                                  .shimmer(duration: 1000.ms, delay: 3500.ms, color: context.colorTheme.wallColor),
+                                  .shimmer(duration: 1000.ms, delay: 3500.ms, color: context.colorTheme.reversePrimaryColor),
                             ],
                           ),
                           InkWell(
@@ -86,7 +86,7 @@ class EntranceTextWidget extends StatelessWidget {
                                 .moveX(begin: -32, end: 0, duration: 500.ms, delay: 1.seconds, curve: Curves.easeInOut)
                                 .fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 1.seconds)
                                 .animate(onComplete: (controller) => controller.repeat())
-                                .shimmer(duration: 1000.ms, delay: 2000.ms, color: context.colorTheme.wallColor),
+                                .shimmer(duration: 1000.ms, delay: 2000.ms, color: context.colorTheme.reversePrimaryColor),
                           ),
                         ],
                       ),
