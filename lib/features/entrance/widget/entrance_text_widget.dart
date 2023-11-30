@@ -85,7 +85,7 @@ class EntranceTextWidget extends StatelessWidget {
                                 .animate(controller: afterController, autoPlay: false)
                                 .moveX(begin: -32, end: 0, duration: 500.ms, delay: 1.seconds, curve: Curves.easeInOut)
                                 .fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 1.seconds)
-                                .animate(onPlay: (controller) => controller.repeat())
+                                .animate(onComplete: (controller) => controller.repeat())
                                 .shimmer(duration: 1000.ms, delay: 2000.ms, color: context.colorTheme.wallColor),
                           ),
                         ],

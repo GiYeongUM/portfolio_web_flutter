@@ -30,7 +30,6 @@ class _EntrancePageState extends State<EntrancePage> with TickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
-    logger.d('builkd');
     return Scaffold(
       body: BlocBuilder<GlobalBloc, GlobalState>(
         builder: (context, state) {
