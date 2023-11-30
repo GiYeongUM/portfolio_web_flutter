@@ -58,8 +58,8 @@ class EntranceTextWidget extends StatelessWidget {
                               )
                                   .animate(controller: afterController, autoPlay: false)
                                   .fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 300.ms)
-                                  .animate()
-                                  .shimmer(duration: 1000.ms, delay: 3500.ms),
+                                  .animate(onPlay: (controller) => controller.repeat())
+                                  .shimmer(duration: 1000.ms, delay: 2000.ms, color: context.colorTheme.wallColor),
                             ],
                           ),
                           InkWell(
@@ -144,7 +144,7 @@ class EntranceTextWidget extends StatelessWidget {
                     margin: const EdgeInsets.all(24),
                     decoration: BoxDecoration(
                       color: context.colorTheme.wallColor,
-                      image: DecorationImage(image: const AssetImage("assets/images/cloud_animation.gif")),
+                      image: const DecorationImage(image: AssetImage("assets/images/cloud_animation.gif")),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.5),
