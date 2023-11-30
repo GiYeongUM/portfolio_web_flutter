@@ -103,11 +103,6 @@
     });
 </script>
 <script>
-    if ("serviceWorker" in navigator) {
-        window.addEventListener("load", function () {
-            navigator.serviceWorker.register("/firebase-messaging-sw.js");
-        });
-    }
     const firebaseConfig = {
         apiKey: 'AIzaSyCCuJ117ShY3UxXm3sn5QY0sraJ7J0JlmQ',
         appId: '1:1060449311282:web:807af2c27e58ffcbf77a2b',

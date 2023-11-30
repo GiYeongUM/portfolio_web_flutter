@@ -38,7 +38,6 @@ class IntroPage extends StatelessWidget {
                     controller: pageController,
                     physics: getScrollPhysics(context, state.status),
                     scrollDirection: Axis.vertical,
-                    onPageChanged: (page) => context.read<IntroBloc>().add(PageChanged(page: page)),
                     children: [
                       IntroTitleWidget(
                         onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 1)),
@@ -51,9 +50,13 @@ class IntroPage extends StatelessWidget {
                         onPrevious: () => context.read<IntroBloc>().add(const PageChanged(page: 0)),
                         onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 2)),
                       ),
+                      IntroProjectWidget(
+                        onPrevious: () => context.read<IntroBloc>().add(const PageChanged(page: 1)),
+                        onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 3)),
+                      ),
                     ],
                   ),
-                  ChairWidget(page: state.page),
+                  ChairWidget(page: state.page, status: state.status),
                 ],
               );
             },
@@ -75,43 +78,3 @@ class IntroPage extends StatelessWidget {
     }
   }
 }
-
-/*
-
-cloud
-
-Blur(
-              blur: 4,
-              blurColor: context.colorTheme.backgroundColor ?? Colors.white,
-              child: Container(
-                width: 400,
-                height: 400,
-                margin: const EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                  border: Border.all(color: context.colorTheme.wallColor ?? Colors.white, width: 20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.5),
-                      blurRadius: 10,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Gif(
-                  image: const AssetImage("assets/images/cloud-4058_512.gif"),
-                  autostart: Autostart.no,
-                  placeholder: (context) => Container(
-                    width: 400,
-                    height: 400,
-                    color: context.colorTheme.wallColor?.withOpacity(0.8),
-                  ),
-                ),
-              ),
-            )
-                .animate()
-                .fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 500.ms)
-                .animate(controller: _gifController)
-                .moveY(end: -(MediaQuery.of(context).size.height), duration: 1000.ms, curve: Curves.easeInOut)
-                .fadeOut(duration: 500.ms, curve: Curves.easeInOut),
- */
