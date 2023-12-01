@@ -4,6 +4,7 @@ enum StatusCode { success, notFound, unAuthorized, badRequest, timeout, forbidde
 
 enum CommonStatus { initial, ready, success, loading, failure }
 
+enum HoverType { arrow, zoom }
 
 enum StockStatus {
   @JsonValue("재고부족")
@@ -16,8 +17,7 @@ enum StockStatus {
   const StockStatus();
 
   String get enumToData => switch (this) {
-    StockStatus.EMPTY => '매진',
-    StockStatus.FREE || StockStatus.NORMAL => '가능',
-  };
-
+        StockStatus.EMPTY => '매진',
+        StockStatus.FREE || StockStatus.NORMAL => '가능',
+      };
 }

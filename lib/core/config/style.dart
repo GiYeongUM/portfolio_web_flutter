@@ -47,6 +47,8 @@ extension BuildContextExtensions on BuildContext {
   bool get isDesktop => ResponsiveBreakpoints.of(this).isDesktop;
 
   AppLocalizations get localization => AppLocalizations.of(this)!;
+
+  double get stepHeight => MediaQuery.of(this).size.height / 4;
 }
 
 @immutable
@@ -57,6 +59,7 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
     this.backgroundColor,
     this.wallColor,
     this.primaryColor,
+    this.reversePrimaryColor,
     this.pointBackgroundColor,
     this.pointBackgroundGradient = const [],
     this.floorColor,
@@ -69,6 +72,7 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
   final Color? pointBackgroundColor;
   final List<Color>? pointBackgroundGradient;
   final Color? wallColor;
+  final Color? reversePrimaryColor;
   final Color? primaryColor;
   final Color? floorColor;
   final Color? foregroundTextColor;
@@ -96,6 +100,7 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
     ],
     wallColor: blue1,
     primaryColor: blue1,
+    reversePrimaryColor: white,
     floorColor: floor,
     foregroundTextColor: blue1,
     reverseColor: black1,
@@ -112,6 +117,7 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
     ],
     wallColor: blue1,
     primaryColor: green1,
+    reversePrimaryColor: blue1,
     floorColor: black3,
     foregroundTextColor: white,
     reverseColor: white,

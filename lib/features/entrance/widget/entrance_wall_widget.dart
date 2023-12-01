@@ -80,7 +80,7 @@ class EntranceWallWidget extends StatelessWidget {
   double calculateWallHeight(BuildContext context) {
     if (!context.isDesktop) return MediaQuery.of(context).size.width / 4.5;
     if (MediaQuery.of(context).size.width / 4 < MediaQuery.of(context).size.height / 3) {
-      return MediaQuery.of(context).size.height / 4;
+      return context.stepHeight;
     } else {
       return MediaQuery.of(context).size.width / 4;
     }
