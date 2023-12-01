@@ -52,20 +52,23 @@ class IPhoneWidget extends StatelessWidget {
                         child: child,
                       ),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(120 * constraints.maxWidth / 1320),
-                          color: black.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(80 * constraints.maxWidth / 1320),
+                          color: black.withOpacity(0.3),
                         ),
-                        margin: EdgeInsets.symmetric(horizontal: 56 * constraints.maxWidth / 1320),
+                        margin: EdgeInsets.symmetric(horizontal: 24 * constraints.maxWidth / 1320),
                         height: 300 * constraints.maxWidth / 1320,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            SizedBox(height: 220 * constraints.maxWidth / 1320, child: Image.asset("assets/icons/ic_phone.png")),
-                            SizedBox(height: 220 * constraints.maxWidth / 1320, child: Image.asset("assets/icons/ic_message.png")),
-                            SizedBox(height: 220 * constraints.maxWidth / 1320, child: Image.asset("assets/icons/ic_safari.png")),
-                            SizedBox(height: 220 * constraints.maxWidth / 1320, child: Image.asset("assets/icons/ic_kakao.png")),
+                            Image.asset("assets/icons/ic_phone.png"),
+                            const SizedBox(width: 16),
+                            Image.asset("assets/icons/ic_message.png"),
+                            const SizedBox(width: 16),
+                            Image.asset("assets/icons/ic_safari.png"),
+                            const SizedBox(width: 16),
+                            Image.asset("assets/icons/ic_kakao.png"),
                           ],
                         ),
                       ),
@@ -533,7 +536,7 @@ class IPhoneFrame extends StatelessWidget {
           decoration: ShapeDecoration(
             color: context.colorTheme.backgroundColor,
             shape: RoundedRectangleBorder(
-              side: BorderSide(width: 13 * constraints.maxWidth / 1320, color: Color(0xFF595163)),
+              side: BorderSide(width: 13 * constraints.maxWidth / 1320, color: const Color(0xFF595163)),
               borderRadius: BorderRadius.circular(176 * constraints.maxWidth / 1320),
             ),
           ),

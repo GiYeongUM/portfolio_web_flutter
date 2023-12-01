@@ -64,8 +64,8 @@ class IntroSkillsWidget extends StatelessWidget {
                         shrinkWrap: true,
                         crossAxisCount: 4,
                         childAspectRatio: 1,
-                        crossAxisSpacing: context.isDesktop ? 16 : 16,
-                        mainAxisSpacing: context.isDesktop ? 16 : 16,
+                        crossAxisSpacing: 16,
+                        mainAxisSpacing: 16,
                         children: skillImages()
                             .asMap()
                             .entries
@@ -95,7 +95,7 @@ class IntroSkillsWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
+              ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 500.ms).moveY(begin: 100, end: 0, duration: 500.ms, curve: Curves.easeInOut, delay: 500.ms),
             ),
           ),
         ],
