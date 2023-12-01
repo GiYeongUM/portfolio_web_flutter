@@ -21,7 +21,7 @@ class IntroSkillsWidget extends StatelessWidget {
             child: AnimatedTextKit(
               animatedTexts: [
                 TypewriterAnimatedText(
-                  "My development skills",
+                  "Development skills",
                   textStyle: context.textTheme.krSubtitle1,
                   speed: const Duration(milliseconds: 100),
                   cursor: '',
@@ -48,56 +48,53 @@ class IntroSkillsWidget extends StatelessWidget {
             ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 500.ms),
           ),
           const SizedBox(height: 56),
-          Container(
-            constraints: const BoxConstraints(maxWidth: 1200),
-            padding: const EdgeInsets.symmetric(horizontal: 40.0),
-            child: IPhoneWidget(
-              child: Column(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: GridView.count(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      crossAxisCount: 4,
-                      childAspectRatio: 1,
-                      crossAxisSpacing: 48,
-                      mainAxisSpacing: 48,
-                      children: skillImages()
-                          .asMap()
-                          .entries
-                          .map(
-                            (e) => HoverChangeWidget(
-                              type: HoverType.zoom,
-                              animatedChild: AspectRatio(
-                                aspectRatio: 1,
-                                child: Container(
-                                  padding: const EdgeInsets.all(16),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(16),
-                                    color: context.colorTheme.foregroundColor,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: context.colorTheme.primaryColor?.withOpacity(0.5) ?? white.withOpacity(0.5),
-                                        blurRadius: 16,
-                                        offset: const Offset(0, 8),
-                                      ),
-                                    ],
-                                  ),
-                                  alignment: Alignment.center,
-                                  child: Image.asset(
-                                    e.value,
-                                    color: e.key == 2 ? context.colorTheme.reverseColor : null,
+          Align(
+            alignment: context.isDesktop ? Alignment.centerLeft : Alignment.centerLeft,
+            child: Container(
+              width: context.isDesktop ? MediaQuery.of(context).size.width / 2 : double.infinity,
+              constraints: const BoxConstraints(maxWidth: 1200),
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: IPhoneWidget(
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: GridView.count(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        crossAxisCount: 4,
+                        childAspectRatio: 1,
+                        crossAxisSpacing: context.isDesktop ? 16 : 16,
+                        mainAxisSpacing: context.isDesktop ? 16 : 16,
+                        children: skillImages()
+                            .asMap()
+                            .entries
+                            .map(
+                              (e) => HoverChangeWidget(
+                                type: HoverType.zoom,
+                                animatedChild: AspectRatio(
+                                  aspectRatio: 1,
+                                  child: Container(
+                                    padding: EdgeInsets.all(context.isDesktop ? 16 : 8),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16),
+                                      color: context.colorTheme.foregroundColor,
+                                    ),
+                                    alignment: Alignment.center,
+                                    child: Image.asset(
+                                      e.value,
+                                      color: e.key == 2 ? context.colorTheme.reverseColor : null,
+                                    ),
                                   ),
                                 ),
+                                delay: (e.key * 100).ms,
                               ),
-                              delay: (e.key * 100).ms,
-                            ),
-                          )
-                          .toList(),
+                            )
+                            .toList(),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

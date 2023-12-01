@@ -29,10 +29,11 @@ class IPhoneWidget extends StatelessWidget {
                 decoration: ShapeDecoration(
                   color: white,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(context.isDesktop ? 180 : 100),
+                    borderRadius: BorderRadius.circular(180 * constraints.maxWidth / 1320),
                   ),
                 ),
                 child: IPhoneFrame(
+                  constraints: constraints,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -51,12 +52,22 @@ class IPhoneWidget extends StatelessWidget {
                         child: child,
                       ),
                       Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(context.isDesktop ? 120 : 60),
+                          borderRadius: BorderRadius.circular(120 * constraints.maxWidth / 1320),
                           color: black.withOpacity(0.5),
                         ),
                         margin: EdgeInsets.symmetric(horizontal: 56 * constraints.maxWidth / 1320),
                         height: 300 * constraints.maxWidth / 1320,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SizedBox(height: 220 * constraints.maxWidth / 1320, child: Image.asset("assets/icons/ic_phone.png")),
+                            SizedBox(height: 220 * constraints.maxWidth / 1320, child: Image.asset("assets/icons/ic_message.png")),
+                            SizedBox(height: 220 * constraints.maxWidth / 1320, child: Image.asset("assets/icons/ic_safari.png")),
+                            SizedBox(height: 220 * constraints.maxWidth / 1320, child: Image.asset("assets/icons/ic_kakao.png")),
+                          ],
+                        ),
                       ),
                       SizedBox(height: 88 * constraints.maxWidth / 1320),
                     ],
@@ -115,8 +126,8 @@ class IPhonePowerButton extends StatelessWidget {
       decoration: const ShapeDecoration(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(2),
-            bottomLeft: Radius.circular(2),
+            topRight: Radius.circular(2),
+            bottomRight: Radius.circular(2),
           ),
         ),
       ),
@@ -492,8 +503,9 @@ class IphoneVolumeButton extends StatelessWidget {
 }
 
 class IPhoneFrame extends StatelessWidget {
-  const IPhoneFrame({Key? key, required this.child}) : super(key: key);
+  const IPhoneFrame({Key? key, required this.child, required this.constraints}) : super(key: key);
 
+  final BoxConstraints constraints;
   final Widget child;
 
   @override
@@ -502,18 +514,18 @@ class IPhoneFrame extends StatelessWidget {
       decoration: ShapeDecoration(
         shape: RoundedRectangleBorder(
           side: const BorderSide(width: 5, color: Color(0xFF27232D)),
-          borderRadius: BorderRadius.circular(context.isDesktop ? 180 : 100),
+          borderRadius: BorderRadius.circular(180 * constraints.maxWidth / 1320),
         ),
       ),
       child: Container(
         decoration: ShapeDecoration(
           shape: RoundedRectangleBorder(
             side: BorderSide(
-              width: 5,
+              width: 5 * constraints.maxWidth / 1320,
               strokeAlign: BorderSide.strokeAlignOutside,
               color: const Color(0xFF89789A).withOpacity(0.9),
             ),
-            borderRadius: BorderRadius.circular(context.isDesktop ? 178 : 98),
+            borderRadius: BorderRadius.circular(178 * constraints.maxWidth / 1320),
           ),
         ),
         child: Container(
@@ -521,8 +533,8 @@ class IPhoneFrame extends StatelessWidget {
           decoration: ShapeDecoration(
             color: context.colorTheme.backgroundColor,
             shape: RoundedRectangleBorder(
-              side: const BorderSide(width: 13, color: Color(0xFF595163)),
-              borderRadius: BorderRadius.circular(context.isDesktop ? 176 : 96),
+              side: BorderSide(width: 13 * constraints.maxWidth / 1320, color: Color(0xFF595163)),
+              borderRadius: BorderRadius.circular(176 * constraints.maxWidth / 1320),
             ),
           ),
           child: Container(
@@ -534,7 +546,7 @@ class IPhoneFrame extends StatelessWidget {
                   strokeAlign: BorderSide.strokeAlignOutside,
                   color: const Color(0xFF646464).withOpacity(0.8),
                 ),
-                borderRadius: BorderRadius.circular(context.isDesktop ? 160 : 80),
+                borderRadius: BorderRadius.circular(160 * constraints.maxWidth / 1320),
               ),
             ),
             child: child,
