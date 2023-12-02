@@ -6,13 +6,14 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../core/core.dart';
 
 class HoverChangeWidget extends StatefulWidget {
-  const HoverChangeWidget({Key? key, this.header, this.animatedChild, this.delay, this.route, this.type = HoverType.arrow}) : super(key: key);
+  const HoverChangeWidget({Key? key, this.header, this.animatedChild, this.delay, this.route, this.type = HoverType.arrow, this.onClick}) : super(key: key);
 
   final Widget? header;
   final Widget? animatedChild;
   final Duration? delay;
   final String? route;
   final HoverType type;
+  final Function()? onClick;
 
   @override
   State<HoverChangeWidget> createState() => HoverChangeWidgetState();
@@ -48,7 +49,7 @@ class HoverChangeWidgetState extends State<HoverChangeWidget> with TickerProvide
       child: InkWell(
         onTap: () {
           if (isHover) {
-            _route(widget.route);
+            _onClick(widget.route);
           } else {
             _hoverAnimation(firstDelay: 0.ms, route: true);
           }
@@ -64,7 +65,8 @@ class HoverChangeWidgetState extends State<HoverChangeWidget> with TickerProvide
     ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: widget.delay).moveY(duration: 500.ms, curve: Curves.easeInOut, begin: 100, end: 0, delay: widget.delay);
   }
 
-  _route(String? route) {
+  _onClick(String? route) {
+    if (widget.onClick != null) widget.onClick?.call();
     if (route == null) return;
     if (route.contains('http')) {
       launchUrl(Uri.parse(route));
@@ -80,7 +82,7 @@ class HoverChangeWidgetState extends State<HoverChangeWidget> with TickerProvide
           isHover = true;
         });
         await _controller.forward().then((value) async {
-          if (route) _route(widget.route);
+          if (route) _onClick(widget.route);
           Future.delayed(secondDelay, () {
             if (isHover && _controller.status != AnimationStatus.dismissed) {
               setState(() {

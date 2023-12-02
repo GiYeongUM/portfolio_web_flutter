@@ -13,3 +13,9 @@ class PageChanged extends IntroEvent {
 class Done extends IntroEvent {
   const Done();
 }
+
+class ItemChanged extends IntroEvent {
+  const ItemChanged({this.item});
+
+  final String? item;
+}

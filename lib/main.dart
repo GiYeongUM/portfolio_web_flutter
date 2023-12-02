@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:giyeong_um_porfolio_page/features/error/ui/error_page.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:url_strategy/url_strategy.dart';
 
@@ -17,11 +18,27 @@ final router = AppRouter();
 main() {
   AppConfig.init(
     callback: () {
+      FlutterError.onError = (FlutterErrorDetails details) {
+        FlutterError.dumpErrorToConsole(details);
+      };
       runApp(const App());
+
       return;
     },
   );
 }
+
+class ErrorWidget extends StatelessWidget {
+  const ErrorWidget({required this.errorDetails, super.key});
+  final FlutterErrorDetails errorDetails;
+  @override
+  Widget build(BuildContext context) {
+    return ErrorPage(
+      errorMessage: errorDetails.exceptionAsString(),
+    );
+  }
+}
+
 
 class App extends StatelessWidget {
   const App({super.key});

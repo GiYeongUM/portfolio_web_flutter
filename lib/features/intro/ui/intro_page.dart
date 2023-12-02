@@ -54,7 +54,9 @@ class IntroPage extends StatelessWidget {
                       IntroStepWidget(
                         onPrevious: () => context.read<IntroBloc>().add(const PageChanged(page: 1)),
                         onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 3)),
-                        child: const IntroSkillsWidget(),
+                        child: IntroSkillsWidget(
+                          onItemClick: (item) => context.read<IntroBloc>().add(ItemChanged()),
+                        ),
                       ),
                       IntroStepWidget(
                         onPrevious: () => context.read<IntroBloc>().add(const PageChanged(page: 2)),
