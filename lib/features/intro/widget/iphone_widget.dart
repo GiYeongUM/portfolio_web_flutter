@@ -72,7 +72,7 @@ class IPhoneWidget extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(height: 88 * constraints.maxWidth / 1320),
+                      SizedBox(height: 80 * constraints.maxWidth / 1320),
                     ],
                   ),
                 ),

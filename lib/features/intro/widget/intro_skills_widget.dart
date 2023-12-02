@@ -54,7 +54,8 @@ class IntroSkillsWidget extends StatelessWidget {
           Align(
             alignment: context.isDesktop ? Alignment.centerLeft : Alignment.centerLeft,
             child: Container(
-              constraints: BoxConstraints(maxWidth: 1200, maxHeight: context.isDesktop ? (MediaQuery.of(context).size.height * 3 / 4) : double.infinity),
+              width: context.isDesktop ? MediaQuery.of(context).size.width / 2 : double.infinity,
+              constraints:  const BoxConstraints(maxWidth: 800),
               padding: EdgeInsets.symmetric(horizontal: context.isDesktop ? 16 : 40),
               child: IPhoneWidget(
                 child: Column(
@@ -65,8 +66,8 @@ class IntroSkillsWidget extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         crossAxisCount: 4,
-                        crossAxisSpacing: 24,
-                        mainAxisSpacing: 24,
+                        crossAxisSpacing: context.isDesktop ? 24 : 32,
+                        mainAxisSpacing: context.isDesktop ? 24 : 32,
                         childAspectRatio: 0.7,
                         children: SkillItem.values.asMap()
                             .entries
@@ -80,7 +81,7 @@ class IntroSkillsWidget extends StatelessWidget {
                                     AspectRatio(
                                       aspectRatio: 1,
                                       child: Container(
-                                        padding: EdgeInsets.all(context.isDesktop ? 16 : 8),
+                                        padding: const EdgeInsets.all(16),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(16),
                                           color: context.colorTheme.foregroundColor,
@@ -92,7 +93,7 @@ class IntroSkillsWidget extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    const SizedBox(height: 8),
+                                    const SizedBox(height: 4),
                                     AutoSizeText(e.value.name, style: context.textTheme.krBody4, maxLines: 1),
                                   ],
                                 ),
