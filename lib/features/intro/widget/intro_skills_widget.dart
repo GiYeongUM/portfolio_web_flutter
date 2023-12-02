@@ -1,4 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:giyeong_um_porfolio_page/features/features.dart';
@@ -64,29 +65,36 @@ class IntroSkillsWidget extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         crossAxisCount: 4,
-                        childAspectRatio: 1,
-                        crossAxisSpacing: 16,
-                        mainAxisSpacing: 16,
+                        crossAxisSpacing: 24,
+                        mainAxisSpacing: 24,
+                        childAspectRatio: 0.7,
                         children: SkillItem.values.asMap()
                             .entries
                             .map(
                               (e) => HoverChangeWidget(
                                 type: HoverType.zoom,
                                 onClick: () => onItemClick?.call(e.value),
-                                animatedChild: AspectRatio(
-                                  aspectRatio: 1,
-                                  child: Container(
-                                    padding: EdgeInsets.all(context.isDesktop ? 16 : 8),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(16),
-                                      color: context.colorTheme.foregroundColor,
+                                animatedChild: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    AspectRatio(
+                                      aspectRatio: 1,
+                                      child: Container(
+                                        padding: EdgeInsets.all(context.isDesktop ? 16 : 8),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(16),
+                                          color: context.colorTheme.foregroundColor,
+                                        ),
+                                        alignment: Alignment.center,
+                                        child: Image.asset(
+                                          e.value.imageUrl ?? '',
+                                          color: e.key == 2 ? context.colorTheme.reverseColor : null,
+                                        ),
+                                      ),
                                     ),
-                                    alignment: Alignment.center,
-                                    child: Image.asset(
-                                      e.value.imageUrl ?? '',
-                                      color: e.key == 2 ? context.colorTheme.reverseColor : null,
-                                    ),
-                                  ),
+                                    const SizedBox(height: 8),
+                                    AutoSizeText(e.value.name, style: context.textTheme.krBody4, maxLines: 1),
+                                  ],
                                 ),
                                 delay: (e.key * 100).ms,
                               ),

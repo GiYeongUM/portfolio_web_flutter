@@ -37,7 +37,7 @@ class IPhoneWidget extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(height: 56 * constraints.maxWidth / 1320),
+                      SizedBox(height: 48 * constraints.maxWidth / 1320),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
@@ -47,7 +47,7 @@ class IPhoneWidget extends StatelessWidget {
                           Expanded(flex: 1, child: Center(child: IPhoneStatusBar(constraints: constraints))),
                         ],
                       ),
-                      SizedBox(height: 160 * constraints.maxWidth / 1320),
+                      SizedBox(height: 80 * constraints.maxWidth / 1320),
                       Expanded(
                         child: child,
                       ),
