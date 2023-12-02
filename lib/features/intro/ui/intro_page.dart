@@ -5,7 +5,6 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../core/core.dart';
 import '../../features.dart';
 import '../bloc/intro_bloc.dart';
-import '../widget/chair_widget.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({Key? key, this.onPop}) : super(key: key);
@@ -31,41 +30,36 @@ class IntroPage extends StatelessWidget {
               });
             },
             builder: (context, state) {
-              return Stack(
+              return PageView(
+                pageSnapping: context.isMobile,
+                controller: pageController,
+                physics: getScrollPhysics(context, state.status),
+                scrollDirection: Axis.vertical,
                 children: [
-                  PageView(
-                    pageSnapping: context.isMobile,
-                    controller: pageController,
-                    physics: getScrollPhysics(context, state.status),
-                    scrollDirection: Axis.vertical,
-                    children: [
-                      IntroTitleWidget(
-                        onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 1)),
-                        onContact: () => launchUrl(Uri(
-                          scheme: 'mailto',
-                          path: 'eomky2005@gmail.com',
-                        )),
-                      ),
-                      IntroStepWidget(
-                        onPrevious: () => context.read<IntroBloc>().add(const PageChanged(page: 0)),
-                        onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 2)),
-                        child: const IntroStrengthWidget(),
-                      ),
-                      IntroStepWidget(
-                        onPrevious: () => context.read<IntroBloc>().add(const PageChanged(page: 1)),
-                        onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 3)),
-                        child: IntroSkillsWidget(
-                          onItemClick: (item) => context.read<IntroBloc>().add(ItemChanged()),
-                        ),
-                      ),
-                      IntroStepWidget(
-                        onPrevious: () => context.read<IntroBloc>().add(const PageChanged(page: 2)),
-                        onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 4)),
-                        child: const IntroStrengthWidget(),
-                      ),
-                    ],
+                  IntroTitleWidget(
+                    onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 1)),
+                    onContact: () => launchUrl(Uri(
+                      scheme: 'mailto',
+                      path: 'eomky2005@gmail.com',
+                    )),
                   ),
-                  ChairWidget(page: state.page, status: state.status),
+                  IntroStepWidget(
+                    onPrevious: () => context.read<IntroBloc>().add(const PageChanged(page: 0)),
+                    onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 2)),
+                    child: const IntroStrengthWidget(),
+                  ),
+                  IntroStepWidget(
+                    onPrevious: () => context.read<IntroBloc>().add(const PageChanged(page: 1)),
+                    onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 3)),
+                    child: IntroSkillsWidget(
+                      onItemClick: (item) => context.read<IntroBloc>().add(ItemChanged(item: item)),
+                    ),
+                  ),
+                  IntroStepWidget(
+                    onPrevious: () => context.read<IntroBloc>().add(const PageChanged(page: 2)),
+                    onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 4)),
+                    child: const IntroStrengthWidget(),
+                  ),
                 ],
               );
             },

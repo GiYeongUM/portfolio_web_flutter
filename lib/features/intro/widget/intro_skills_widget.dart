@@ -8,7 +8,7 @@ import '../../../core/core.dart';
 class IntroSkillsWidget extends StatelessWidget {
   const IntroSkillsWidget({Key? key, this.onItemClick}) : super(key: key);
 
-  final Function(String)? onItemClick;
+  final Function(SkillItem)? onItemClick;
 
   @override
   Widget build(BuildContext context) {
@@ -67,12 +67,12 @@ class IntroSkillsWidget extends StatelessWidget {
                         childAspectRatio: 1,
                         crossAxisSpacing: 16,
                         mainAxisSpacing: 16,
-                        children: skillImages()
+                        children: SkillItem.values.asMap()
                             .entries
                             .map(
                               (e) => HoverChangeWidget(
                                 type: HoverType.zoom,
-                                onClick: () => onItemClick?.call(e.key.$2),
+                                onClick: () => onItemClick?.call(e.value),
                                 animatedChild: AspectRatio(
                                   aspectRatio: 1,
                                   child: Container(
@@ -83,12 +83,12 @@ class IntroSkillsWidget extends StatelessWidget {
                                     ),
                                     alignment: Alignment.center,
                                     child: Image.asset(
-                                      e.value,
-                                      color: e.key.$2 == 'apple' ? context.colorTheme.reverseColor : null,
+                                      e.value.imageUrl ?? '',
+                                      color: e.key == 2 ? context.colorTheme.reverseColor : null,
                                     ),
                                   ),
                                 ),
-                                delay: (e.key.$1 * 100).ms,
+                                delay: (e.key * 100).ms,
                               ),
                             )
                             .toList(),

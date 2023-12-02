@@ -17,5 +17,5 @@ class Done extends IntroEvent {
 class ItemChanged extends IntroEvent {
   const ItemChanged({this.item});
 
-  final String? item;
+  final SkillItem? item;
 }
