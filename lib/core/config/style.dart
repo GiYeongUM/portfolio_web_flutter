@@ -6,7 +6,7 @@ import 'l10n/app_localizations.dart';
 
 part 'generated/style.g.dart';
 
-const fontFamily = 'Satoshi';
+const fontFamily = 'NotoSansKR';
 const pointFontFamily = 'Sharpie';
 const lightBackground = Color(0xffFFFEFB);
 const pointLightBackground = Color(0xffFFE607);

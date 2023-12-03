@@ -32,5 +32,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String get about_me => '독보적인 장점';
 
   @override
+  String get development_skills => '개발 스킬';
+
+  @override
   String get skill => ' 프론트엔드 개발에서는 주로 Flutter와 Kotlin, Swift를 사용하여 동적이고 직관적인 사용자 인터페이스를 구축합니다. 백엔드 영역에서는 Nest.js 프레임워크를 활용하여 안정적이고 확장 가능한 서버를 구축합니다. 운영 측면에서는 Firebase를 활용하여 모니터링 및 성능 측정 환경을 구축하고, Fastlane을 이용하여 애플리케이션의 빌드, 배포를 자동화합니다. 또한, Shorebird와 같은 도구를 활용하여 앱의 Code Push를 수행합니다. Git을 통한 협업과 버전 관리를 체계적으로 수행하며, Jira와 Confluence를 이용하여 프로젝트를 계획하고 추진합니다.';
 }

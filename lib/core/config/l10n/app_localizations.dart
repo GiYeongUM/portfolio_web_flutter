@@ -147,6 +147,12 @@ abstract class AppLocalizations {
   /// **'About me'**
   String get about_me;
 
+  /// No description provided for @development_skills.
+  ///
+  /// In en, this message translates to:
+  /// **'Development skills'**
+  String get development_skills;
+
   /// No description provided for @skill.
   ///
   /// In en, this message translates to:
