@@ -75,30 +75,18 @@ flutter:
     - assets/images/
 
   fonts:
-    - family: Satoshi
+    - family: NotoSansKR
       fonts:
-        - asset: assets/fonts/Satoshi_OTF/Satoshi-Black.otf
+        - asset: assets/fonts/NotoSansKR_OTF/NotoSansKR-Black.otf
           weight: 900
-        - asset: assets/fonts/Satoshi_OTF/Satoshi-BlackItalic.otf
-          weight: 900
-          style: italic
-        - asset: assets/fonts/Satoshi_OTF/Satoshi-Bold.otf
+        - asset: assets/fonts/NotoSansKR_OTF/NotoSansKR-Bold.otf
           weight: 700
-        - asset: assets/fonts/Satoshi_OTF/Satoshi-BoldItalic.otf
-          weight: 700
-          style: italic
-        - asset: assets/fonts/Satoshi_OTF/Satoshi-Italic.otf
-          style: italic
-        - asset: assets/fonts/Satoshi_OTF/Satoshi-LightItalic.otf
-          weight: 300
-          style: italic
-        - asset: assets/fonts/Satoshi_OTF/Satoshi-Medium.otf
+        - asset: assets/fonts/NotoSansKR_OTF/NotoSansKR-Medium.otf
           weight: 500
-        - asset: assets/fonts/Satoshi_OTF/Satoshi-MediumItalic.otf
-          weight: 500
-          style: italic
-        - asset: assets/fonts/Satoshi_OTF/Satoshi-Regular.otf
+        - asset: assets/fonts/NotoSansKR_OTF/NotoSansKR-Regular.otf
           weight: 400
+        - asset: assets/fonts/NotoSansKR_OTF/NotoSansKR-Light.otf
+          weight: 300
     - family: Sharpie
       fonts:
         - asset: assets/fonts/Sharpie_OTF/Sharpie-Extrabold.otf

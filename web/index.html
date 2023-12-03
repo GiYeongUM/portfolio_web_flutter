@@ -37,6 +37,12 @@
         var serviceWorkerVersion = null;
     </script>
 
+    <script>
+        function preloadImage(url) {
+            new Image().src = url;
+        }
+    </script>
+
     <script defer src="flutter.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -63,12 +69,7 @@
             opacity: 0;
         }
 
-        body.show {
-            opacity: 1;
-        }
-
         #lottie-animation {
-            opacity: 1;
             position: fixed;
             top: 50%;
             left: 50%;
@@ -76,14 +77,17 @@
             transition: opacity 500ms ease-out;
         }
 
-        #lottie-animation.loaded {
-            opacity: 0;
-        }
+
     </style>
 </head>
 
 <body style="overflow: hidden">
-<div id="lottie-animation"></div>
+<div id="lottie-animation">
+</div>
+<div style="display: flex; align-items: center;">
+    <p id="loading-text">Connecting firebase</p>
+    <p id="dot-text"></p>
+</div>
 
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
@@ -99,10 +103,22 @@
         renderer: 'svg',
         loop: true,
         autoplay: true,
-        path: 'assets/loading_lottie.json', // 애니메이션 파일의 경로
+        path: 'assets/loading_lottie.json',
+        width: 100,
+        height: 100,
     });
 </script>
 <script>
+    let loadingText = document.getElementById('loading-text');
+    let dotCount = 0;
+    let dotText = document.getElementById('dot-text');
+
+    // 0.3초마다 실행되는 타이머를 설정합니다.
+    const timer = setInterval(function () {
+        // '.'의 개수를 증가시킵니다.
+        dotCount = (dotCount + 1) % 4;
+        dotText.textContent = '.'.repeat(dotCount);
+    }, 300);
     const firebaseConfig = {
         apiKey: 'AIzaSyCCuJ117ShY3UxXm3sn5QY0sraJ7J0JlmQ',
         appId: '1:1060449311282:web:807af2c27e58ffcbf77a2b',
@@ -113,22 +129,68 @@
         measurementId: 'G-DHFZHS0VJG',
     };
     firebase.initializeApp(firebaseConfig);
+    loadingText.textContent = 'Loading images ';
     window.addEventListener('load', function () {
         const loadingAnimation = document.querySelector('#lottie-animation');
+        const images = [
+            'assets/images/ability.png',
+            'assets/images/allYIcon.png',
+            'assets/images/brandCareIcon.png',
+            'assets/images/cloud_animation.gif',
+            'assets/images/e-MilitaryIcon.png',
+            'assets/images/knowledge.png',
+            'assets/images/logo_gyu.svg',
+            'assets/images/modakIcon.png',
+            'assets/images/needs-app-icon.png',
+            'assets/images/porcheIcon.png',
+            'assets/images/shareFitIcon.png',
+            'assets/images/tyranno_title_logo.svg',
+            'assets/images/ui_ux.png',
+            'assets/icons/ic_android.png',
+            'assets/icons/ic_apple.png',
+            'assets/icons/ic_battery.svg',
+            'assets/icons/ic_cell.svg',
+            'assets/icons/ic_confluence.png',
+            'assets/icons/ic_dart.png',
+            'assets/icons/ic_fastlane.png',
+            'assets/icons/ic_figma.png',
+            'assets/icons/ic_firebase.png',
+            'assets/icons/ic_flutter.png',
+            'assets/icons/ic_git.png',
+            'assets/icons/ic_gitlab.png',
+            'assets/icons/ic_jira.png',
+            'assets/icons/ic_kakao.png',
+            'assets/icons/ic_kotlin.png',
+            'assets/icons/ic_message.png',
+            'assets/icons/ic_nest.png',
+            'assets/icons/ic_notion.png',
+            'assets/icons/ic_phone.png',
+            'assets/icons/ic_safari.png',
+            'assets/icons/ic_shorebird.png',
+            'assets/icons/ic_slack.png',
+            'assets/icons/ic_swift.png',
+            'assets/icons/ic_swiftui.png',
+            'assets/icons/ic_typescript.png',
+            'assets/icons/ic_wifi.svg',
+
+        ];
+
+        for (let i = 0; i < images.length; i++) {
+            preloadImage(images[i]);
+        }
+        loadingText.textContent = 'Loading Flutter files ';
         _flutter.loader.loadEntrypoint({
             entrypointUrl: "/main.dart.js",
             serviceWorker: {
                 serviceWorkerVersion: serviceWorkerVersion,
             }
         }).then(function (engineInitializer) {
+            clearInterval(timer);
+            dotText.textContent = '';
+            loadingText.textContent = '';
             return engineInitializer.initializeEngine();
         }).then(function (appRunner) {
-            loadingAnimation.classList.add('loaded');
-            document.body.classList.add('loaded');
-            window.setTimeout(function () {
-                document.body.classList.add('show');
-                return appRunner.runApp();
-            }, 1000);
+            return appRunner.runApp();
         });
     });
 </script>

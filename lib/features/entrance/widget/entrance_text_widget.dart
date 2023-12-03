@@ -6,8 +6,7 @@ import '../../../core/core.dart';
 import '../../../main.dart';
 
 class EntranceTextWidget extends StatelessWidget {
-  const EntranceTextWidget({Key? key, required this.animation, required this.onNext, required this.locale, this.onLocaleChanged, required this.gifController, required this.afterController})
-      : super(key: key);
+  const EntranceTextWidget({super.key, required this.animation, required this.onNext, required this.locale, this.onLocaleChanged, required this.gifController, required this.afterController});
 
   final Animation<double> animation;
   final AnimationController gifController;
@@ -32,32 +31,47 @@ class EntranceTextWidget extends StatelessWidget {
                     const Spacer(),
                     Column(
                       children: [
-                        SizedBox(height: context.isDesktop ? 184 : 104),
-                        Text(
-                          context.localization.hi,
-                          style:
-                              context.textTheme.krPoint1.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: calculateFontSize(animation, 32, context.isDesktop ? 78 : 56)),
+                        SizedBox(height: context.isDesktop ? 184 : 88),
+                        Text.rich(
+                          TextSpan(
+                            style: context.textTheme.krBody4,
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: context.localization.hi,
+                                style: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: calculateFontSize(animation, 32, context.isDesktop ? 78 : 48)),
+                              ),
+                              TextSpan(
+                                text: '!',
+                                style: context.textTheme.krPoint1.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: calculateFontSize(animation, 32, context.isDesktop ? 78 : 48)),
+                              ),
+                            ],
+                          ),
+                          textAlign: TextAlign.left,
                         ),
                         SizedBox(height: context.isDesktop ? 80 : 24),
                         InkWell(
                           onTap: () => onNext.call(),
-                          child: Icon(
-                            Icons.arrow_forward_sharp,
-                            color: context.colorTheme.reverseColor,
-                            size: context.isDesktop ? 104 : 80,
-                          )
-                              .animate(controller: afterController, autoPlay: false)
-                              .moveX(begin: -32, end: 0, duration: 500.ms, delay: 1.seconds, curve: Curves.easeInOut)
-                              .fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 1.seconds)
-                              .animate(onComplete: (controller) => controller.repeat())
-                              .shimmer(duration: 1000.ms, delay: 2000.ms, color: context.colorTheme.reversePrimaryColor),
+                          child: Hero(
+                            tag: 'arrow',
+                            child: SvgImage(
+                              'assets/icons/ic_arrow_forward.svg',
+                              width: context.isDesktop ? 104 : 64,
+                              height: context.isDesktop ? 104 : 64,
+                              color: context.colorTheme.reverseColor,
+                            )
+                                .animate(controller: afterController, autoPlay: false)
+                                .moveX(begin: -32, end: 0, duration: 500.ms, delay: 1.seconds, curve: Curves.easeInOut)
+                                .fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 1.seconds)
+                                .animate(onComplete: (controller) => controller.repeat())
+                                .shimmer(duration: 1000.ms, delay: 2000.ms, color: context.colorTheme.reversePrimaryColor),
+                          ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 16),
                     const Spacer(),
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: context.isDesktop ? 64 : 24 , vertical: context.isDesktop ? 64 : 16),
+                      margin: EdgeInsets.symmetric(horizontal: context.isDesktop ? 64 : 24, vertical: context.isDesktop ? 64 : 16),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -96,7 +110,7 @@ class EntranceTextWidget extends StatelessWidget {
                   left: 0,
                   child: Container(
                       alignment: Alignment.centerLeft,
-                      margin: EdgeInsets.symmetric(horizontal: context.isDesktop ? 64 : 24 , vertical: context.isDesktop ? 64 : 16),
+                      margin: EdgeInsets.symmetric(horizontal: context.isDesktop ? 64 : 24, vertical: context.isDesktop ? 64 : 16),
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton2<Locale>(
                           isExpanded: false,
@@ -112,13 +126,13 @@ class EntranceTextWidget extends StatelessWidget {
                                 child: Icon(
                                   Icons.g_translate_outlined,
                                   color: Colors.white,
-                                  size: context.isDesktop ? 32 : 24,
+                                  size: context.isDesktop ? 32 : 16,
                                 ),
                               ),
                               const SizedBox(width: 8),
                               Text(
                                 'Language',
-                                style: context.textTheme.krBody5.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: context.isDesktop ? 32 : 24),
+                                style: context.textTheme.krBody5.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: context.isDesktop ? 32 : 16),
                               ),
                             ],
                           ),
@@ -162,7 +176,6 @@ class EntranceTextWidget extends StatelessWidget {
           );
         });
   }
-
 
   double calculateFontSize(Animation<double> animation, double minFontSize, double maxFontSize) {
     double fontSize = minFontSize + (maxFontSize - minFontSize) * animation.value;

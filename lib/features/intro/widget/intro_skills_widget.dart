@@ -24,7 +24,7 @@ class IntroSkillsWidget extends StatelessWidget {
             child: AnimatedTextKit(
               animatedTexts: [
                 TypewriterAnimatedText(
-                  "Development skills",
+                  context.localization.development_skills,
                   textStyle: context.textTheme.krSubtitle1,
                   speed: const Duration(milliseconds: 100),
                   cursor: '',
@@ -35,8 +35,7 @@ class IntroSkillsWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          Align(
-              alignment: Alignment.centerLeft,child: Text(context.localization.skill, style: context.textTheme.krBody4)).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 500.ms),
+          Align(alignment: Alignment.centerLeft, child: Text(context.localization.skill, style: context.textTheme.krBody4)).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 500.ms),
           const SizedBox(height: 56),
           Align(
             alignment: context.isDesktop ? Alignment.centerLeft : Alignment.topCenter,

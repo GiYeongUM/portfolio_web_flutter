@@ -96,7 +96,7 @@ abstract class AppLocalizations {
   /// No description provided for @hi.
   ///
   /// In en, this message translates to:
-  /// **'Hej !'**
+  /// **'Hej '**
   String get hi;
 
   /// No description provided for @as_a.
@@ -146,6 +146,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'About me'**
   String get about_me;
+
+  /// No description provided for @development_skills.
+  ///
+  /// In en, this message translates to:
+  /// **'Development skills'**
+  String get development_skills;
 
   /// No description provided for @skill.
   ///

@@ -5,7 +5,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get hi => 'Hej !';
+  String get hi => 'Hej ';
 
   @override
   String get as_a => 'As a';
@@ -30,6 +30,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get about_me => 'About me';
+
+  @override
+  String get development_skills => 'Development skills';
 
   @override
   String get skill => ' Front-end developments mainly use Flutter, Kotlin, and Swift to build dynamic and intuitive user interfaces. In the back-end area, the Nest.js framework is used to build reliable and scalable servers. On the operational side, Firebase is used to build monitoring and performance measurement environments, and Fastlane is used to automate the build and deployment of applications. In addition, it uses tools such as Shorebird to carry out the code push of the app. It systematically performs collaboration and version management through Git, and plans and promotes projects using Jira and Confluence.';

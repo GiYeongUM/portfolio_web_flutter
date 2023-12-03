@@ -8,6 +8,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:giyeong_um_porfolio_page/core/core.dart';
 import 'package:giyeong_um_porfolio_page/features/error/ui/error_page.dart';
+import 'package:lottie/lottie.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:url_strategy/url_strategy.dart';
 
@@ -110,7 +111,8 @@ class App extends StatelessWidget {
               ),
             ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 500.ms);
           } else {
-            return const SizedBox();
+            return Center(
+              child: Lottie.asset('assets/json/loading_lottie.json', width: 100, height: 100));
           }
         });
   }
