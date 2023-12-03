@@ -6,13 +6,15 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../core/core.dart';
 
 class HoverChangeWidget extends StatefulWidget {
-  const HoverChangeWidget({Key? key, this.header, this.animatedChild, this.delay, this.route, this.type = HoverType.arrow}) : super(key: key);
+  const HoverChangeWidget({super.key, this.header, this.animatedChild, this.delay, this.route, this.type = HoverType.arrow, this.onClick, this.onInitialAnimation = true});
 
   final Widget? header;
   final Widget? animatedChild;
   final Duration? delay;
   final String? route;
   final HoverType type;
+  final Function()? onClick;
+  final bool onInitialAnimation;
 
   @override
   State<HoverChangeWidget> createState() => HoverChangeWidgetState();
@@ -26,7 +28,9 @@ class HoverChangeWidgetState extends State<HoverChangeWidget> with TickerProvide
 
   @override
   void initState() {
-    _hoverAnimation(firstDelay: (widget.delay ?? 0.ms) + 300.ms);
+    if (widget.onInitialAnimation) {
+      _hoverAnimation(firstDelay: (widget.delay ?? 0.ms) + 300.ms);
+    }
     super.initState();
   }
 
@@ -48,7 +52,7 @@ class HoverChangeWidgetState extends State<HoverChangeWidget> with TickerProvide
       child: InkWell(
         onTap: () {
           if (isHover) {
-            _route(widget.route);
+            _onClick(widget.route);
           } else {
             _hoverAnimation(firstDelay: 0.ms, route: true);
           }
@@ -64,7 +68,8 @@ class HoverChangeWidgetState extends State<HoverChangeWidget> with TickerProvide
     ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: widget.delay).moveY(duration: 500.ms, curve: Curves.easeInOut, begin: 100, end: 0, delay: widget.delay);
   }
 
-  _route(String? route) {
+  _onClick(String? route) {
+    if (widget.onClick != null) widget.onClick?.call();
     if (route == null) return;
     if (route.contains('http')) {
       launchUrl(Uri.parse(route));
@@ -80,7 +85,7 @@ class HoverChangeWidgetState extends State<HoverChangeWidget> with TickerProvide
           isHover = true;
         });
         await _controller.forward().then((value) async {
-          if (route) _route(widget.route);
+          if (route) _onClick(widget.route);
           Future.delayed(secondDelay, () {
             if (isHover && _controller.status != AnimationStatus.dismissed) {
               setState(() {
@@ -118,6 +123,27 @@ class HoverChangeWidgetState extends State<HoverChangeWidget> with TickerProvide
               return Transform.scale(
                 scale: 1 + _animation.value * 0.1,
                 child: child,
+              );
+            },
+            child: animatedChild);
+      case HoverType.shadow:
+        return AnimatedBuilder(
+            animation: _controller,
+            builder: (context, child) {
+              return Transform.translate(
+                offset: Offset(-_animation.value * 2, -_animation.value * 7),
+                child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(_animation.value * 0.5), // 그림자 색상
+                      spreadRadius: _animation.value, // 그림자 퍼짐 정도
+                      blurRadius: _animation.value, // 그림자 흐림 정도
+                      offset: Offset(_animation.value * 2, _animation.value * 7), // 그림자 위치
+                    ),
+                  ],
+                ),child: child),
               );
             },
             child: animatedChild);

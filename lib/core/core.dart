@@ -10,6 +10,7 @@ export 'config/logger.dart';
 export 'config/router.dart';
 export 'config/style.dart';
 export 'config/theme.dart';
+export 'config/l10n/app_localizations.dart';
 export 'domain/model/exception_model.dart';
 export 'domain/model/meta_model.dart';
 export 'domain/model/model.dart';

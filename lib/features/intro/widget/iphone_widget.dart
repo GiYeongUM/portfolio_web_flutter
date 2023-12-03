@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:giyeong_um_porfolio_page/core/core.dart';
 
 class IPhoneWidget extends StatelessWidget {
-  const IPhoneWidget({Key? key, this.child = const SizedBox()}) : super(key: key);
+  const IPhoneWidget({super.key, this.child = const SizedBox()});
 
   final Widget child;
 
@@ -13,7 +13,7 @@ class IPhoneWidget extends StatelessWidget {
         child: LayoutBuilder(builder: (context, constraints) {
           return Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(210),
+              borderRadius: BorderRadius.circular(210 * constraints.maxWidth / 1320),
               boxShadow: [
                 BoxShadow(
                   color: black.withOpacity(0.25),
@@ -37,7 +37,7 @@ class IPhoneWidget extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(height: 56 * constraints.maxWidth / 1320),
+                      SizedBox(height: 48 * constraints.maxWidth / 1320),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
@@ -47,7 +47,7 @@ class IPhoneWidget extends StatelessWidget {
                           Expanded(flex: 1, child: Center(child: IPhoneStatusBar(constraints: constraints))),
                         ],
                       ),
-                      SizedBox(height: 160 * constraints.maxWidth / 1320),
+                      SizedBox(height: 80 * constraints.maxWidth / 1320),
                       Expanded(
                         child: child,
                       ),
@@ -72,7 +72,7 @@ class IPhoneWidget extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(height: 88 * constraints.maxWidth / 1320),
+                      SizedBox(height: 80 * constraints.maxWidth / 1320),
                     ],
                   ),
                 ),
@@ -84,7 +84,7 @@ class IPhoneWidget extends StatelessWidget {
 }
 
 class IPhonePhysicalButton extends StatelessWidget {
-  const IPhonePhysicalButton({Key? key, required this.child, required this.constraints}) : super(key: key);
+  const IPhonePhysicalButton({super.key, required this.child, required this.constraints});
 
   final Widget child;
 
@@ -116,7 +116,7 @@ class IPhonePhysicalButton extends StatelessWidget {
 }
 
 class IPhonePowerButton extends StatelessWidget {
-  const IPhonePowerButton({Key? key, required this.constraints}) : super(key: key);
+  const IPhonePowerButton({super.key, required this.constraints});
 
   final BoxConstraints constraints;
 
@@ -137,7 +137,7 @@ class IPhonePowerButton extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            left: 1,
+            right: 1,
             top: 1,
             child: Container(
               width: 10 * constraints.maxWidth / 1320,
@@ -155,7 +155,7 @@ class IPhonePowerButton extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: 2,
+            right: 2,
             top: 2,
             child: Container(
               width: 8 * constraints.maxWidth / 1320,
@@ -173,7 +173,7 @@ class IPhonePowerButton extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: 2,
+            right: 2,
             top: 2,
             child: Container(
               width: 9 * constraints.maxWidth / 1320,
@@ -191,7 +191,7 @@ class IPhonePowerButton extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: 2,
+            right: 2,
             top: 312,
             child: Container(
               width: 9 * constraints.maxWidth / 1320,
@@ -208,6 +208,7 @@ class IPhonePowerButton extends StatelessWidget {
               ),
             ),
           ),
+
         ],
       ),
     );
@@ -215,7 +216,7 @@ class IPhonePowerButton extends StatelessWidget {
 }
 
 class IPhoneMuteButton extends StatelessWidget {
-  const IPhoneMuteButton({Key? key, required this.constraints}) : super(key: key);
+  const IPhoneMuteButton({super.key, required this.constraints});
 
   final BoxConstraints constraints;
 
@@ -314,7 +315,7 @@ class IPhoneMuteButton extends StatelessWidget {
 }
 
 class IphoneVolumeButton extends StatelessWidget {
-  const IphoneVolumeButton({Key? key, required this.constraints}) : super(key: key);
+  const IphoneVolumeButton({super.key, required this.constraints});
   final BoxConstraints constraints;
 
   @override
@@ -506,7 +507,7 @@ class IphoneVolumeButton extends StatelessWidget {
 }
 
 class IPhoneFrame extends StatelessWidget {
-  const IPhoneFrame({Key? key, required this.child, required this.constraints}) : super(key: key);
+  const IPhoneFrame({super.key, required this.child, required this.constraints});
 
   final BoxConstraints constraints;
   final Widget child;
@@ -561,7 +562,7 @@ class IPhoneFrame extends StatelessWidget {
 }
 
 class IPhoneDynamicIsland extends StatelessWidget {
-  const IPhoneDynamicIsland({Key? key, required this.constraints}) : super(key: key);
+  const IPhoneDynamicIsland({super.key, required this.constraints});
 
   final BoxConstraints constraints;
 
@@ -585,7 +586,7 @@ class IPhoneDynamicIsland extends StatelessWidget {
 }
 
 class IPhoneTime extends StatelessWidget {
-  const IPhoneTime({Key? key, required this.constraints}) : super(key: key);
+  const IPhoneTime({super.key, required this.constraints});
 
   final BoxConstraints constraints;
 
@@ -605,7 +606,7 @@ class IPhoneTime extends StatelessWidget {
 }
 
 class IPhoneStatusBar extends StatelessWidget {
-  const IPhoneStatusBar({Key? key, required this.constraints}) : super(key: key);
+  const IPhoneStatusBar({super.key, required this.constraints});
 
   final BoxConstraints constraints;
 

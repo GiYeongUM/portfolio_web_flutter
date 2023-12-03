@@ -1,13 +1,15 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
+
+import 'l10n/app_localizations.dart';
 
 part 'generated/style.g.dart';
 
-const krFontFamily = 'LINESeedKR';
+const fontFamily = 'Satoshi';
+const pointFontFamily = 'Sharpie';
 const lightBackground = Color(0xffFFFEFB);
-const pointLightBackground = Colors.amber;
+const pointLightBackground = Color(0xffFFE607);
 const pointLightBackground2 = Color(0xFFFFCA28);
 const pointLightBackground3 = Color(0xFFFFD54F);
 const foreground = Color(0xffF5F2FD);
@@ -30,7 +32,7 @@ const green1 = Color(0xff00F5A0);
 const green2 = Color(0xffBDEBEA);
 const red1 = Color(0xffF76363);
 const violet = Color(0xff5222D0);
-const floor = Color(0xffecd2b2);
+const floor = Color(0xffD7DCDE);
 const wood = Color(0xFF884326);
 
 extension BuildContextExtensions on BuildContext {
@@ -167,33 +169,33 @@ class KRTextTheme extends ThemeExtension<KRTextTheme> {
   }
 
   static const light = KRTextTheme(
-    krPoint1: TextStyle(fontFamily: krFontFamily, fontSize: 24, fontWeight: FontWeight.w700, color: black3),
-    krButton1: TextStyle(fontFamily: krFontFamily, fontSize: 16, fontWeight: FontWeight.w700, color: black3),
-    krSubtitle1: TextStyle(fontFamily: krFontFamily, fontSize: 18, fontWeight: FontWeight.w700, color: black3),
-    krSubtitle2: TextStyle(fontFamily: krFontFamily, fontSize: 20, fontWeight: FontWeight.w700, color: black3),
-    krBody1: TextStyle(fontFamily: krFontFamily, fontSize: 14, fontWeight: FontWeight.w400, color: black3),
-    krBody2: TextStyle(fontFamily: krFontFamily, fontSize: 14, fontWeight: FontWeight.w700, color: black3),
-    krBody3: TextStyle(fontFamily: krFontFamily, fontSize: 14, fontWeight: FontWeight.w300, color: black3),
-    krBody4: TextStyle(fontFamily: krFontFamily, fontSize: 16, fontWeight: FontWeight.w400, color: black3),
-    krBody5: TextStyle(fontFamily: krFontFamily, fontSize: 16, fontWeight: FontWeight.w700, color: black3),
-    krSubtext1: TextStyle(fontFamily: krFontFamily, fontSize: 10, fontWeight: FontWeight.w400, color: black3),
-    krSubtext2: TextStyle(fontFamily: krFontFamily, fontSize: 13, fontWeight: FontWeight.w700, color: black3),
-    krBottom: TextStyle(fontFamily: krFontFamily, fontSize: 12, fontWeight: FontWeight.w400, color: black3),
+    krPoint1: TextStyle(fontFamily: pointFontFamily, fontSize: 24, fontWeight: FontWeight.w800, color: black3),
+    krButton1: TextStyle(fontFamily: fontFamily, fontSize: 16, fontWeight: FontWeight.w700, color: black3),
+    krSubtitle1: TextStyle(fontFamily: fontFamily, fontSize: 18, fontWeight: FontWeight.w700, color: black3),
+    krSubtitle2: TextStyle(fontFamily: fontFamily, fontSize: 20, fontWeight: FontWeight.w700, color: black3),
+    krBody1: TextStyle(fontFamily: fontFamily, fontSize: 14, fontWeight: FontWeight.w400, color: black3),
+    krBody2: TextStyle(fontFamily: fontFamily, fontSize: 14, fontWeight: FontWeight.w700, color: black3),
+    krBody3: TextStyle(fontFamily: fontFamily, fontSize: 14, fontWeight: FontWeight.w300, color: black3),
+    krBody4: TextStyle(fontFamily: fontFamily, fontSize: 16, fontWeight: FontWeight.w400, color: black3),
+    krBody5: TextStyle(fontFamily: fontFamily, fontSize: 16, fontWeight: FontWeight.w700, color: black3),
+    krSubtext1: TextStyle(fontFamily: fontFamily, fontSize: 10, fontWeight: FontWeight.w400, color: black3),
+    krSubtext2: TextStyle(fontFamily: fontFamily, fontSize: 13, fontWeight: FontWeight.w700, color: black3),
+    krBottom: TextStyle(fontFamily: fontFamily, fontSize: 12, fontWeight: FontWeight.w400, color: black3),
   );
 
   static const dark = KRTextTheme(
-    krPoint1: TextStyle(fontFamily: krFontFamily, fontSize: 24, fontWeight: FontWeight.w700, color: white),
-    krButton1: TextStyle(fontFamily: krFontFamily, fontSize: 16, fontWeight: FontWeight.w700, color: white),
-    krSubtitle1: TextStyle(fontFamily: krFontFamily, fontSize: 18, fontWeight: FontWeight.w700, color: white),
-    krSubtitle2: TextStyle(fontFamily: krFontFamily, fontSize: 20, fontWeight: FontWeight.w400, color: white),
-    krBody1: TextStyle(fontFamily: krFontFamily, fontSize: 14, fontWeight: FontWeight.w400, color: white),
-    krBody2: TextStyle(fontFamily: krFontFamily, fontSize: 14, fontWeight: FontWeight.w700, color: white),
-    krBody3: TextStyle(fontFamily: krFontFamily, fontSize: 14, fontWeight: FontWeight.w400, color: white),
-    krBody4: TextStyle(fontFamily: krFontFamily, fontSize: 16, fontWeight: FontWeight.w400, color: white),
-    krBody5: TextStyle(fontFamily: krFontFamily, fontSize: 16, fontWeight: FontWeight.w700, color: white),
-    krSubtext1: TextStyle(fontFamily: krFontFamily, fontSize: 10, fontWeight: FontWeight.w400, color: white),
-    krSubtext2: TextStyle(fontFamily: krFontFamily, fontSize: 13, fontWeight: FontWeight.w700, color: white),
-    krBottom: TextStyle(fontFamily: krFontFamily, fontSize: 12, fontWeight: FontWeight.w400, color: white),
+    krPoint1: TextStyle(fontFamily: pointFontFamily, fontSize: 24, fontWeight: FontWeight.w800, color: white),
+    krButton1: TextStyle(fontFamily: fontFamily, fontSize: 16, fontWeight: FontWeight.w700, color: white),
+    krSubtitle1: TextStyle(fontFamily: fontFamily, fontSize: 18, fontWeight: FontWeight.w700, color: white),
+    krSubtitle2: TextStyle(fontFamily: fontFamily, fontSize: 20, fontWeight: FontWeight.w400, color: white),
+    krBody1: TextStyle(fontFamily: fontFamily, fontSize: 14, fontWeight: FontWeight.w400, color: white),
+    krBody2: TextStyle(fontFamily: fontFamily, fontSize: 14, fontWeight: FontWeight.w700, color: white),
+    krBody3: TextStyle(fontFamily: fontFamily, fontSize: 14, fontWeight: FontWeight.w400, color: white),
+    krBody4: TextStyle(fontFamily: fontFamily, fontSize: 16, fontWeight: FontWeight.w400, color: white),
+    krBody5: TextStyle(fontFamily: fontFamily, fontSize: 16, fontWeight: FontWeight.w700, color: white),
+    krSubtext1: TextStyle(fontFamily: fontFamily, fontSize: 10, fontWeight: FontWeight.w400, color: white),
+    krSubtext2: TextStyle(fontFamily: fontFamily, fontSize: 13, fontWeight: FontWeight.w700, color: white),
+    krBottom: TextStyle(fontFamily: fontFamily, fontSize: 12, fontWeight: FontWeight.w400, color: white),
   );
 }
 

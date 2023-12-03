@@ -12,6 +12,7 @@ class IntroBloc extends Bloc<CommonEvent, IntroState> with StreamTransform {
     on<Initial>(_onInitial);
     on<PageChanged>(_onPageChanged, transformer: throttleDroppable());
     on<Done>(_onDone);
+    on<ItemChanged>(_onItemChanged);
   }
 
   _onInitial(Initial event, Emitter<IntroState> emit) {}
@@ -22,5 +23,10 @@ class IntroBloc extends Bloc<CommonEvent, IntroState> with StreamTransform {
 
   _onDone(Done event, Emitter<IntroState> emit) {
     emit(state.copyWith(status: CommonStatus.success));
+  }
+
+  _onItemChanged(ItemChanged event, Emitter<IntroState> emit) {
+    emit(state.copyWith(item: event.item));
+
   }
 }

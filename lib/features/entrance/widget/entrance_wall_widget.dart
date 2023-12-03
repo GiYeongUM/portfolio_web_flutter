@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:giyeong_um_porfolio_page/core/config/config.dart';
 
+import '../../features.dart';
+
 class EntranceWallWidget extends StatelessWidget {
   const EntranceWallWidget({super.key, required this.animation});
 
@@ -13,6 +15,7 @@ class EntranceWallWidget extends StatelessWidget {
     return Stack(
       alignment: Alignment.center,
       children: [
+        EntranceFloorWidget(animation: animation),
         if (animation.value != 1)
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -82,7 +85,7 @@ class EntranceWallWidget extends StatelessWidget {
     if (MediaQuery.of(context).size.width / 4 < MediaQuery.of(context).size.height / 3) {
       return context.stepHeight;
     } else {
-      return MediaQuery.of(context).size.width / 4;
+      return MediaQuery.of(context).size.height / 4;
     }
   }
 

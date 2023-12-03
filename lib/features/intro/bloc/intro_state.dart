@@ -8,8 +8,11 @@ class IntroState extends CommonState {
     super.hasReachedMax,
     super.page = 0,
     super.query,
+    this.item,
   });
 
+  final SkillItem? item;
+
   @override
-  List<Object?> get props => [...super.props];
+  List<Object?> get props => [...super.props, item];
 }

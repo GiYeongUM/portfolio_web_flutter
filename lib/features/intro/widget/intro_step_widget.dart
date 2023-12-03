@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import '../../../core/core.dart';
 
 class IntroStepWidget extends StatelessWidget {
-  const IntroStepWidget({Key? key, required this.onPrevious, required this.onNext, required this.child}) : super(key: key);
+  const IntroStepWidget({super.key, required this.onPrevious, required this.onNext, required this.child, required this.color});
 
   final Function() onPrevious;
   final Function() onNext;
   final Widget child;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     final ScrollController scrollController = ScrollController(initialScrollOffset: context.stepHeight);
     return Container(
-      decoration: BoxDecoration(
-        color: context.colorTheme.backgroundColor,
-      ),
+      color: color,
       child: ScrollConfiguration(
         behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
         child: SingleChildScrollView(

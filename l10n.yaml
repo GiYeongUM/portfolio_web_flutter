@@ -1,3 +1,5 @@
 arb-dir: assets/i18n
 template-arb-file: intl_en.arb
 output-localization-file: app_localizations.dart
+output-dir: lib/core/config/l10n
+synthetic-package: false
