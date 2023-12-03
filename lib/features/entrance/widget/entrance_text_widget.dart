@@ -32,11 +32,32 @@ class EntranceTextWidget extends StatelessWidget {
                     const Spacer(),
                     Column(
                       children: [
-                        SizedBox(height: context.isDesktop ? 184 : 104),
-                        Text(
-                          context.localization.hi,
-                          style:
-                              context.textTheme.krPoint1.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: calculateFontSize(animation, 32, context.isDesktop ? 78 : 56)),
+                        SizedBox(height: context.isDesktop ? 184 : 88),
+                        Text.rich(
+                          TextSpan(
+                            style: context.textTheme.krBody4,
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: context.localization.hi,
+                                style:
+                                context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: calculateFontSize(animation, 32, context.isDesktop ? 78 : 48)),
+                              ),
+                              TextSpan(
+                                text: '!',
+                                style:
+                                context.textTheme.krPoint1.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: calculateFontSize(animation, 32, context.isDesktop ? 78 : 48)),
+                              ),
+                              TextSpan(
+                                text: 'Flutter',
+                                style: context.textTheme.krSubtitle1,
+                              ),
+                              TextSpan(
+                                text: ' ${context.localization.intro}',
+                              ),
+                            ],
+                          ),
+                          style: context.textTheme.krBody4,
+                          textAlign: TextAlign.left,
                         ),
                         SizedBox(height: context.isDesktop ? 80 : 24),
                         InkWell(
@@ -44,7 +65,7 @@ class EntranceTextWidget extends StatelessWidget {
                           child: Icon(
                             Icons.arrow_forward_sharp,
                             color: context.colorTheme.reverseColor,
-                            size: context.isDesktop ? 104 : 80,
+                            size: context.isDesktop ? 104 : 64,
                           )
                               .animate(controller: afterController, autoPlay: false)
                               .moveX(begin: -32, end: 0, duration: 500.ms, delay: 1.seconds, curve: Curves.easeInOut)
@@ -112,13 +133,13 @@ class EntranceTextWidget extends StatelessWidget {
                                 child: Icon(
                                   Icons.g_translate_outlined,
                                   color: Colors.white,
-                                  size: context.isDesktop ? 32 : 24,
+                                  size: context.isDesktop ? 32 : 16,
                                 ),
                               ),
                               const SizedBox(width: 8),
                               Text(
                                 'Language',
-                                style: context.textTheme.krBody5.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: context.isDesktop ? 32 : 24),
+                                style: context.textTheme.krBody5.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: context.isDesktop ? 32 : 16),
                               ),
                             ],
                           ),
