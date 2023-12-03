@@ -8,6 +8,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:giyeong_um_porfolio_page/core/core.dart';
 import 'package:giyeong_um_porfolio_page/features/error/ui/error_page.dart';
+import 'package:lottie/lottie.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:url_strategy/url_strategy.dart';
 
@@ -110,7 +111,8 @@ class App extends StatelessWidget {
               ),
             ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 500.ms);
           } else {
-            return const SizedBox();
+            return Center(
+              child: Lottie.asset('assets/json/loading_lottie.json', width: 100, height: 100));
           }
         });
   }
@@ -118,11 +120,11 @@ class App extends StatelessWidget {
   Future<bool> preCacheImages(BuildContext context) async {
     if(kDebugMode) return true;
     return Future.wait([
-      // precacheImage(const AssetImage('assets/images/cloud_animation.gif'), context),
-      // precacheImage(const AssetImage('assets/images/ui_ux.png'), context),
-      // precacheImage(const AssetImage('assets/images/knowledge.png'), context),
-      // precacheImage(const AssetImage('assets/images/ability.png'), context),
-      // for(final item in SkillItem.values) precacheImage(AssetImage('${item.imageUrl}'), context),
+      precacheImage(const AssetImage('assets/images/cloud_animation.gif'), context),
+      precacheImage(const AssetImage('assets/images/ui_ux.png'), context),
+      precacheImage(const AssetImage('assets/images/knowledge.png'), context),
+      precacheImage(const AssetImage('assets/images/ability.png'), context),
+      for(final item in SkillItem.values) precacheImage(AssetImage('${item.imageUrl}'), context),
     ]).then((value) => true).catchError((e) => false);
   }
 }
