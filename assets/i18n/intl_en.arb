@@ -1,7 +1,7 @@
 {
   "@@locale": "en",
   "@@last_modified": "2023-11-23T18:56:00.179848",
-  "hi": "Hej !",
+  "hi": "Hej ",
   "as_a": "As a",
   "contact" : "Contact with email",
   "intro": " developer specializing in multi-platform app development and an expert in implementing stable and efficient backends using NestJS. I focus on creating modern and performance-optimized apps through user-centric UI/UX design and robust server functionalities.",

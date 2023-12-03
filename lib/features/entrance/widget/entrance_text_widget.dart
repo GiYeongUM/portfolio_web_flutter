@@ -6,8 +6,7 @@ import '../../../core/core.dart';
 import '../../../main.dart';
 
 class EntranceTextWidget extends StatelessWidget {
-  const EntranceTextWidget({Key? key, required this.animation, required this.onNext, required this.locale, this.onLocaleChanged, required this.gifController, required this.afterController})
-      : super(key: key);
+  const EntranceTextWidget({super.key, required this.animation, required this.onNext, required this.locale, this.onLocaleChanged, required this.gifController, required this.afterController});
 
   final Animation<double> animation;
   final AnimationController gifController;
@@ -47,16 +46,8 @@ class EntranceTextWidget extends StatelessWidget {
                                 style:
                                 context.textTheme.krPoint1.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: calculateFontSize(animation, 32, context.isDesktop ? 78 : 48)),
                               ),
-                              TextSpan(
-                                text: 'Flutter',
-                                style: context.textTheme.krSubtitle1,
-                              ),
-                              TextSpan(
-                                text: ' ${context.localization.intro}',
-                              ),
                             ],
                           ),
-                          style: context.textTheme.krBody4,
                           textAlign: TextAlign.left,
                         ),
                         SizedBox(height: context.isDesktop ? 80 : 24),

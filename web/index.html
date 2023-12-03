@@ -37,6 +37,12 @@
         var serviceWorkerVersion = null;
     </script>
 
+    <script>
+        function preloadImage(url) {
+            new Image().src = url;
+        }
+    </script>
+
     <script defer src="flutter.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -100,6 +106,30 @@
         loop: true,
         autoplay: true,
         path: 'assets/loading_lottie.json', // 애니메이션 파일의 경로
+    });
+</script>
+<script>
+    window.addEventListener('load', function() {
+        // 이미지 URL들을 배열로 정의합니다.
+        const images = [
+            'assets/assets/images/ability.png',
+            'assets/assets/images/allYIcon.png',
+            'assets/assets/images/brandCareIcon.png',
+            'assets/assets/images/cloud_animation.gif
+            'assets/assets/images/e-MilitaryIcon.png',
+            'assets/assets/images/knowledge.png',
+            'assets/assets/images/logo_gyu.svg
+            'assets/assets/images/modakIcon.png',
+            'assets/assets/images/needs-app-icon.png',
+            'assets/assets/images/porcheIcon.png',
+            'assets/assets/images/shareFitIcon.png',
+            'assets/assets/images/tyranno_title_logo.svg',
+            'assets/assets/images/ui_ux.png',
+        ];
+
+        for (let i = 0; i < images.length; i++) {
+            preloadImage(images[i]);
+        }
     });
 </script>
 <script>
