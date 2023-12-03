@@ -34,32 +34,10 @@ class _EntrancePageState extends State<EntrancePage> with TickerProviderStateMix
       body: BlocBuilder<GlobalBloc, GlobalState>(
         builder: (context, state) {
           return Container(
-            decoration: BoxDecoration(
-              color: context.colorTheme.pointBackgroundColor,
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: context.colorTheme.pointBackgroundGradient ??
-                    [
-                      pointLightBackground3,
-                      pointLightBackground2,
-                      pointLightBackground,
-                    ],
-              ),
-            ),
+            decoration: BoxDecoration(color: context.colorTheme.pointBackgroundColor),
             child: Stack(
               alignment: Alignment.center,
               children: [
-                if (_animation.value != 1)
-                  AnimatedBuilder(
-                      animation: _animation,
-                      builder: (context, child) {
-                        return Container(
-                          decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.1 * (1 - _animation.value)),
-                          ),
-                        );
-                      }),
                 EntranceTextWidget(
                   animation: _animation,
                   afterController: _afterController,
@@ -72,7 +50,7 @@ class _EntrancePageState extends State<EntrancePage> with TickerProviderStateMix
                   },
                   gifController: _gifAnimationController,
                 ),
-                EntranceFloorWidget(animation: _animation),
+
                 EntranceWallWidget(animation: _animation),
               ],
             ),
@@ -80,11 +58,5 @@ class _EntrancePageState extends State<EntrancePage> with TickerProviderStateMix
         },
       ),
     );
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
   }
 }

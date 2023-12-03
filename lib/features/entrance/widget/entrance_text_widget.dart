@@ -30,15 +30,34 @@ class EntranceTextWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Spacer(),
-                    Text(
-                      'Hej!',
-                      style:
-                          context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: (context.textTheme.krSubtitle1.fontSize ?? 16) * (1 + 1.3 * animation.value)),
+                    Column(
+                      children: [
+                        const SizedBox(height: 184),
+                        Text(
+                          context.localization.hi,
+                          style:
+                              context.textTheme.krPoint1.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: calculateFontSize(animation, 32, 78)),
+                        ),
+                        const SizedBox(height: 80),
+                        InkWell(
+                          onTap: () => onNext.call(),
+                          child: Icon(
+                            Icons.arrow_forward_sharp,
+                            color: context.colorTheme.reverseColor,
+                            size: 104,
+                          )
+                              .animate(controller: afterController, autoPlay: false)
+                              .moveX(begin: -32, end: 0, duration: 500.ms, delay: 1.seconds, curve: Curves.easeInOut)
+                              .fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 1.seconds)
+                              .animate(onComplete: (controller) => controller.repeat())
+                              .shimmer(duration: 1000.ms, delay: 2000.ms, color: context.colorTheme.reversePrimaryColor),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 16),
                     const Spacer(),
                     Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                      margin: EdgeInsets.symmetric(horizontal: context.isDesktop ? 64 : 24 , vertical: context.isDesktop ? 64 : 16),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,7 +68,7 @@ class EntranceTextWidget extends StatelessWidget {
                             children: [
                               Text(
                                 "Get new perspectives",
-                                style: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor),
+                                style: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: 32),
                               )
                                   .animate(controller: afterController, autoPlay: false)
                                   .fadeIn(duration: 500.ms, curve: Curves.easeInOut)
@@ -58,7 +77,7 @@ class EntranceTextWidget extends StatelessWidget {
                               const SizedBox(height: 4),
                               Text(
                                 "via GiYeong UM",
-                                style: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor),
+                                style: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: 32),
                               )
                                   .animate(controller: afterController, autoPlay: false)
                                   .fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 300.ms)
@@ -66,32 +85,10 @@ class EntranceTextWidget extends StatelessWidget {
                                   .shimmer(duration: 1000.ms, delay: 3500.ms, color: context.colorTheme.reversePrimaryColor),
                             ],
                           ),
-                          InkWell(
-                            onTap: () => onNext.call(),
-                            child: Row(
-                              children: [
-                                Text(
-                                  'Explore',
-                                  style: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor),
-                                ),
-                                const SizedBox(width: 4),
-                                Icon(
-                                  Icons.arrow_forward,
-                                  color: context.colorTheme.foregroundTextColor,
-                                  size: 24,
-                                ),
-                              ],
-                            )
-                                .animate(controller: afterController, autoPlay: false)
-                                .moveX(begin: -32, end: 0, duration: 500.ms, delay: 1.seconds, curve: Curves.easeInOut)
-                                .fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 1.seconds)
-                                .animate(onComplete: (controller) => controller.repeat())
-                                .shimmer(duration: 1000.ms, delay: 2000.ms, color: context.colorTheme.reversePrimaryColor),
-                          ),
                         ],
                       ),
                     ),
-                    SizedBox(height: floorHeight(context)),
+                    // SizedBox(height: floorHeight(context)),
                   ],
                 ),
                 Positioned(
@@ -99,7 +96,7 @@ class EntranceTextWidget extends StatelessWidget {
                   left: 0,
                   child: Container(
                       alignment: Alignment.centerLeft,
-                      margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                      margin: EdgeInsets.symmetric(horizontal: context.isDesktop ? 64 : 24 , vertical: context.isDesktop ? 64 : 16),
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton2<Locale>(
                           isExpanded: false,
@@ -115,13 +112,13 @@ class EntranceTextWidget extends StatelessWidget {
                                 child: const Icon(
                                   Icons.g_translate_outlined,
                                   color: Colors.white,
-                                  size: 12,
+                                  size: 32,
                                 ),
                               ),
                               const SizedBox(width: 4),
                               Text(
                                 'Language',
-                                style: context.textTheme.krBody5.copyWith(color: context.colorTheme.foregroundTextColor),
+                                style: context.textTheme.krBody5.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: 32),
                               ),
                             ],
                           ),
@@ -164,6 +161,13 @@ class EntranceTextWidget extends StatelessWidget {
             ),
           );
         });
+  }
+
+
+  double calculateFontSize(Animation<double> animation, double minFontSize, double maxFontSize) {
+    double fontSize = minFontSize + (maxFontSize - minFontSize) * animation.value;
+
+    return fontSize;
   }
 
   double floorHeight(BuildContext context) {

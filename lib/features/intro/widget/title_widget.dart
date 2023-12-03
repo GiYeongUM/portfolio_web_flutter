@@ -15,11 +15,6 @@ class TitleWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: context.colorTheme.pointBackgroundColor,
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: context.colorTheme.pointBackgroundGradient ?? [],
-        ),
       ),
       child: LayoutBuilder(builder: (context, constraints) {
         return AnimatedSwitcher(
@@ -62,7 +57,7 @@ class TitleWidget extends StatelessWidget {
                   )
                 : Container(
                     key: ValueKey<bool>(constraints.maxWidth > 1200),
-                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 64, vertical: 16),
                     width: double.infinity,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -92,7 +87,7 @@ class TitleWidget extends StatelessWidget {
 }
 
 class TextTitle extends StatelessWidget {
-  const TextTitle({Key? key, required this.onContact}) : super(key: key);
+  const TextTitle({super.key, required this.onContact});
 
   final Function() onContact;
 
@@ -106,7 +101,7 @@ class TextTitle extends StatelessWidget {
           animatedTexts: [
             TypewriterAnimatedText(
               "Developer",
-              textStyle: context.textTheme.krSubtitle1,
+              textStyle: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.primaryColor, fontSize: 32),
               speed: const Duration(milliseconds: 100),
               cursor: '',
             ),
@@ -115,7 +110,7 @@ class TextTitle extends StatelessWidget {
           displayFullTextOnTap: true,
         ),
         const SizedBox(height: 16),
-        AutoSizeText('GiYeong UM', style: context.textTheme.krPoint1.copyWith(color: context.colorTheme.primaryColor, fontSize: 72), maxFontSize: 72, maxLines: 1)
+        AutoSizeText('GiYeong UM', style: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.primaryColor, fontSize: 80), maxFontSize: 80, maxLines: 1)
             .animate()
             .fade(duration: 500.ms, delay: 700.ms, curve: Curves.easeInOut)
             .moveY(delay: 700.ms, duration: 500.ms, curve: Curves.easeInOut, begin: -10, end: 0),

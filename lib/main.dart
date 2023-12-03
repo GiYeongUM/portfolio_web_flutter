@@ -3,15 +3,13 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:giyeong_um_porfolio_page/core/core.dart';
 import 'package:giyeong_um_porfolio_page/features/error/ui/error_page.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:url_strategy/url_strategy.dart';
 
-import 'core/bloc/common_event.dart';
-import 'core/config/config.dart';
 import 'features/global/bloc/global_bloc.dart';
 
 final router = AppRouter();
@@ -109,7 +107,7 @@ class App extends StatelessWidget {
                   },
                 ),
               ),
-            );
+            ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 500.ms);
           } else {
             return const SizedBox();
           }
