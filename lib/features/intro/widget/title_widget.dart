@@ -2,11 +2,12 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:giyeong_um_porfolio_page/features/features.dart';
 import '../../../core/core.dart';
 import 'package:lottie/lottie.dart';
 
 class TitleWidget extends StatelessWidget {
-  const TitleWidget({Key? key, required this.onContact}) : super(key: key);
+  const TitleWidget({super.key, required this.onContact});
 
   final Function() onContact;
 
@@ -37,15 +38,7 @@ class TitleWidget extends StatelessWidget {
                               child: Center(
                                 child: Lottie.asset(
                                   'assets/json/profile_lottie.json',
-                                  fit: BoxFit.fill,
-                                  delegates: LottieDelegates(
-                                    values: [
-                                      ValueDelegate.color(
-                                        const ['**', 'Fill 100', '**'],
-                                        value: context.colorTheme.primaryColor ?? violet,
-                                      ),
-                                    ],
-                                  ),
+                                  fit: BoxFit.contain,
                                 ),
                               ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 2000.ms),
                             )
@@ -57,24 +50,17 @@ class TitleWidget extends StatelessWidget {
                   )
                 : Container(
                     key: ValueKey<bool>(constraints.maxWidth > 1200),
-                    padding: const EdgeInsets.symmetric(horizontal: 64, vertical: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                     width: double.infinity,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Center(
                           child: Lottie.asset(
                             'assets/json/profile_lottie.json',
-                            fit: BoxFit.fill,
-                            height: MediaQuery.of(context).size.height * 0.3,
-                            delegates: LottieDelegates(
-                              values: [
-                                ValueDelegate.color(
-                                  const ['**', 'Fill 100', '**'],
-                                  value: context.colorTheme.primaryColor ?? violet,
-                                ),
-                              ],
-                            ),
+                            fit: BoxFit.contain,
+                            height: MediaQuery.of(context).size.height * 0.4,
                           ),
                         ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 700.ms),
                         TextTitle(onContact: onContact),
@@ -132,36 +118,51 @@ class TextTitle extends StatelessWidget {
           style: context.textTheme.krBody4,
           textAlign: TextAlign.left,
         ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 1200.ms),
-        SizedBox(height: context.isMobile ? 16 : 40),
-        InkWell(
-                onTap: () => onContact.call(),
-                child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                    decoration: BoxDecoration(color: context.colorTheme.primaryColor, borderRadius: BorderRadius.circular(8), boxShadow: [
-                      BoxShadow(
-                        color: black.withOpacity(0.25),
-                        spreadRadius: 0,
-                        blurRadius: 4,
-                        offset: const Offset(2, 4),
+        SizedBox(height: context.isMobile ? 24 : 40),
+        Stack(
+          children: [
+            Container(
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                decoration: BoxDecoration(
+                  color: context.colorTheme.primaryColor,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(context.localization.contact, style: context.textTheme.krButton1.copyWith(color: white)),
+                    const SizedBox(width: 8),
+                    const Icon(
+                      Icons.arrow_circle_right_rounded,
+                      color: white,
+                      size: 16,
+                    ),
+                  ],
+                )),
+            HoverChangeWidget(
+              type: HoverType.shadow,
+              onInitialAnimation: false,
+              onClick: () => onContact.call(),
+              animatedChild: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                  decoration: BoxDecoration(color: context.colorTheme.primaryColor, borderRadius: BorderRadius.circular(8)),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(context.localization.contact, style: context.textTheme.krButton1.copyWith(color: white)),
+                      const SizedBox(width: 8),
+                      const Icon(
+                        Icons.arrow_circle_right_rounded,
+                        color: white,
+                        size: 16,
                       ),
-                    ]),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text('Contact anytime', style: context.textTheme.krButton1.copyWith(color: white)),
-                        const SizedBox(width: 8),
-                        const Icon(
-                          Icons.arrow_circle_right_rounded,
-                          color: white,
-                          size: 16,
-                        ),
-                      ],
-                    )))
-            .animate()
-            .fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 1200.ms)
-            .animate(onPlay: (controller) => controller.repeat())
-            .shimmer(duration: 1200.ms, color: white.withOpacity(0.5), delay: 1000.ms, curve: Curves.easeInOut),
+                    ],
+                  )),
+            ),
+          ],
+        ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 1200.ms),
       ],
     );
   }

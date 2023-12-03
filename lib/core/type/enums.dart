@@ -2,7 +2,7 @@ enum StatusCode { success, notFound, unAuthorized, badRequest, timeout, forbidde
 
 enum CommonStatus { initial, ready, success, loading, failure }
 
-enum HoverType { arrow, zoom }
+enum HoverType { arrow, zoom, shadow }
 
 enum SkillItem {
   Flutter(imageUrl: 'assets/icons/ic_flutter.png', webUrl: 'https://flutter.dev/'),

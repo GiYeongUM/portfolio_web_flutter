@@ -7,7 +7,7 @@ import '../../features.dart';
 import '../bloc/intro_bloc.dart';
 
 class IntroPage extends StatelessWidget {
-  const IntroPage({Key? key, this.onPop}) : super(key: key);
+  const IntroPage({super.key, this.onPop});
 
   final Function()? onPop;
 
@@ -18,19 +18,18 @@ class IntroPage extends StatelessWidget {
       onPopInvoked: (pop) {
         onPop?.call();
       },
-      child: Scaffold(
-        backgroundColor: context.colorTheme.backgroundColor,
-        body: BlocProvider(
-          create: (context) => IntroBloc(),
-          child: BlocConsumer<IntroBloc, IntroState>(
-            listenWhen: (previous, current) => previous.page != current.page,
-            listener: (context, state) {
-              pageController.animateToPage(state.page, duration: const Duration(seconds: 1), curve: Curves.easeInOutCirc).then((value) {
-                context.read<IntroBloc>().add(const Done());
-              });
-            },
-            builder: (context, state) {
-              return PageView(
+      child: BlocProvider(
+        create: (context) => IntroBloc(),
+        child: BlocConsumer<IntroBloc, IntroState>(
+          listenWhen: (previous, current) => previous.page != current.page,
+          listener: (context, state) {
+            pageController.animateToPage(state.page, duration: const Duration(seconds: 1), curve: Curves.easeInOutCirc).then((value) {
+              context.read<IntroBloc>().add(const Done());
+            });
+          },
+          builder: (context, state) {
+            return Scaffold(
+              body: PageView(
                 pageSnapping: context.isMobile,
                 controller: pageController,
                 physics: getScrollPhysics(context, state.status),
@@ -44,11 +43,13 @@ class IntroPage extends StatelessWidget {
                     )),
                   ),
                   IntroStepWidget(
+                    color: context.colorTheme.pointBackgroundColor,
                     onPrevious: () => context.read<IntroBloc>().add(const PageChanged(page: 0)),
                     onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 2)),
                     child: const IntroStrengthWidget(),
                   ),
                   IntroStepWidget(
+                    color: context.colorTheme.backgroundColor,
                     onPrevious: () => context.read<IntroBloc>().add(const PageChanged(page: 1)),
                     onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 3)),
                     child: IntroSkillsWidget(
@@ -56,14 +57,15 @@ class IntroPage extends StatelessWidget {
                     ),
                   ),
                   IntroStepWidget(
+                    color: context.colorTheme.backgroundColor,
                     onPrevious: () => context.read<IntroBloc>().add(const PageChanged(page: 2)),
                     onNext: () => context.read<IntroBloc>().add(const PageChanged(page: 4)),
                     child: const IntroStrengthWidget(),
                   ),
                 ],
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ),
     );

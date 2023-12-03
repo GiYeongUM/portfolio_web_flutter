@@ -11,6 +11,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get as_a => '';
 
   @override
+  String get contact => '이메일로 연락하기';
+
+  @override
   String get intro => '멀티 플랫폼 앱 개발 전문 개발자이자 NestJS를 사용하여 안정적이고 효율적인 백엔드를 구현하는 전문가입니다. 사용자 중심의 UI/UX 설계와 강력한 서버 기능을 통해 현대적이고 성능에 최적화된 앱을 만드는 데 중점을 두고 있습니다.';
 
   @override
@@ -24,6 +27,9 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get strength_4 => ' 프로젝트를 통해 지속적인 코드 개선과 최적화에 대한 역량을 높였습니다. 프로젝트 수행 과정에서 코드의 가독성과 유지보수성을 향상시키기 위해 노력하며, 최신 개발 도구와 기술을 적용하여 프로젝트의 효율성을 높였습니다. 사용자 요구 사항의 변경에 빠르게 대응하고, 코드베이스의 성능을 최적화함으로써 프로젝트의 품질을 지속적으로 향상시켰습니다.';
+
+  @override
+  String get about_me => '독보적인 장점';
 
   @override
   String get skill => ' 프론트엔드 개발에서는 주로 Flutter와 Kotlin, Swift를 사용하여 동적이고 직관적인 사용자 인터페이스를 구축합니다. 백엔드 영역에서는 Nest.js 프레임워크를 활용하여 안정적이고 확장 가능한 서버를 구축합니다. 운영 측면에서는 Firebase를 활용하여 모니터링 및 성능 측정 환경을 구축하고, Fastlane을 이용하여 애플리케이션의 빌드, 배포를 자동화합니다. 또한, Shorebird와 같은 도구를 활용하여 앱의 Code Push를 수행합니다. Git을 통한 협업과 버전 관리를 체계적으로 수행하며, Jira와 Confluence를 이용하여 프로젝트를 계획하고 추진합니다.';

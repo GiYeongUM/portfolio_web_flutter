@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -115,6 +116,7 @@ class App extends StatelessWidget {
   }
 
   Future<bool> preCacheImages(BuildContext context) async {
+    if(kDebugMode) return true;
     return Future.wait([
       precacheImage(const AssetImage('assets/images/cloud_animation.gif'), context),
       precacheImage(const AssetImage('assets/images/ui_ux.png'), context),

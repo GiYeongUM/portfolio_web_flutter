@@ -1,5 +1,4 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:giyeong_um_porfolio_page/features/features.dart';
@@ -7,15 +6,16 @@ import 'package:giyeong_um_porfolio_page/features/features.dart';
 import '../../../core/core.dart';
 
 class IntroSkillsWidget extends StatelessWidget {
-  const IntroSkillsWidget({Key? key, this.onItemClick}) : super(key: key);
+  const IntroSkillsWidget({super.key, this.onItemClick});
 
   final Function(SkillItem)? onItemClick;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: context.colorTheme.backgroundColor,
       constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height),
-      margin: EdgeInsets.symmetric(horizontal: context.isDesktop ? 40 : 16, vertical: context.isDesktop ? 40 : 16),
+      padding: EdgeInsets.symmetric(horizontal: context.isDesktop ? 40 : 16, vertical: context.isDesktop ? 40 : 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -35,75 +35,52 @@ class IntroSkillsWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          IntrinsicHeight(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: 2,
-                  decoration: BoxDecoration(
-                    color: context.colorTheme.wallColor,
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Flexible(child: Text(context.localization.skill, style: context.textTheme.krBody4)),
-              ],
-            ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 500.ms),
-          ),
+          Align(
+              alignment: Alignment.centerLeft,child: Text(context.localization.skill, style: context.textTheme.krBody4)).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 500.ms),
           const SizedBox(height: 56),
           Align(
-            alignment: context.isDesktop ? Alignment.centerLeft : Alignment.centerLeft,
+            alignment: context.isDesktop ? Alignment.centerLeft : Alignment.topCenter,
             child: Container(
-              width: context.isDesktop ? MediaQuery.of(context).size.width / 2 : double.infinity,
-              constraints:  const BoxConstraints(maxWidth: 800),
+              width: context.isDesktop ? MediaQuery.of(context).size.width / 2 : null,
+              constraints: BoxConstraints(maxWidth: 800, maxHeight: context.isDesktop ? double.infinity : MediaQuery.of(context).size.height),
               padding: EdgeInsets.symmetric(horizontal: context.isDesktop ? 16 : 40),
               child: IPhoneWidget(
-                child: Column(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: GridView.count(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        crossAxisCount: 4,
-                        crossAxisSpacing: context.isDesktop ? 24 : 32,
-                        mainAxisSpacing: context.isDesktop ? 24 : 32,
-                        childAspectRatio: 0.7,
-                        children: SkillItem.values.asMap()
-                            .entries
-                            .map(
-                              (e) => HoverChangeWidget(
-                                type: HoverType.zoom,
-                                onClick: () => onItemClick?.call(e.value),
-                                animatedChild: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    AspectRatio(
-                                      aspectRatio: 1,
-                                      child: Container(
-                                        padding: const EdgeInsets.all(16),
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(8),
-                                          color: context.colorTheme.foregroundColor,
-                                        ),
-                                        alignment: Alignment.center,
-                                        child: Image.asset(
-                                          e.value.imageUrl ?? '',
-                                          color: e.key == 2 ? context.colorTheme.reverseColor : null,
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(height: 4),
-                                    AutoSizeText(e.value.name, style: context.textTheme.krBody4, maxLines: 1),
-                                  ],
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: GridView.count(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    crossAxisCount: 4,
+                    crossAxisSpacing: 24,
+                    mainAxisSpacing: 24,
+                    childAspectRatio: 1,
+                    children: SkillItem.values
+                        .asMap()
+                        .entries
+                        .map(
+                          (e) => HoverChangeWidget(
+                            type: HoverType.zoom,
+                            onClick: () => onItemClick?.call(e.value),
+                            animatedChild: AspectRatio(
+                              aspectRatio: 1,
+                              child: Container(
+                                padding: EdgeInsets.all(context.isDesktop ? 16 : 8),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: context.colorTheme.foregroundColor,
                                 ),
-                                delay: (e.key * 100).ms,
+                                alignment: Alignment.center,
+                                child: Image.asset(
+                                  e.value.imageUrl ?? '',
+                                  color: e.key == 2 ? context.colorTheme.reverseColor : null,
+                                ),
                               ),
-                            )
-                            .toList(),
-                      ),
-                    ),
-                  ],
+                            ),
+                            delay: (e.key * 100).ms,
+                          ),
+                        )
+                        .toList(),
+                  ),
                 ),
               ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 500.ms).moveY(begin: 100, end: 0, duration: 500.ms, curve: Curves.easeInOut, delay: 500.ms),
             ),

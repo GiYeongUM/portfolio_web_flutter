@@ -32,19 +32,19 @@ class EntranceTextWidget extends StatelessWidget {
                     const Spacer(),
                     Column(
                       children: [
-                        const SizedBox(height: 184),
+                        SizedBox(height: context.isDesktop ? 184 : 104),
                         Text(
                           context.localization.hi,
                           style:
-                              context.textTheme.krPoint1.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: calculateFontSize(animation, 32, 78)),
+                              context.textTheme.krPoint1.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: calculateFontSize(animation, 32, context.isDesktop ? 78 : 56)),
                         ),
-                        const SizedBox(height: 80),
+                        SizedBox(height: context.isDesktop ? 80 : 24),
                         InkWell(
                           onTap: () => onNext.call(),
                           child: Icon(
                             Icons.arrow_forward_sharp,
                             color: context.colorTheme.reverseColor,
-                            size: 104,
+                            size: context.isDesktop ? 104 : 80,
                           )
                               .animate(controller: afterController, autoPlay: false)
                               .moveX(begin: -32, end: 0, duration: 500.ms, delay: 1.seconds, curve: Curves.easeInOut)
@@ -68,7 +68,7 @@ class EntranceTextWidget extends StatelessWidget {
                             children: [
                               Text(
                                 "Get new perspectives",
-                                style: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: 32),
+                                style: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: context.isDesktop ? 32 : 24),
                               )
                                   .animate(controller: afterController, autoPlay: false)
                                   .fadeIn(duration: 500.ms, curve: Curves.easeInOut)
@@ -77,7 +77,7 @@ class EntranceTextWidget extends StatelessWidget {
                               const SizedBox(height: 4),
                               Text(
                                 "via GiYeong UM",
-                                style: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: 32),
+                                style: context.textTheme.krSubtitle1.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: context.isDesktop ? 32 : 24),
                               )
                                   .animate(controller: afterController, autoPlay: false)
                                   .fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 300.ms)
@@ -109,16 +109,16 @@ class EntranceTextWidget extends StatelessWidget {
                                   color: context.colorTheme.wallColor,
                                 ),
                                 padding: const EdgeInsets.all(4),
-                                child: const Icon(
+                                child: Icon(
                                   Icons.g_translate_outlined,
                                   color: Colors.white,
-                                  size: 32,
+                                  size: context.isDesktop ? 32 : 24,
                                 ),
                               ),
-                              const SizedBox(width: 4),
+                              const SizedBox(width: 8),
                               Text(
                                 'Language',
-                                style: context.textTheme.krBody5.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: 32),
+                                style: context.textTheme.krBody5.copyWith(color: context.colorTheme.foregroundTextColor, fontSize: context.isDesktop ? 32 : 24),
                               ),
                             ],
                           ),

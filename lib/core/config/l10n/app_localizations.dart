@@ -105,6 +105,12 @@ abstract class AppLocalizations {
   /// **'As a'**
   String get as_a;
 
+  /// No description provided for @contact.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact with email'**
+  String get contact;
+
   /// No description provided for @intro.
   ///
   /// In en, this message translates to:
@@ -134,6 +140,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **' Through many projects, we have increased our capacity for continuous code improvement and optimization. We strive to improve the readability and maintenance of the code in the course of the project, and we have increased the efficiency of the project by applying the latest development tools and technologies. We continuously improved the quality of our projects by responding quickly to changes in user requirements and optimizing the performance of our codebase.'**
   String get strength_4;
+
+  /// No description provided for @about_me.
+  ///
+  /// In en, this message translates to:
+  /// **'About me'**
+  String get about_me;
 
   /// No description provided for @skill.
   ///
