@@ -9,9 +9,7 @@ import '../../features.dart';
 import '../bloc/intro_bloc.dart';
 
 class IntroPage extends StatelessWidget {
-  const IntroPage({super.key, this.onPop});
-
-  final Function()? onPop;
+  const IntroPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +43,8 @@ class IntroPage extends StatelessWidget {
                       )),
                     ),
                     Positioned(
-                      bottom: 48,
+                      bottom: 80,
+                      right: context.isDesktop ? null : 24,
                       child: Hero(
                           tag: 'arrow',
                           child: SvgImage(
@@ -53,10 +52,10 @@ class IntroPage extends StatelessWidget {
                             width: context.isDesktop ? 104 : 64,
                             height: context.isDesktop ? 104 : 64,
                             color: context.colorTheme.reverseColor,
-                          ).animate().rotate(begin: 0, end: 0.25)
+                          ).animate().rotate(begin: 0, end: 0.25, duration: 500.ms, delay: 500.ms, curve: Curves.easeInOutCirc)
                               .animate(onComplete: (controller) => controller.repeat())
-                              .moveY(begin: 0, end: 30, duration: 500.ms, delay: 1.seconds, curve: Curves.easeInOut)
-                              .moveY(begin: 30, end: 0, duration: 500.ms, delay: 1500.ms, curve: Curves.easeInOut)
+                              .moveY(begin: 0, end: 30, duration: 500.ms, delay: 1500.ms, curve: Curves.ease)
+                              .moveY(begin: 30, end: 0, duration: 500.ms, delay: 2000.ms, curve: Curves.ease)
 
                       ),
                     ),

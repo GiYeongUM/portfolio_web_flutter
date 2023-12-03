@@ -35,7 +35,7 @@ class AppRouter {
             path: 'intro',
             pageBuilder: (context, state) {
               return CustomTransitionPage(
-                transitionDuration: const Duration(seconds: 1),
+                transitionDuration: const Duration(milliseconds: 500),
                 transitionsBuilder: (context, animation, secondaryAnimation, child) {
                   return FadeTransition(
                     opacity: Tween<double>(
@@ -43,7 +43,7 @@ class AppRouter {
                       end: 1,
                     ).animate(CurvedAnimation(
                       parent: animation,
-                      curve: Curves.easeOut,
+                      curve: Curves.easeInOut,
                     ),),
                     child: child,
                   );
