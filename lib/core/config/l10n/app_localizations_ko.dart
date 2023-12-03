@@ -5,7 +5,7 @@ class AppLocalizationsKo extends AppLocalizations {
   AppLocalizationsKo([String locale = 'ko']) : super(locale);
 
   @override
-  String get hi => '안녕하세요 !';
+  String get hi => '안녕하세요 ';
 
   @override
   String get as_a => '';

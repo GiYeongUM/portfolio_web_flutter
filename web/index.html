@@ -109,30 +109,6 @@
     });
 </script>
 <script>
-    window.addEventListener('load', function() {
-        // 이미지 URL들을 배열로 정의합니다.
-        const images = [
-            'assets/assets/images/ability.png',
-            'assets/assets/images/allYIcon.png',
-            'assets/assets/images/brandCareIcon.png',
-            'assets/assets/images/cloud_animation.gif
-            'assets/assets/images/e-MilitaryIcon.png',
-            'assets/assets/images/knowledge.png',
-            'assets/assets/images/logo_gyu.svg
-            'assets/assets/images/modakIcon.png',
-            'assets/assets/images/needs-app-icon.png',
-            'assets/assets/images/porcheIcon.png',
-            'assets/assets/images/shareFitIcon.png',
-            'assets/assets/images/tyranno_title_logo.svg',
-            'assets/assets/images/ui_ux.png',
-        ];
-
-        for (let i = 0; i < images.length; i++) {
-            preloadImage(images[i]);
-        }
-    });
-</script>
-<script>
     const firebaseConfig = {
         apiKey: 'AIzaSyCCuJ117ShY3UxXm3sn5QY0sraJ7J0JlmQ',
         appId: '1:1060449311282:web:807af2c27e58ffcbf77a2b',
@@ -145,6 +121,52 @@
     firebase.initializeApp(firebaseConfig);
     window.addEventListener('load', function () {
         const loadingAnimation = document.querySelector('#lottie-animation');
+        const images = [
+            'assets/assets/images/ability.png',
+            'assets/assets/images/allYIcon.png',
+            'assets/assets/images/brandCareIcon.png',
+            'assets/assets/images/cloud_animation.gif',
+            'assets/assets/images/e-MilitaryIcon.png',
+            'assets/assets/images/knowledge.png',
+            'assets/assets/images/logo_gyu.svg',
+            'assets/assets/images/modakIcon.png',
+            'assets/assets/images/needs-app-icon.png',
+            'assets/assets/images/porcheIcon.png',
+            'assets/assets/images/shareFitIcon.png',
+            'assets/assets/images/tyranno_title_logo.svg',
+            'assets/assets/images/ui_ux.png',
+            'assets/assets/icons/ic_android.png',
+            'assets/assets/icons/ic_apple.png',
+            'assets/assets/icons/ic_battery.svg',
+            'assets/assets/icons/ic_cell.svg',
+            'assets/assets/icons/ic_confluence.png',
+            'assets/assets/icons/ic_dart.png',
+            'assets/assets/icons/ic_fastlane.png',
+            'assets/assets/icons/ic_figma.png',
+            'assets/assets/icons/ic_firebase.png',
+            'assets/assets/icons/ic_flutter.png',
+            'assets/assets/icons/ic_git.png',
+            'assets/assets/icons/ic_gitlab.png',
+            'assets/assets/icons/ic_jira.png',
+            'assets/assets/icons/ic_kakao.png',
+            'assets/assets/icons/ic_kotlin.png',
+            'assets/assets/icons/ic_message.png',
+            'assets/assets/icons/ic_nest.png',
+            'assets/assets/icons/ic_notion.png',
+            'assets/assets/icons/ic_phone.png',
+            'assets/assets/icons/ic_safari.png',
+            'assets/assets/icons/ic_shorebird.png',
+            'assets/assets/icons/ic_slack.png',
+            'assets/assets/icons/ic_swift.png',
+            'assets/assets/icons/ic_swiftui.png',
+            'assets/assets/icons/ic_typescript.png',
+            'assets/assets/icons/ic_wifi.svg',
+
+        ];
+
+        for (let i = 0; i < images.length; i++) {
+            preloadImage(images[i]);
+        }
         _flutter.loader.loadEntrypoint({
             entrypointUrl: "/main.dart.js",
             serviceWorker: {

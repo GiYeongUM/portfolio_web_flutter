@@ -96,7 +96,7 @@ abstract class AppLocalizations {
   /// No description provided for @hi.
   ///
   /// In en, this message translates to:
-  /// **'Hej !'**
+  /// **'Hej '**
   String get hi;
 
   /// No description provided for @as_a.
