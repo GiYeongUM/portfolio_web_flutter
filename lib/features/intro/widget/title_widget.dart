@@ -3,8 +3,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:giyeong_um_porfolio_page/features/features.dart';
-import '../../../core/core.dart';
 import 'package:lottie/lottie.dart';
+
+import '../../../core/core.dart';
 
 class TitleWidget extends StatelessWidget {
   const TitleWidget({super.key, required this.onContact});
@@ -118,7 +119,7 @@ class TextTitle extends StatelessWidget {
           style: context.textTheme.krBody4,
           textAlign: TextAlign.left,
         ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 1200.ms),
-        SizedBox(height: context.isMobile ? 24 : 40),
+        SizedBox(height: context.isDesktop ? 40 : 24),
         Stack(
           children: [
             Container(

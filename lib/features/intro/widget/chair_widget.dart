@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import '../../../core/core.dart';
 import 'package:lottie/lottie.dart';
+
+import '../../../core/core.dart';
 
 class ChairWidget extends StatefulWidget {
   const ChairWidget({Key? key, required this.page, required this.status}) : super(key: key);

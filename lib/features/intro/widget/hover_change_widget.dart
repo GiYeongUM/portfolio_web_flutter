@@ -135,15 +135,16 @@ class HoverChangeWidgetState extends State<HoverChangeWidget> with TickerProvide
                 child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(_animation.value * 0.5), // 그림자 색상
-                      spreadRadius: _animation.value, // 그림자 퍼짐 정도
-                      blurRadius: _animation.value, // 그림자 흐림 정도
-                      offset: Offset(_animation.value * 2, _animation.value * 7), // 그림자 위치
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(_animation.value * 0.5), // 그림자 색상
+                          spreadRadius: _animation.value, // 그림자 퍼짐 정도
+                          blurRadius: _animation.value, // 그림자 흐림 정도
+                          offset: Offset(_animation.value * 2, _animation.value * 7), // 그림자 위치
+                        ),
+                      ],
                     ),
-                  ],
-                ),child: child),
+                    child: child),
               );
             },
             child: animatedChild);

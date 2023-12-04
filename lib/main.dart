@@ -29,8 +29,8 @@ main() {
   );
 }
 
-class ErrorWidget extends StatelessWidget {
-  const ErrorWidget({required this.errorDetails, super.key});
+class ErrorArea extends StatelessWidget {
+  const ErrorArea({required this.errorDetails, super.key});
 
   final FlutterErrorDetails errorDetails;
 
@@ -69,62 +69,70 @@ class App extends StatelessWidget {
                         supportedLocales: AppLocalizations.supportedLocales,
                         routerConfig: router.setRouter,
                         locale: state.locale,
-                        builder: (context, child) => ResponsiveBreakpoints.builder(
-                              child: Builder(
-                                builder: (context) {
-                                  return Container(
-                                    decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black.withOpacity(0.5),
-                                          spreadRadius: 8,
-                                          blurRadius: 7,
-                                          offset: const Offset(0, 3),
-                                        ),
+                        builder: (context, child) {
+                          ErrorWidget.builder = (errorData) {
+                            Widget error = Text('$errorData');
+                            if (child is Scaffold || child is Navigator) {
+                              error = Scaffold(body: ErrorArea(errorDetails: errorData));
+                            }
+                            return error;
+                          };
+                          return ResponsiveBreakpoints.builder(
+                            child: Builder(
+                              builder: (context) {
+                                return Container(
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.5),
+                                        spreadRadius: 8,
+                                        blurRadius: 7,
+                                        offset: const Offset(0, 3),
+                                      ),
+                                    ],
+                                  ),
+                                  child: ResponsiveScaledBox(
+                                    width: ResponsiveValue<double>(
+                                      context,
+                                      conditionalValues: [
+                                        Condition.equals(name: MOBILE, value: 450),
+                                        Condition.equals(name: TABLET, value: 800),
+                                        Condition.largerThan(name: DESKTOP, value: 1600),
+                                        Condition.between(start: 2160, end: 3840, value: 2160)
                                       ],
-                                    ),
-                                    child: ResponsiveScaledBox(
-                                      width: ResponsiveValue<double>(
-                                        context,
-                                        conditionalValues: [
-                                          Condition.equals(name: MOBILE, value: 450),
-                                          Condition.equals(name: TABLET, value: 800),
-                                          Condition.largerThan(name: DESKTOP, value: 1600),
-                                          Condition.between(start: 2160, end: 3840, value: 2160)
-                                        ],
-                                      ).value,
-                                      child: child!,
-                                    ),
-                                  );
-                                },
-                              ),
-                              breakpoints: [
-                                const Breakpoint(start: 0, end: 450, name: MOBILE),
-                                const Breakpoint(start: 451, end: 1200, name: TABLET),
-                                const Breakpoint(start: 1200, end: 1600, name: DESKTOP),
-                                const Breakpoint(start: 1600, end: 2160, name: DESKTOP),
-                                const Breakpoint(start: 2160, end: double.infinity, name: DESKTOP),
-                              ],
-                            ));
+                                    ).value,
+                                    child: child!,
+                                  ),
+                                );
+                              },
+                            ),
+                            breakpoints: [
+                              const Breakpoint(start: 0, end: 450, name: MOBILE),
+                              const Breakpoint(start: 451, end: 1200, name: TABLET),
+                              const Breakpoint(start: 1200, end: 1600, name: DESKTOP),
+                              const Breakpoint(start: 1600, end: 2160, name: DESKTOP),
+                              const Breakpoint(start: 2160, end: double.infinity, name: DESKTOP),
+                            ],
+                          );
+                        });
                   },
                 ),
               ),
             ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 500.ms);
           } else {
-            return Center(
-              child: Lottie.asset('assets/json/loading_lottie.json', width: 100, height: 100));
+            return Center(child: Lottie.asset('assets/json/loading_lottie.json', width: 100, height: 100));
           }
         });
   }
 
   Future<bool> preCacheImages(BuildContext context) async {
-    if(kDebugMode) return true;
+    if (kDebugMode) return true;
     return Future.wait([
       precacheImage(const AssetImage('assets/images/cloud_animation.gif'), context),
       precacheImage(const AssetImage('assets/images/ui_ux.png'), context),
       precacheImage(const AssetImage('assets/images/knowledge.png'), context),
       precacheImage(const AssetImage('assets/images/ability.png'), context),
-      for(final item in SkillItem.values) precacheImage(AssetImage('${item.imageUrl}'), context),
+      for (final item in SkillItem.values) precacheImage(AssetImage('${item.imageUrl}'), context),
     ]).then((value) => true).catchError((e) => false);
   }
 }

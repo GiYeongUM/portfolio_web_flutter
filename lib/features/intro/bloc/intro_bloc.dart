@@ -27,6 +27,5 @@ class IntroBloc extends Bloc<CommonEvent, IntroState> with StreamTransform {
 
   _onItemChanged(ItemChanged event, Emitter<IntroState> emit) {
     emit(state.copyWith(item: event.item));
-
   }
 }

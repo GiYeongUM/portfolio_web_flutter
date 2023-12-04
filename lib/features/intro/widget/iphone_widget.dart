@@ -208,7 +208,6 @@ class IPhonePowerButton extends StatelessWidget {
               ),
             ),
           ),
-
         ],
       ),
     );
