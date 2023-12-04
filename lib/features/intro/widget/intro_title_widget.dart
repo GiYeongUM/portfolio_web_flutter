@@ -23,7 +23,6 @@ class IntroTitleWidget extends StatelessWidget {
               height: MediaQuery.of(context).size.height,
               child: TitleWidget(onContact: onContact),
             ),
-
             Container(color: context.colorTheme.pointBackgroundColor, height: 24),
           ],
         ),

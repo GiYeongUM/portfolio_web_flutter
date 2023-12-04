@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,7 +42,7 @@ class IntroPage extends StatelessWidget {
                       )),
                     ),
                     Positioned(
-                      bottom: 80,
+                      bottom: context.isDesktop ? 80 : 32,
                       right: context.isDesktop ? null : 24,
                       child: Hero(
                           tag: 'arrow',
@@ -52,16 +51,15 @@ class IntroPage extends StatelessWidget {
                             width: context.isDesktop ? 104 : 64,
                             height: context.isDesktop ? 104 : 64,
                             color: context.colorTheme.reverseColor,
-                          ).animate().rotate(begin: 0, end: 0.25, duration: 500.ms, delay: 500.ms, curve: Curves.easeInOutCirc)
+                          )
+                              .animate()
+                              .rotate(begin: 0, end: 0.25, duration: 500.ms, delay: 500.ms, curve: Curves.easeInOutCirc)
                               .animate(onComplete: (controller) => controller.repeat())
-                              .moveY(begin: 0, end: 30, duration: 500.ms, delay: 1500.ms, curve: Curves.ease)
-                              .moveY(begin: 30, end: 0, duration: 500.ms, delay: 2000.ms, curve: Curves.ease)
-
-                      ),
+                              .moveY(begin: 0, end: context.isDesktop ? 24 : 16, duration: 500.ms, delay: 1500.ms, curve: Curves.ease)
+                              .moveY(begin: context.isDesktop ? 24 : 16, end: 0, duration: 500.ms, delay: 2000.ms, curve: Curves.ease)),
                     ),
                   ],
                 ),
-
                 IntroStepWidget(
                   color: context.colorTheme.pointBackgroundColor,
                   onPrevious: () => context.read<IntroBloc>().add(const PageChanged(page: 0)),

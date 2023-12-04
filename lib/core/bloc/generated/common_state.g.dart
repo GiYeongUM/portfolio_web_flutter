@@ -42,8 +42,7 @@ class _$CommonStateCWProxyImpl implements _$CommonStateCWProxy {
   CommonState status(CommonStatus status) => this(status: status);
 
   @override
-  CommonState errorMessage(String? errorMessage) =>
-      this(errorMessage: errorMessage);
+  CommonState errorMessage(String? errorMessage) => this(errorMessage: errorMessage);
 
   @override
   CommonState page(int page) => this(page: page);
@@ -52,8 +51,7 @@ class _$CommonStateCWProxyImpl implements _$CommonStateCWProxy {
   CommonState query(String? query) => this(query: query);
 
   @override
-  CommonState hasReachedMax(bool hasReachedMax) =>
-      this(hasReachedMax: hasReachedMax);
+  CommonState hasReachedMax(bool hasReachedMax) => this(hasReachedMax: hasReachedMax);
 
   @override
 
@@ -87,11 +85,10 @@ class _$CommonStateCWProxyImpl implements _$CommonStateCWProxy {
           ? _value.query
           // ignore: cast_nullable_to_non_nullable
           : query as String?,
-      hasReachedMax:
-          hasReachedMax == const $CopyWithPlaceholder() || hasReachedMax == null
-              ? _value.hasReachedMax
-              // ignore: cast_nullable_to_non_nullable
-              : hasReachedMax as bool,
+      hasReachedMax: hasReachedMax == const $CopyWithPlaceholder() || hasReachedMax == null
+          ? _value.hasReachedMax
+          // ignore: cast_nullable_to_non_nullable
+          : hasReachedMax as bool,
     );
   }
 }

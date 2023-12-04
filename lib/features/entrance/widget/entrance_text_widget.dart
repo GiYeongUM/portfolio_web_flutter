@@ -1,8 +1,8 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import '../../../core/core.dart';
 
+import '../../../core/core.dart';
 import '../../../main.dart';
 
 class EntranceTextWidget extends StatelessWidget {
@@ -29,6 +29,7 @@ class EntranceTextWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Spacer(),
+
                     Column(
                       children: [
                         SizedBox(height: context.isDesktop ? 184 : 88),

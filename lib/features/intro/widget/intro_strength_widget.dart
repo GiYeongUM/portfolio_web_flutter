@@ -52,9 +52,10 @@ class IntroStrengthWidget extends StatelessWidget {
                         Flexible(
                           child: Container(
                             key: ValueKey<int>(index),
-                            padding: EdgeInsets.symmetric(horizontal: context.isMobile ? 24 : 0, vertical: 24),
-                            width: context.isMobile ? double.infinity : MediaQuery.of(context).size.width / 3 - 32,
+                            padding: EdgeInsets.symmetric(horizontal: context.isDesktop ? 24 : 24, vertical: 24),
+                            width: context.isDesktop ? MediaQuery.of(context).size.width / 3 - 32 : double.infinity,
                             child: Container(
+                              margin: const EdgeInsets.all(80),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(16),
                                 image: DecorationImage(
@@ -70,16 +71,19 @@ class IntroStrengthWidget extends StatelessWidget {
                       ],
                     ),
                   ),
-                  animatedChild: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("${strengthWidgets[index].title}", style: context.textTheme.krSubtitle1),
-                      const SizedBox(height: 8),
-                      Text('${strengthWidgets[index].description}', style: context.textTheme.krBody4),
-                    ],
+                  animatedChild: Hero(
+                    tag: '${strengthWidgets[index].title}',
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("${strengthWidgets[index].title}", style: context.textTheme.krSubtitle1),
+                        const SizedBox(height: 8),
+                        Text('${strengthWidgets[index].description}', style: context.textTheme.krBody4),
+                      ],
+                    ),
                   ),
                   delay: (1000 + 200 * index).ms,
-                  route: '/',
+                  route: '/strength/$index',
                 );
               }),
         ],

@@ -17,3 +17,7 @@ export 'intro/widget/intro_strength_widget.dart';
 export 'intro/widget/intro_title_widget.dart';
 export 'intro/widget/iphone_widget.dart';
 export 'intro/widget/title_widget.dart';
+export 'strength/ui/strength_page.dart';
+export 'strength/widget/strength_ability_widget.dart';
+export 'strength/widget/strength_knowledge_widget.dart';
+export 'strength/widget/strength_uiux_widget.dart';

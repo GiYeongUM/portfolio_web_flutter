@@ -50,7 +50,6 @@ class _EntrancePageState extends State<EntrancePage> with TickerProviderStateMix
                   },
                   gifController: _gifAnimationController,
                 ),
-
                 EntranceWallWidget(animation: _animation),
               ],
             ),
