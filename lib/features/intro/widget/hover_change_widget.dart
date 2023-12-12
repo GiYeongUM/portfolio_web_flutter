@@ -74,7 +74,7 @@ class HoverChangeWidgetState extends State<HoverChangeWidget> with TickerProvide
     if (route.contains('http')) {
       launchUrl(Uri.parse(route));
     } else {
-      context.go(route);
+      context.push(route);
     }
   }
 

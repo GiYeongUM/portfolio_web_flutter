@@ -32,6 +32,7 @@ class AppRouter {
         },
         routes: <RouteBase>[
           GoRoute(
+            name: 'home',
             path: 'intro',
             pageBuilder: (context, state) {
               return CustomTransitionPage(
@@ -55,6 +56,7 @@ class AppRouter {
             },
           ),
           GoRoute(
+            name: 'strength',
             path: 'strength/:id',
             pageBuilder: (context, state) {
               return CustomTransitionPage(

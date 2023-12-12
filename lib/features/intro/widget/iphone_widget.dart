@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:giyeong_um_porfolio_page/core/core.dart';
 
 class IPhoneWidget extends StatelessWidget {
-  const IPhoneWidget({super.key, this.child = const SizedBox()});
+  const IPhoneWidget({super.key, this.child = const SizedBox(), this.bottomWidget = true});
 
   final Widget child;
+  final bool bottomWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -51,28 +52,29 @@ class IPhoneWidget extends StatelessWidget {
                       Expanded(
                         child: child,
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(80 * constraints.maxWidth / 1320),
-                          color: black.withOpacity(0.3),
+                      if (bottomWidget)
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(80 * constraints.maxWidth / 1320),
+                            color: black.withOpacity(0.3),
+                          ),
+                          margin: EdgeInsets.symmetric(horizontal: 24 * constraints.maxWidth / 1320),
+                          height: 300 * constraints.maxWidth / 1320,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Image.asset("assets/icons/ic_phone.png"),
+                              const SizedBox(width: 16),
+                              Image.asset("assets/icons/ic_message.png"),
+                              const SizedBox(width: 16),
+                              Image.asset("assets/icons/ic_safari.png"),
+                              const SizedBox(width: 16),
+                              Image.asset("assets/icons/ic_kakao.png"),
+                            ],
+                          ),
                         ),
-                        margin: EdgeInsets.symmetric(horizontal: 24 * constraints.maxWidth / 1320),
-                        height: 300 * constraints.maxWidth / 1320,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Image.asset("assets/icons/ic_phone.png"),
-                            const SizedBox(width: 16),
-                            Image.asset("assets/icons/ic_message.png"),
-                            const SizedBox(width: 16),
-                            Image.asset("assets/icons/ic_safari.png"),
-                            const SizedBox(width: 16),
-                            Image.asset("assets/icons/ic_kakao.png"),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 80 * constraints.maxWidth / 1320),
+                      if (bottomWidget) SizedBox(height: 80 * constraints.maxWidth / 1320),
                     ],
                   ),
                 ),

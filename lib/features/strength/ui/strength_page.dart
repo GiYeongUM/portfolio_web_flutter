@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:giyeong_um_porfolio_page/features/features.dart';
 
 import '../../../core/core.dart';
 import '../../../core/domain/model/strength.dart';
@@ -12,33 +12,28 @@ class StrengthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.colorTheme.backgroundColor,
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 24),
-            Hero(
-              tag: 'arrow',
-              child: SvgImage(
-                'assets/icons/ic_arrow_forward.svg',
-                width: context.isDesktop ? 104 : 64,
-                height: context.isDesktop ? 104 : 64,
-                color: context.colorTheme.reverseColor,
+        child: Padding(
+          padding: context.isDesktop ? const EdgeInsets.symmetric(horizontal: 64) : const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 24),
+              Hero(
+                tag: '${strengthWidgets[index].title}',
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("${strengthWidgets[index].title}", style: context.textTheme.krSubtitle1),
+                    const SizedBox(height: 8),
+                    Text('${strengthWidgets[index].description}', style: context.textTheme.krBody4),
+                  ],
+                ),
               ),
-            ).animate().rotate(begin: 0, end: 0.5, duration: 500.ms, delay: 500.ms, curve: Curves.easeInOutCirc),
-            const SizedBox(height: 24),
-            Hero(
-              tag: '${strengthWidgets[index].title}',
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("${strengthWidgets[index].title}", style: context.textTheme.krSubtitle1),
-                  const SizedBox(height: 8),
-                  Text('${strengthWidgets[index].description}', style: context.textTheme.krBody4),
-                ],
-              ),
-            ),
-          ],
+              strengthWidget(index),
+            ],
+          ),
         ),
       ),
     );
@@ -49,4 +44,17 @@ class StrengthPage extends StatelessWidget {
         const Strength(imageUrl: "assets/images/knowledge.png", title: "Knowledge", description: "Thoroughly and Extensively."),
         const Strength(imageUrl: "assets/images/ability.png", title: "Ability", description: "Reliability and Performance."),
       ];
+
+  Widget strengthWidget(int index) {
+    switch (index) {
+      case 0:
+        return const StrengthUiUxWidget();
+      case 1:
+        return const StrengthKnowledgeWidget();
+      case 2:
+        return const StrengthAbilityWidget();
+      default:
+        return const StrengthUiUxWidget();
+    }
+  }
 }
