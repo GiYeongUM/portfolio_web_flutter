@@ -9,25 +9,27 @@ class StrengthUiUxWidget extends StatefulWidget {
 }
 
 class _StrengthUiUxWidgetState extends State<StrengthUiUxWidget> {
-  late VideoPlayerController _controller;
-  late Future<void> _initializeVideoPlayerFuture;
+  late VideoPlayerController _videoPlayerController;
 
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.asset('assets/videos/ui_ux_1.mp4', videoPlayerOptions: VideoPlayerOptions(allowBackgroundPlayback: true));
-    _initializeVideoPlayerFuture = _controller.initialize();
+    _videoPlayerController = VideoPlayerController.asset("assets/videos/ui_ux_1.mp4")
+      ..initialize().then((_) {
+        _videoPlayerController.setVolume(0);
+        _videoPlayerController.play();
+        _videoPlayerController.setLooping(true);
+        setState(() {});
+      });
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 32),
-      width: MediaQuery.of(context).size.width / 3,
-      height: MediaQuery.of(context).size.width / 3,
-      child: VideoPlayer(
-        _controller,
-      ),
+      width: _videoPlayerController.value.size.width,
+      height: _videoPlayerController.value.size.height,
+      child: VideoPlayer(_videoPlayerController),
     );
   }
 }
