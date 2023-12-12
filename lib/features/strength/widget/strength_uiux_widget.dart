@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:giyeong_um_porfolio_page/features/features.dart';
 import 'package:video_player/video_player.dart';
 
 class StrengthUiUxWidget extends StatefulWidget {
@@ -11,16 +10,13 @@ class StrengthUiUxWidget extends StatefulWidget {
 
 class _StrengthUiUxWidgetState extends State<StrengthUiUxWidget> {
   late VideoPlayerController _controller;
+  late Future<void> _initializeVideoPlayerFuture;
 
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.asset('assets/videos/ui_ux_1.mp4')
-      ..initialize().then((_) {
-        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        setState(() {});
-        _controller.play();
-      });
+    _controller = VideoPlayerController.asset('assets/videos/ui_ux_1.mp4', videoPlayerOptions: VideoPlayerOptions(allowBackgroundPlayback: true));
+    _initializeVideoPlayerFuture = _controller.initialize();
   }
 
   @override
@@ -28,12 +24,14 @@ class _StrengthUiUxWidgetState extends State<StrengthUiUxWidget> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 32),
       width: MediaQuery.of(context).size.width / 3,
-      child: IPhoneWidget(
-        bottomWidget: false,
-        child: VideoPlayer(
-          _controller,
-        ),
-      ),
+      height: MediaQuery.of(context).size.width / 3,
+      child: FutureBuilder(
+          future: _initializeVideoPlayerFuture.then((value) => _controller.play()),
+          builder: (context, snapshot) {
+            return VideoPlayer(
+              _controller,
+            );
+          }),
     );
   }
 }
