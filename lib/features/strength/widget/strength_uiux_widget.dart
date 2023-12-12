@@ -25,13 +25,9 @@ class _StrengthUiUxWidgetState extends State<StrengthUiUxWidget> {
       padding: const EdgeInsets.symmetric(vertical: 32),
       width: MediaQuery.of(context).size.width / 3,
       height: MediaQuery.of(context).size.width / 3,
-      child: FutureBuilder(
-          future: _initializeVideoPlayerFuture.then((value) => _controller.play()),
-          builder: (context, snapshot) {
-            return VideoPlayer(
-              _controller,
-            );
-          }),
+      child: VideoPlayer(
+        _controller,
+      ),
     );
   }
 }
