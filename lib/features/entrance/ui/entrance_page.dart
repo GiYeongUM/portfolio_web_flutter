@@ -42,7 +42,7 @@ class _EntrancePageState extends State<EntrancePage> with TickerProviderStateMix
                   animation: _animation,
                   afterController: _afterController,
                   onNext: () {
-                    context.go('/intro');
+                    context.push('/intro');
                   },
                   locale: state.locale,
                   onLocaleChanged: (locale) {

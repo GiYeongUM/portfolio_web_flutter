@@ -29,10 +29,9 @@ class EntranceTextWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Spacer(),
-
                     Column(
                       children: [
-                        SizedBox(height: context.isDesktop ? 184 : 88),
+                        SizedBox(height: context.isDesktop ? 240 : 88),
                         Text.rich(
                           TextSpan(
                             style: context.textTheme.krBody4,
@@ -108,7 +107,7 @@ class EntranceTextWidget extends StatelessWidget {
                 ),
                 Positioned(
                   top: 0,
-                  left: 0,
+                  right: 0,
                   child: Container(
                       alignment: Alignment.centerLeft,
                       margin: EdgeInsets.symmetric(horizontal: context.isDesktop ? 64 : 24, vertical: context.isDesktop ? 64 : 16),
@@ -151,27 +150,6 @@ class EntranceTextWidget extends StatelessWidget {
                         ),
                       )),
                 ).animate(autoPlay: false, controller: afterController).fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 1000.ms),
-                Positioned(
-                  top: 0,
-                  right: 0,
-                  child: Container(
-                    width: 80,
-                    height: 80,
-                    margin: const EdgeInsets.all(24),
-                    decoration: BoxDecoration(
-                      color: context.colorTheme.wallColor,
-                      image: const DecorationImage(image: AssetImage("assets/images/cloud_animation.gif")),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.5),
-                          blurRadius: 7,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ).animate(autoPlay: false, controller: afterController).fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: 1000.ms),
-                ),
               ],
             ),
           );

@@ -128,7 +128,6 @@ class App extends StatelessWidget {
   Future<bool> preCacheImages(BuildContext context) async {
     if (kDebugMode) return true;
     return Future.wait([
-      precacheImage(const AssetImage('assets/images/cloud_animation.gif'), context),
       precacheImage(const AssetImage('assets/images/ui_ux.png'), context),
       precacheImage(const AssetImage('assets/images/knowledge.png'), context),
       precacheImage(const AssetImage('assets/images/ability.png'), context),
