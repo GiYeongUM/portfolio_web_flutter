@@ -14,7 +14,7 @@ class _StrengthUiUxWidgetState extends State<StrengthUiUxWidget> {
   @override
   void initState() {
     super.initState();
-    _videoPlayerController = VideoPlayerController.asset("assets/videos/ui_ux_1.mp4")
+    _videoPlayerController = VideoPlayerController.asset("assets/videos/ui_ux_1.mpeg")
       ..initialize().then((_) {
         _videoPlayerController.setVolume(0);
         _videoPlayerController.play();
