@@ -59,6 +59,7 @@ class HoverChangeWidgetState extends State<HoverChangeWidget> with TickerProvide
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             widget.header ?? const SizedBox(),
             _switchHoverType(widget.type, animatedChild: widget.animatedChild, animation: _animation),
@@ -143,6 +144,20 @@ class HoverChangeWidgetState extends State<HoverChangeWidget> with TickerProvide
                           offset: Offset(_animation.value * 2, _animation.value * 7), // 그림자 위치
                         ),
                       ],
+                    ),
+                    child: child),
+              );
+            },
+            child: animatedChild);
+      case HoverType.up:
+        return AnimatedBuilder(
+            animation: _controller,
+            builder: (context, child) {
+              return Transform.translate(
+                offset: Offset(0, -_animation.value * 24),
+                child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
                     ),
                     child: child),
               );

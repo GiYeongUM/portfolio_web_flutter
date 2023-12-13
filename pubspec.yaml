@@ -75,6 +75,7 @@ flutter:
     - assets/icons/
     - assets/json/
     - assets/images/
+    - assets/videos/
 
   fonts:
     - family: NotoSansKR

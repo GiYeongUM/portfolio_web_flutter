@@ -13,27 +13,27 @@ class StrengthPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colorTheme.backgroundColor,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: context.isDesktop ? const EdgeInsets.symmetric(horizontal: 64) : const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 24),
-              Hero(
-                tag: '${strengthWidgets[index].title}',
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("${strengthWidgets[index].title}", style: context.textTheme.krSubtitle1),
-                    const SizedBox(height: 8),
-                    Text('${strengthWidgets[index].description}', style: context.textTheme.krBody4),
-                  ],
-                ),
+      body: Padding(
+        padding: context.isDesktop ? const EdgeInsets.symmetric(horizontal: 64) : const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 24),
+            Hero(
+              tag: '${strengthWidgets[index].title}',
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("${strengthWidgets[index].title}", style: context.textTheme.krSubtitle1),
+                  const SizedBox(height: 8),
+                  Text('${strengthWidgets[index].description}', style: context.textTheme.krBody4),
+                ],
               ),
-              strengthWidget(index),
-            ],
-          ),
+            ),
+            const SizedBox(height: 24),
+            Expanded(child: strengthWidget(index)),
+          ],
         ),
       ),
     );
