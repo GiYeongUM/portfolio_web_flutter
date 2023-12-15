@@ -54,7 +54,7 @@ class _StrengthUiUxWidgetState extends State<StrengthUiUxWidget> {
         controller: scrollController,
         scrollDirection: Axis.horizontal,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: EdgeInsets.symmetric(horizontal: context.isDesktop ? 24 : 8),
           child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
