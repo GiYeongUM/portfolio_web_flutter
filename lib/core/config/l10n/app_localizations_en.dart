@@ -14,6 +14,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get contact => 'Contact with email';
 
   @override
+  String get back => 'Go back';
+
+  @override
   String get intro => ' developer specializing in multi-platform app development and an expert in implementing stable and efficient backends using NestJS. I focus on creating modern and performance-optimized apps through user-centric UI/UX design and robust server functionalities.';
 
   @override

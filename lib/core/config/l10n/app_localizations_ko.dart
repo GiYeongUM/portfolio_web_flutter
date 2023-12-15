@@ -14,6 +14,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get contact => '이메일로 연락하기';
 
   @override
+  String get back => '뒤로가기';
+
+  @override
   String get intro => '멀티 플랫폼 앱 개발 전문 개발자이자 NestJS를 사용하여 안정적이고 효율적인 백엔드를 구현하는 전문가입니다. 사용자 중심의 UI/UX 설계와 강력한 서버 기능을 통해 현대적이고 성능에 최적화된 앱을 만드는 데 중점을 두고 있습니다.';
 
   @override

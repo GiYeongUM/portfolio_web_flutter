@@ -42,7 +42,7 @@ class IntroStrengthWidget extends StatelessWidget {
               shrinkWrap: true,
               itemCount: 3,
               physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(childAspectRatio: context.isDesktop ? 0.8 : 1, crossAxisCount: context.isDesktop ? 3 : 1),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(childAspectRatio: context.isDesktop ? 0.8 : 1.2, crossAxisCount: context.isDesktop ? 3 : 1),
               itemBuilder: (context, index) {
                 return HoverChangeWidget(
                   type: HoverType.arrow,
@@ -52,16 +52,13 @@ class IntroStrengthWidget extends StatelessWidget {
                         Flexible(
                           child: Container(
                             key: ValueKey<int>(index),
-                            padding: EdgeInsets.symmetric(horizontal: context.isDesktop ? 24 : 24, vertical: 24),
-                            width: context.isDesktop ? MediaQuery.of(context).size.width / 3 - 32 : double.infinity,
-                            child: Container(
-                              margin: const EdgeInsets.all(80),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16),
-                                image: DecorationImage(
-                                  image: AssetImage("${strengthWidgets[index].imageUrl}"),
-                                  fit: BoxFit.cover,
-                                ),
+                            padding: const EdgeInsets.symmetric(horizontal: 56, vertical: 56),
+                            width: context.isDesktop ? MediaQuery.of(context).size.width / 3 - 32 : null,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16),
+                              image: DecorationImage(
+                                image: AssetImage("${strengthWidgets[index].imageUrl}"),
+                                fit: BoxFit.contain,
                               ),
                             ),
                           ),
@@ -71,16 +68,13 @@ class IntroStrengthWidget extends StatelessWidget {
                       ],
                     ),
                   ),
-                  animatedChild: Hero(
-                    tag: '${strengthWidgets[index].title}',
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("${strengthWidgets[index].title}", style: context.textTheme.krSubtitle1),
-                        const SizedBox(height: 8),
-                        Text('${strengthWidgets[index].description}', style: context.textTheme.krBody4),
-                      ],
-                    ),
+                  animatedChild: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Hero(tag: '${strengthWidgets[index].title}', child: Text("${strengthWidgets[index].title}", style: context.textTheme.krSubtitle1)),
+                      const SizedBox(height: 8),
+                      Text('${strengthWidgets[index].description}', style: context.textTheme.krBody4),
+                    ],
                   ),
                   delay: (1000 + 200 * index).ms,
                   route: '/strength/$index',
