@@ -60,7 +60,7 @@ class StrengthPage extends StatelessWidget {
                       ],
                     )),
               ),
-            ),
+            ).animate().fadeIn(duration: 500.ms, delay: 2000.ms),
             const SizedBox(height: 24),
           ],
         ),
