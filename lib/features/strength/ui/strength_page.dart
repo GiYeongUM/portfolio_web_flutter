@@ -18,6 +18,7 @@ class StrengthPage extends StatelessWidget {
       body: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const SizedBox(height: 40),
           Container(
@@ -29,8 +30,8 @@ class StrengthPage extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text('${strengthWidgets(context)[index].description}', style: context.textTheme.krBody4)
                     .animate()
-                    .fadeIn(duration: 500.ms, delay: 500.ms)
-                    .moveX(begin: 24, end: 0, duration: 500.ms, delay: 500.ms, curve: Curves.easeOut),
+                    .fadeIn(duration: 500.ms, delay: 300.ms)
+                    .moveX(begin: 24, end: 0, duration: 300.ms, delay: 300.ms, curve: Curves.easeOut),
               ],
             ),
           ),

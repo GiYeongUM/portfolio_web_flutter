@@ -26,7 +26,7 @@ bool isMaximum(ScrollController controller, {bool edge = false}) {
   if (edge) controller.position.atEdge && controller.position.pixels != 0;
   final maxScroll = controller.position.maxScrollExtent;
   final currentScroll = controller.offset;
-  return currentScroll >= (maxScroll * 0.95);
+  return currentScroll == maxScroll;
 }
 
 String dateParser(DateTime? date, {String? pattern}) {
