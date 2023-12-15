@@ -35,39 +35,31 @@ class _StrengthUiUxWidgetState extends State<StrengthUiUxWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: context.isDesktop ? MainAxisAlignment.start : MainAxisAlignment.spaceAround,
       children: [
-        Positioned(
-          top: 0,
-          left: 0,
-          child: HoverChangeWidget(
-            type: HoverType.up,
-            onInitialAnimation: false,
-            onClick: () {},
-            animatedChild: SizedBox(
-              height: MediaQuery.of(context).size.height / 1.5,
-              child: AspectRatio(
-                aspectRatio: 886 / 1920,
-                child: ClipRRect(borderRadius: BorderRadius.circular(8), child: VideoPlayer(_firstVideoPlayerController)),
-              ),
+        HoverChangeWidget(
+          type: HoverType.up,
+          onInitialAnimation: false,
+          animatedChild: Container(
+            constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height / 1.5),
+            width: context.isDesktop ? null : MediaQuery.of(context).size.width / 2.5,
+            child: AspectRatio(
+              aspectRatio: 886 / 1920,
+              child: ClipRRect(borderRadius: BorderRadius.circular(8), child: VideoPlayer(_firstVideoPlayerController)),
             ),
           ),
         ).animate().fadeIn(duration: 500.ms, delay: 1.seconds).moveX(begin: 24, end: 0, duration: 500.ms, delay: 1.seconds, curve: Curves.easeOut),
-        Positioned(
-          top: 0,
-          left: 40,
-          child: HoverChangeWidget(
-            type: HoverType.up,
-            onInitialAnimation: false,
-            onClick: () {
-              _secondVideoPlayerController.pause();
-            },
-            animatedChild: SizedBox(
-                height: MediaQuery.of(context).size.height / 1.5,
-                child: AspectRatio(aspectRatio: 886 / 1920, child: ClipRRect(borderRadius: BorderRadius.circular(8), child: VideoPlayer(_secondVideoPlayerController)))),
-          ),
-        ).animate().fadeIn(duration: 500.ms, delay: 2.seconds).moveX(begin: 24, end: 0, duration: 500.ms, delay: 2.seconds, curve: Curves.easeOut),
+        if (context.isDesktop) const SizedBox(width: 40),
+        HoverChangeWidget(
+          type: HoverType.up,
+          onInitialAnimation: false,
+          animatedChild: Container(
+              constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height / 1.5),
+              width: context.isDesktop ? null : MediaQuery.of(context).size.width / 2.5,
+              child: AspectRatio(aspectRatio: 886 / 1920, child: ClipRRect(borderRadius: BorderRadius.circular(8), child: VideoPlayer(_secondVideoPlayerController)))),
+        ).animate().fadeIn(duration: 500.ms, delay: 1500.ms).moveX(begin: 24, end: 0, duration: 500.ms, delay: 1500.ms, curve: Curves.easeOut),
       ],
     );
   }

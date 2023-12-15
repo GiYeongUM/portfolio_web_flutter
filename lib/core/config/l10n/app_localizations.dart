@@ -111,6 +111,12 @@ abstract class AppLocalizations {
   /// **'Contact with email'**
   String get contact;
 
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Go back'**
+  String get back;
+
   /// No description provided for @intro.
   ///
   /// In en, this message translates to:

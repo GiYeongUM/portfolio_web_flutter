@@ -49,23 +49,33 @@ class HoverChangeWidgetState extends State<HoverChangeWidget> with TickerProvide
           _controller.reverse();
         });
       },
-      child: InkWell(
-        onTap: () {
-          if (isHover) {
-            _onClick(widget.route);
-          } else {
-            _hoverAnimation(firstDelay: 0.ms, route: true);
-          }
-        },
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            widget.header ?? const SizedBox(),
-            _switchHoverType(widget.type, animatedChild: widget.animatedChild, animation: _animation),
-          ],
-        ),
-      ),
+      child: widget.onClick == null && widget.route == null
+          ? Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                widget.header ?? const SizedBox(),
+                _switchHoverType(widget.type, animatedChild: widget.animatedChild, animation: _animation),
+              ],
+            )
+          : InkWell(
+              splashFactory: NoSplash.splashFactory,
+              onTap: () {
+                if (isHover) {
+                  _onClick(widget.route);
+                } else {
+                  _hoverAnimation(firstDelay: 0.ms, route: true);
+                }
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  widget.header ?? const SizedBox(),
+                  _switchHoverType(widget.type, animatedChild: widget.animatedChild, animation: _animation),
+                ],
+              ),
+            ),
     ).animate().fadeIn(duration: 500.ms, curve: Curves.easeInOut, delay: widget.delay).moveY(duration: 500.ms, curve: Curves.easeInOut, begin: 100, end: 0, delay: widget.delay);
   }
 
